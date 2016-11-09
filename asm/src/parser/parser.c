@@ -5,9 +5,21 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Wed Nov  9 14:08:44 2016 Guillaume MARDON
+** Last update Wed Nov  9 14:43:36 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
+
+int	parse(const int fd)
+{
+  char	*line;
+
+  while (line != '\0')
+    {
+      line = get_next_line(fd);
+      my_putstr(line);
+      my_putchar('\n');
+    }
+}
 
 int	parse_file(char* file_name)
 {
@@ -19,6 +31,6 @@ int	parse_file(char* file_name)
     }
   else
     {
-      
+      parse(fd);
     }
 }
