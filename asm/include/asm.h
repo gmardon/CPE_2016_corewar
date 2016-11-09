@@ -5,9 +5,12 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Wed Nov  9 13:54:48 2016 Guillaume MARDON
+** Last update Wed Nov  9 14:03:34 2016 Guillaume MARDON
 */
-#include "stdio.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 // UTILS //
 void	my_putchar(char c);

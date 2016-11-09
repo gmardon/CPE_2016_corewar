@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:34:46 2016 Guillaume MARDON
-** Last update Wed Nov  9 13:54:16 2016 Guillaume MARDON
+** Last update Wed Nov  9 14:04:54 2016 Guillaume MARDON
 */
 #include "../include/asm.h"
 
@@ -15,13 +15,14 @@ int	main(int argc, char **argv)
 
   if (argc >= 2)
     {
-      index = 1;
+      index = 0;
 
-      while (argv[index])
+      while (argv[++index])
 				{
 	  				my_putstr("(");
-	  				my_putstr(argv[index++]);
+	  				my_putstr(argv[index]);
 	  				my_putstr(") parsing... \n");
+	  				parse_file(argv[index]);
 				}
     }
   else

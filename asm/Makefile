@@ -1,11 +1,11 @@
 ##
-## Makefile for my_printf in /home/gmardon/PSU_2016_my_printf
+## Makefile for asm in /home/gmardon/CPE_2016_corewar/asm
 ##
 ## Made by Guillaume Le MARDON
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Wed Nov  9 13:54:27 2016 Guillaume MARDON
+## Last update Wed Nov  9 13:56:12 2016 Guillaume MARDON
 ##
 
 NAME		=	asm
