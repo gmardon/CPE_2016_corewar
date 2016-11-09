@@ -5,9 +5,8 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:42:55 2016 Guillaume MARDON
-** Last update Wed Nov  9 13:48:56 2016 Guillaume MARDON
+** Last update Wed Nov  9 14:10:12 2016 Guillaume MARDON
 */
-#include <unistd.h>
 #include "../../include/asm.h"
 
 void	my_putstr(char *str)

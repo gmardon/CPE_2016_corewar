@@ -5,8 +5,10 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:26:44 2016 Guillaume MARDON
-** Last update Wed Nov  9 13:35:11 2016 Guillaume MARDON
+** Last update Wed Nov  9 14:09:04 2016 Guillaume MARDON
 */
+#include "../../include/asm.h"
+
 char *get_next_line(const int fd)
 {
 
