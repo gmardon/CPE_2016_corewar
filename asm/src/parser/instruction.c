@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Wed Nov  9 15:24:54 2016 Guillaume MARDON
+** Last update Wed Nov  9 17:22:12 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -26,22 +26,18 @@ int	is_label(char *line)
   return (0);
 }
 
-t_instruction	read_instruction(char *line)
+op_t	*retrieve_op(char *line)
 {
-  int	index;
-  char *op;
-  op_t *opt;
+  char	*op;
+  int		index;
+	op_t 	*opt;
 
   index = 0;
   while (line[index] != 32 && line[index] != '\t')
     index++;
-
 	op = malloc(index * sizeof(char*));
   my_strcpy(op, line);
   op[index] = '\0';
-  /*my_putstr("op : ");
-  my_putstr(op);
-  my_putstr("\n");*/
   index = 0;
   while (op_tab[index].code)
     {
@@ -52,20 +48,19 @@ t_instruction	read_instruction(char *line)
 				}
       index++;
     }
-  /*
-  my_putstr("Error: \"");
-  my_putstr(command);
-  my_putstr("\" command invalid.\n");
-  exit(0);*/
-  //my_putstr("find op: ");
-  //my_putstr(op);
-  //my_putstr("\n");
-  if (opt)
+  return (opt);
+}
+
+instruction_t	read_instruction(char *line)
+{
+  instruction_t instruction;
+	instruction.op = retrieve_op(line);
+
+  if (instruction.op)
     {
-      my_putstr(opt->comment);
+      my_putstr(instruction.op->comment);
       my_putstr("\n");
     }
 
-  t_instruction e;
-  return e;
+  return instruction;
 }

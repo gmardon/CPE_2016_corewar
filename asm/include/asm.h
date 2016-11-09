@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Wed Nov  9 15:08:39 2016 Guillaume MARDON
+** Last update Wed Nov  9 17:18:22 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -16,18 +16,19 @@
 #define BUFF_SIZE (4096)
 
 // STRUCTS //
-typedef struct          s_args
+typedef struct          args_s
 {
   char                  type[MAX_ARGS_NUMBER];
   char                  *argv[MAX_ARGS_NUMBER];
-}                       t_args;
+}                       args_t;
 
-typedef struct          s_instruction
+typedef struct          instruction_s
 {
-  char                  op_code;
-  t_args								args;
+  //char                  op_code;
+  op_t									*op;
+  args_t								*args;
   struct s_instruction	*next;
-}                       t_instruction;
+}                       instruction_t;
 
 // UTILS //
 void	my_putchar(char c);
@@ -40,4 +41,4 @@ int 	my_strcmp(char *s1, char *s2);
 // PARSER //
 int	parse_file(char* file_name);
 int	is_label(char *line);
-t_instruction	read_instruction(char *line);
+instruction_t	read_instruction(char *line);
