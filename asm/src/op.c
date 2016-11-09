@@ -1,5 +1,5 @@
 /*
-** op.c for  korewar
+** op.c for asm
 **
 ** Made by Astek
 ** Login   <astek@epitech.net>
@@ -12,7 +12,7 @@
 ** Ne pas passer ce fichier dans la moulinette de Norme.
 */
 
-#include "op.h"
+#include "../include/op.h"
 
 op_t    op_tab[] =
   {

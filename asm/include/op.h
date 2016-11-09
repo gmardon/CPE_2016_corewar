@@ -1,15 +1,14 @@
 /*
-** op.h
+** op.h for asm in /media/gmardon/1aa9b3b8-3e24-4ea9-9b0d-d57254b2d1b9/guillaume.mardon/delivery/CPE_2016_corewar/asm/include/
 **
-** Nicolas Sadirac
-** Tue Jul 13 18:53:48 1993
+** Made by Guillaume MARDON
+** Login   <guillaume.mardon@epitech.eu@epitech.eu>
+**
+** Started on  Wed Nov  9 13:35:20 2016 Guillaume MARDON
+** Last update Wed Nov  9 13:35:48 2016 Guillaume MARDON
 */
-
-
 #ifndef _OP_H_
-# define _OP_H_
-
-
+#define _OP_H_
 
 #define MEM_SIZE                (6*1024)
 #define IDX_MOD                 512   /* modulo de l'index < */
@@ -32,7 +31,7 @@
 #define REG_NUMBER      16              /* r1 <--> rx */
 
 /*
- ** 
+ **
  */
 
 typedef char    args_type_t;
@@ -44,7 +43,7 @@ typedef char    args_type_t;
                                    dans r1 (4 octecs )) */
 #define T_LAB           8       /* LABEL */
 
-struct  op_s    
+struct  op_s
 {
    char         *mnemonique;
    char         nbr_args;
@@ -82,15 +81,15 @@ struct header_s
 {
    int  magic;
 #define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
-   char prog_name[PROG_NAME_LENGTH+1];
+   char prog_name[PROG_NAME_LENGTH + 1];
    int  prog_size;
-   char comment[COMMENT_LENGTH+1];
+   char comment[COMMENT_LENGTH + 1];
 };
 
 typedef struct header_s header_t;
 
 /*
- ** live 
+ ** live
  */
 
 #define CYCLE_TO_DIE    1536    /* nombre de cycle pour etre d\'eclarer mort */
