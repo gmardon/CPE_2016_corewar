@@ -5,11 +5,11 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Wed Nov  9 17:22:12 2016 Guillaume MARDON
+** Last update Thu Nov 10 11:39:16 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
-int	is_label(char *line)
+int	label_index(char *line)
 {
   int	index;
 
@@ -20,10 +20,41 @@ int	is_label(char *line)
 				return (0);
 
       if (line[index] == LABEL_CHAR)
-        return (1);
+        break;
+      index++;
+    }
+  index = 0;
+  while (line[index])
+    {
+      if (line[index] == LABEL_CHAR)
+        return (index + 1);
+
       index++;
     }
   return (0);
+}
+
+char	*retrieve_label(char *line)
+{
+  char *label;
+  label = malloc(label_index(line) * sizeof(char*));
+  my_strcpy(label, line);
+  return (label);
+}
+
+args_t	*retrieve_args(char *line)
+{
+  int		index;
+  while (line[index] != 32 && line[index] != '\t')
+    index++;
+
+  line = my_cleanstr(line + index);
+//  my_putstr(line + index);
+  //my_putchar('\n');
+
+  args_t *e;
+
+  return (e);
 }
 
 op_t	*retrieve_op(char *line)
@@ -35,6 +66,7 @@ op_t	*retrieve_op(char *line)
   index = 0;
   while (line[index] != 32 && line[index] != '\t')
     index++;
+
 	op = malloc(index * sizeof(char*));
   my_strcpy(op, line);
   op[index] = '\0';
@@ -53,14 +85,26 @@ op_t	*retrieve_op(char *line)
 
 instruction_t	read_instruction(char *line)
 {
-  instruction_t instruction;
-	instruction.op = retrieve_op(line);
+  line = my_cleanstr(line);
 
-  if (instruction.op)
+  instruction_t instruction;
+
+  if (label_index(line) != 0)
     {
+      instruction.label = retrieve_label(line);
+      line += label_index(line);
+      line = my_cleanstr(line);
+    }
+	instruction.op = retrieve_op(line);
+  instruction.args = retrieve_args(line);
+
+/*
+  if (instruction.op && instruction.label)
+    {
+    //  printf("instruction.op->mnemonique: %s, instruction.label: %s\n", instruction.op->mnemonique, instruction.label);
       my_putstr(instruction.op->comment);
       my_putstr("\n");
     }
-
+*/
   return instruction;
 }

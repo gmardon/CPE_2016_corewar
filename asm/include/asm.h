@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Wed Nov  9 17:18:22 2016 Guillaume MARDON
+** Last update Thu Nov 10 11:20:51 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -27,6 +27,7 @@ typedef struct          instruction_s
   //char                  op_code;
   op_t									*op;
   args_t								*args;
+  char									*label;
   struct s_instruction	*next;
 }                       instruction_t;
 
@@ -37,8 +38,9 @@ char *get_next_line(const int fd);
 size_t	my_strlen(char *str);
 char 	*my_strcpy(char *dest, char *src);
 int 	my_strcmp(char *s1, char *s2);
+char	*my_cleanstr(char *str);
 
 // PARSER //
 int	parse_file(char* file_name);
-int	is_label(char *line);
+int	label_index(char *line);
 instruction_t	read_instruction(char *line);

@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:35:20 2016 Guillaume MARDON
-** Last update Wed Nov  9 13:35:48 2016 Guillaume MARDON
+** Last update Wed Nov  9 18:43:13 2016 Guillaume MARDON
 */
 #ifndef _OP_H_
 #define _OP_H_
@@ -66,10 +66,7 @@ typedef struct op_s     op_t;
 /*
  ** op_tab
  */
-
-
 extern  op_t    op_tab[];
-
 
 /*
  ** header

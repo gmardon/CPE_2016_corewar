@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Wed Nov  9 15:19:55 2016 Guillaume MARDON
+** Last update Thu Nov 10 11:31:55 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -15,17 +15,14 @@ int	parse(const int fd)
 
   while (*(line = get_next_line(fd)) != '\0')
     {
-      if (is_label(line))
+      if (*line == '.')
 				{
-	  			//my_putstr("find label => ");
+
 				}
       else
 				{
 	  			read_instruction(line);
 				}
-      //get_command_id(line);
-    //  my_putstr(line);
-    //  my_putchar('\n');
     }
 }
 
