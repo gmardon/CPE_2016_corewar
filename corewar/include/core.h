@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Fri Nov 11 10:33:26 2016 Guillaume MARDON
-** Last update Fri Nov 11 12:05:26 2016 Guillaume MARDON
+** Last update Tue Nov 15 11:30:45 2016 Guillaume MARDON
 */
 # define LIVE		(1)
 # define LD		  (2)

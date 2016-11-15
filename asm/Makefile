@@ -5,12 +5,13 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Wed Nov  9 19:52:56 2016 Guillaume MARDON
+## Last update Tue Nov 15 11:27:21 2016 Guillaume MARDON
 ##
 
 NAME		=	asm
 
 SRC		=	src/parser/parser.c			\
+			src/compiler/compiler.c \
 			src/parser/instruction.c			\
 			src/op.c 	\
 			src/main.c \

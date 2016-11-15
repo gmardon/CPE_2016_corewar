@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Thu Nov 10 11:20:51 2016 Guillaume MARDON
+** Last update Tue Nov 15 18:16:33 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -24,11 +24,10 @@ typedef struct          args_s
 
 typedef struct          instruction_s
 {
-  //char                  op_code;
   op_t									*op;
   args_t								*args;
   char									*label;
-  struct s_instruction	*next;
+  struct instruction_t  *next;
 }                       instruction_t;
 
 // UTILS //
@@ -43,4 +42,4 @@ char	*my_cleanstr(char *str);
 // PARSER //
 int	parse_file(char* file_name);
 int	label_index(char *line);
-instruction_t	read_instruction(char *line);
+instruction_t	*read_instruction(char *line);

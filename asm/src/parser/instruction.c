@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Thu Nov 10 11:39:16 2016 Guillaume MARDON
+** Last update Tue Nov 15 18:46:03 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -45,16 +45,17 @@ char	*retrieve_label(char *line)
 args_t	*retrieve_args(char *line)
 {
   int		index;
+
+  index = 0;
   while (line[index] != 32 && line[index] != '\t')
     index++;
 
   line = my_cleanstr(line + index);
-//  my_putstr(line + index);
-  //my_putchar('\n');
+  args_t *args;
 
-  args_t *e;
+  args = malloc(sizeof(args_t));
 
-  return (e);
+  return (args);
 }
 
 op_t	*retrieve_op(char *line)
@@ -63,6 +64,7 @@ op_t	*retrieve_op(char *line)
   int		index;
 	op_t 	*opt;
 
+  opt = malloc(sizeof(op_t));
   index = 0;
   while (line[index] != 32 && line[index] != '\t')
     index++;
@@ -83,28 +85,23 @@ op_t	*retrieve_op(char *line)
   return (opt);
 }
 
-instruction_t	read_instruction(char *line)
+instruction_t	*read_instruction(char *line)
 {
+  instruction_t *instruction;
+
+  instruction = malloc(sizeof(instruction_t));
   line = my_cleanstr(line);
-
-  instruction_t instruction;
-
   if (label_index(line) != 0)
     {
-      instruction.label = retrieve_label(line);
+      instruction->label = retrieve_label(line);
       line += label_index(line);
       line = my_cleanstr(line);
     }
-	instruction.op = retrieve_op(line);
-  instruction.args = retrieve_args(line);
+  else
+    instruction->label = NULL;
+	instruction->op = retrieve_op(line);
+  instruction->args = retrieve_args(line);
+  instruction->next = NULL;
 
-/*
-  if (instruction.op && instruction.label)
-    {
-    //  printf("instruction.op->mnemonique: %s, instruction.label: %s\n", instruction.op->mnemonique, instruction.label);
-      my_putstr(instruction.op->comment);
-      my_putstr("\n");
-    }
-*/
   return instruction;
 }
