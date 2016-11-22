@@ -5,11 +5,11 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Tue Nov 15 18:43:25 2016 Guillaume MARDON
+** Last update Tue Nov 22 15:52:49 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
-int	parse(const int fd)
+instruction_t	*parse(const int fd)
 {
   char	*line;
   instruction_t *first_instruction;
@@ -33,7 +33,7 @@ int	parse(const int fd)
 	  			last_instruction = current_instruction;
 				}
     }
-  compile(first_instruction);
+  return (first_instruction);
 }
 
 int	parse_file(char* file_name)
@@ -42,7 +42,8 @@ int	parse_file(char* file_name)
 
   if ((fd = open(file_name, O_RDONLY)) == -1)
     {
-    		my_putstr("Error in function open: No such file or directory.\n");
+      my_putstr("Error in function open: No such file or directory.\n");
+      exit(84);
     }
   else
     {
