@@ -5,21 +5,26 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 11:27:08 2016 Guillaume MARDON
-** Last update Tue Nov 22 15:15:22 2016 Guillaume MARDON
+** Last update Tue Nov 22 17:33:25 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
-int compile(char* buffer, instruction_t *first_instruction)
+char*  compile(int* size, instruction_t *first_instruction)
 {
+  char *buffer;
   instruction_t *instruction;
+  int index;
 
   buffer = malloc(sizeof(char*) * 1024);
   instruction = first_instruction;
+  index = 0;
   while (instruction)
     {
+      buffer[index++] = instruction->op->code;
       printf("[%s]\n", instruction->op->mnemonique);
       instruction = instruction->next;
-    }
 
-  return (0);
+    }
+  *size = index;
+  return (buffer);
 }
