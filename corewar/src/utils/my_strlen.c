@@ -5,9 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 29 16:43:31 2016 Guillaume MARDON
-** Last update Tue Nov 29 16:43:39 2016 Guillaume MARDON
+** Last update Tue Nov 29 16:43:34 2016 Guillaume MARDON
 */
-#include "../../include/asm.h"
+#include "../../include/core.h"
 
 size_t	my_strlen(char *str)
 {

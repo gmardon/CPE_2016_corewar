@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Tue Nov 15 11:27:21 2016 Guillaume MARDON
+## Last update Tue Nov 29 16:42:06 2016 Guillaume MARDON
 ##
 
 NAME		=	asm
@@ -21,8 +21,14 @@ SRC		=	src/parser/parser.c			\
 			src/utils/my_strlen.c \
 			src/utils/my_strcpy.c \
 			src/utils/my_strcmp.c \
-			src/utils/my_cleanstr.c
-
+			src/utils/my_cleanstr.c \
+			src/utils/my_strlowcase.c \
+			src/utils/my_itoa.c \
+			src/utils/my_nbrlen.c \
+			src/utils/printf/my_printf.c 	\
+			src/utils/printf/formats/numeric_format.c \
+			src/utils/printf/formats/alphabetic_format.c \
+			src/utils/printf/formats/extra_format.c
 
 RM		=	rm -f
 

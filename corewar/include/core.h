@@ -5,8 +5,14 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Fri Nov 11 10:33:26 2016 Guillaume MARDON
-** Last update Tue Nov 15 11:30:45 2016 Guillaume MARDON
+** Last update Tue Nov 29 16:47:50 2016 Guillaume MARDON
 */
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+#define	RADIX	"0123456789abcdefghijklmnopqrstuvwxyz"
+
 # define LIVE		(1)
 # define LD		  (2)
 # define ST		  (3)
@@ -47,6 +53,14 @@ typedef struct		s_instruction
 							 			t_champion *champions/*,
 							 			t_instruction *instruction*/);
 }			t_instruction;
+
+// UTILS //
+char 	*my_strlowcase(char *str);
+void	my_itoa(size_t input, char *buffer, unsigned int radix);
+size_t	my_nbrlen(size_t input, unsigned int radix);
+void	my_putchar(char c);
+size_t	my_nbrlen(size_t input, unsigned int radix);
+void	my_putstr(char *str);
 
 // INSTRUCTIONS //
 int			alive(t_corewar *core,

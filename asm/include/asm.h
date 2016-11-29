@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Tue Nov 15 18:16:33 2016 Guillaume MARDON
+** Last update Tue Nov 29 16:46:11 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -14,6 +14,7 @@
 #include "op.h"
 
 #define BUFF_SIZE (4096)
+#define	RADIX	"0123456789abcdefghijklmnopqrstuvwxyz"
 
 // STRUCTS //
 typedef struct          args_s
@@ -38,6 +39,9 @@ size_t	my_strlen(char *str);
 char 	*my_strcpy(char *dest, char *src);
 int 	my_strcmp(char *s1, char *s2);
 char	*my_cleanstr(char *str);
+char 	*my_strlowcase(char *str);
+void	my_itoa(size_t input, char *buffer, unsigned int radix);
+size_t	my_nbrlen(size_t input, unsigned int radix);
 
 // PARSER //
 int	parse_file(char* file_name);
