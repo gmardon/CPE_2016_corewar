@@ -13,7 +13,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main( int argc, char** argv)
+int main (int argc, char** argv)
 {
-    return 0;
+  if (argc > 1)
+  {
+    return (0)
+  }
+  return (0);
 }

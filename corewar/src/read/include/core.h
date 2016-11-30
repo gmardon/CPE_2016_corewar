@@ -7,9 +7,6 @@
 ** Started on  Fri Nov 11 10:33:26 2016 Guillaume MARDON
 ** Last update Tue Nov 29 16:47:50 2016 Guillaume MARDON
 */
-#ifndef _CORE_H_
-# define _CORE_H_
-
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -71,5 +68,3 @@ void	my_putstr(char *str);
 // INSTRUCTIONS //
 int			alive(t_corewar *core,
 				t_champion *champions);
-
-#endif

@@ -7,59 +7,25 @@
 ** Started on  Wed Nov 16 18:25:41 2016 Aurelien Olibe
 ** Last update Wed Nov 16 18:25:42 2016 Aurelien Olibe
 */
-#include <unistd.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
+#include "read_core.h"
 
-/*
-** trucs a mettre dans un .h
-*/
-#define BUFF_SIZE 4096
-
-typedef struct s_code_champ
+int read_core(int ac, char **av)
 {
-  unsigned char *str;
-  ssize_t len;
-} t_code_champ;
+  t_code_champ *ch;
+  t_champion *champ;
+  int i;
 
-ssize_t get_file_size(char *);
-t_code_champ *cor2str(char *file);
-unsigned char *hex_conv(unsigned char c);
-/*
-** TEMP
-*/
-void print_cor(t_code_champ *ch1);
-/*
-** Fin des trucs a mettre dans un .h
-*/
-
-int main(int ac, char **av)
-{
-  t_code_champ *ch1;
-
-  if (ac > 1)
+  i = 1;
+  while (i < ac)
     {
-      ch1 = cor2str(av[1]);
-      print_cor(ch1);
+      // check if .cor
+      ch = cor2str(av[i]);
+      champ = code2champ(ch);
+      free(ch); //to do: real free_code
+      //print_cor(ch1);
+      i++;
     }
   return (0);
-}
-
-void print_cor(t_code_champ *ch1)
-{
-  ssize_t i;
-  char *hex;
-
-  i = 0;
-  while (i < ch1->len)
-  {
-    hex = hex_conv(ch1->str[i]);
-    write(1, hex, 2);
-    write(1, " ", 1);
-    i++;
-  }
-  write(1, "\n", 1);
 }
 
 void init_str(char *str, int max)
@@ -88,32 +54,6 @@ ssize_t get_file_size(char *file)
     size = size + readed;
   close(fd);
   return (size);
-}
-
-unsigned char *hex_conv(unsigned char c)
-{
-  ssize_t base;
-  ssize_t i;
-  char *hex;
-  unsigned char tmp;
-
-  base = 16;
-  i = 0;
-  if ((hex = malloc(sizeof(char) * 3)) == NULL)
-    exit(84);
-  hex[2] = '\0';
-  hex[1] = (c % base);
-  c = c - (c % base);
-  if (hex[1] > 9)
-    hex[1] = (hex[1] - 10) + 'a';
-  else
-    hex[1] = hex[1] + '0';
-  hex[0] = (c / base);
-  if (hex[0] > 9)
-    hex[0] = (hex[0] - 10) + 'a';
-  else
-    hex[0] = hex[0] + '0';
-  return (hex);
 }
 
 t_code_champ *cor2str(char *file)
