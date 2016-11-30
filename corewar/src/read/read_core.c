@@ -12,20 +12,43 @@
 int read_core(int ac, char **av)
 {
   t_code_champ *ch;
-  t_champion *champ;
+  t_corewar *core;
   int i;
 
   i = 1;
+  core = init_corewar();
   while (i < ac)
     {
       // check if .cor
       ch = cor2str(av[i]);
-      champ = code2champ(ch);
+      code2champ(ch, core);
+      //print_cor(ch);
       free(ch); //to do: real free_code
-      //print_cor(ch1);
       i++;
     }
+  print_arena(core);
   return (0);
+}
+
+t_corewar *init_corewar()
+{
+  t_corewar *core;
+  ssize_t i;
+
+  i = 0;
+  if ((core = malloc(sizeof(t_corewar))) == NULL)
+    exit(84);
+  if ((core->arena = malloc(sizeof(char) * MEM_SIZE)) == NULL)
+    exit(84);
+  while (i < MEM_SIZE)
+  {
+    core->arena[i] = 0;
+    i++;
+  }
+  core->champions = NULL;
+  core->nbr_live_cur = NBR_LIVE;
+  core->cycle_to_die_cur = CYCLE_TO_DIE;
+  return (core);
 }
 
 void init_str(char *str, int max)
@@ -71,7 +94,7 @@ t_code_champ *cor2str(char *file)
   file_size = get_file_size(file);
   if ((str = malloc(sizeof(char) * (file_size + 1))) == NULL)
     exit(84);
-  while ((readed = read(fd, (str + i), file_size)) > 0 && i <= file_size)
+  while ((readed = read(fd, (str + i), (file_size - i))) > 0 && i <= file_size)
     i = i + readed;
   if ((ch1 = malloc(sizeof(t_code_champ))) == NULL)
     exit(84);

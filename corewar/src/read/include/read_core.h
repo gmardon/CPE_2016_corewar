@@ -27,13 +27,19 @@ typedef struct s_code_champ
 } t_code_champ;
 
 int read_core(int ac, char **av);
+void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch);
 ssize_t get_file_size(char *);
 t_code_champ *cor2str(char *file);
-t_champion *code2champ(t_code_champ *code);
-char *parse_comment(t_code_champ *code);
-char *parse_name(t_code_champ *code);
+t_champion *code2champ(t_code_champ *code, t_corewar *core);
+int parse_magic(t_code_champ *code, t_champion *ch);
+void parse_comment(t_code_champ *code, t_champion *ch);
+void parse_name(t_code_champ *code, t_champion *ch);
+int parse_prog_size(t_code_champ *code);
+t_corewar *init_corewar();
 t_champion *init_champ();
 void init_str(char *str, int max);
+void add_new_champ(t_corewar *core, t_champion *ch);
 unsigned char *hex_conv(unsigned char c);
+char *my_strdup(char *str);
 
 #endif

@@ -32,10 +32,9 @@
 
 typedef struct		s_champion
 {
-  char			*file_name;
-  char			*name;
-  char			*comment;
+  header_t *head;
   unsigned char **PC;
+  ssize_t i;
   int *reg;
   char carry;
   struct 		s_champion	*next;
