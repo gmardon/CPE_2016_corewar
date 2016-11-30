@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:34:46 2016 Guillaume MARDON
-** Last update Tue Nov 22 17:55:08 2016 Guillaume MARDON
+** Last update Wed Nov 30 12:15:35 2016 Guillaume MARDON
 */
 #include "../include/asm.h"
 
@@ -39,7 +39,7 @@ void	save(int length, char* buffer, char* filepath)
   fd = open(filepath, O_CREAT | O_WRONLY | O_TRUNC);
   if (fd == -1)
 		{
-      my_putstr("Error in function open: No such file or directory.\n");
+      my_printf("Error in function open: No such file or directory.\n");
       exit(84);
 		}
   write(fd, buffer, length);
@@ -60,13 +60,11 @@ int	main(int argc, char **argv)
 
       while (argv[++index])
 				{
-	  				my_putstr("(");
-	  				my_putstr(argv[index]);
-	  				my_putstr(") parsing... \n");
+	  				my_printf("(%s) compiling...\n", argv[index]);
 	      		buffer = compile(size, parse_file(argv[index]));
-	      		//printf("buffer: %d", buffer);
-	      		printf("size:%d", *size);
+	      		my_printf("(%s) buffer size: %d\n", argv[index], *size);
 	      		save(*size, buffer, filename_to_cor(argv[index]));
+	      		my_printf("(%s) saved to %s...\n", argv[index], filename_to_cor(argv[index]));
 				}
     }
   else

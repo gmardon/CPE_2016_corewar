@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Tue Nov 15 18:46:03 2016 Guillaume MARDON
+** Last update Wed Nov 30 15:37:17 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -45,16 +45,28 @@ char	*retrieve_label(char *line)
 args_t	*retrieve_args(char *line)
 {
   int		index;
+	char	**args_c;
+  args_t *args;
 
   index = 0;
   while (line[index] != 32 && line[index] != '\t')
     index++;
-
+  
   line = my_cleanstr(line + index);
-  args_t *args;
-
   args = malloc(sizeof(args_t));
-
+  index = 0;
+  args_c = my_strsep(line, ',');
+  while (args_c[index])
+    {
+      args->argv[index] = my_cleanstr(args_c[index]);
+      if (args->argv[index][0] == DIRECT_CHAR)
+				args->type[index] = T_DIR;
+      else if (args->argv[index][0] == 'r')
+				args->type[index] = T_REG;
+      else
+				args->type[index] = T_IND;
+      index++;
+    }
   return (args);
 }
 
