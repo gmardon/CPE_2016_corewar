@@ -12,12 +12,20 @@
 #include <GL/glu.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "op.h"
+#include "core.h"
+#include "read_core.h"
 
-int main (int argc, char** argv)
+int main(int ac, char **av)
 {
-  if (argc > 1)
+  t_corewar *core;
+
+  if (ac > 1)
   {
-    return (0)
+    core = read_core(ac, av);
+    print_arena(core);
   }
+  else
+    write(1, "Too few arguments.\n", 19); // to replace by Usage:
   return (0);
 }

@@ -10,14 +10,14 @@
 #ifndef _READ_CORE_H_
 # define _READ_CORE_H_
 
-#define BUFF_SIZE 4096
+# define BUFF_SIZE 4096
 
-#include <unistd.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include "op.h"
-#include "core.h"
+# include <unistd.h>
+# include <sys/stat.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include "op.h"
+# include "core.h"
 
 typedef struct s_code_champ
 {
@@ -26,7 +26,7 @@ typedef struct s_code_champ
   ssize_t i;
 } t_code_champ;
 
-int read_core(int ac, char **av);
+t_corewar *read_core(int ac, char **av);
 void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch);
 ssize_t get_file_size(char *);
 t_code_champ *cor2str(char *file);
@@ -39,7 +39,5 @@ t_corewar *init_corewar();
 t_champion *init_champ();
 void init_str(char *str, int max);
 void add_new_champ(t_corewar *core, t_champion *ch);
-unsigned char *hex_conv(unsigned char c);
-char *my_strdup(char *str);
 
 #endif

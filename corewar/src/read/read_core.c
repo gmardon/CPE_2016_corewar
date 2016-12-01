@@ -9,7 +9,7 @@
 */
 #include "read_core.h"
 
-int read_core(int ac, char **av)
+t_corewar *read_core(int ac, char **av)
 {
   t_code_champ *ch;
   t_corewar *core;
@@ -26,8 +26,8 @@ int read_core(int ac, char **av)
       free(ch); //to do: real free_code
       i++;
     }
-  print_arena(core);
-  return (0);
+  //print_arena(core);
+  return (core);
 }
 
 t_corewar *init_corewar()

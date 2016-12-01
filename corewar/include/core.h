@@ -10,11 +10,12 @@
 #ifndef _CORE_H_
 # define _CORE_H_
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include "op.h"
 
-#define	RADIX	"0123456789abcdefghijklmnopqrstuvwxyz"
+# define	RADIX	"0123456789abcdefghijklmnopqrstuvwxyz"
 
 # define LIVE		(1)
 # define LD		  (2)
@@ -35,10 +36,9 @@
 
 typedef struct		s_champion
 {
-  char			*file_name;
-  char			*name;
-  char			*comment;
+  header_t *head;
   unsigned char **PC;
+  ssize_t i;
   int *reg;
   char carry;
   struct 		s_champion	*next;
@@ -60,7 +60,17 @@ typedef struct		s_instruction
 							 			t_instruction *instruction*/);
 }			t_instruction;
 
-// UTILS //
+/*
+ **CORE
+ */
+void print_arena(t_corewar *core);
+unsigned char *hex_conv(unsigned char c);
+
+/*
+**UTILS
+*/
+char *my_strdup(char *str);
+size_t my_strlen(char *str);
 char 	*my_strlowcase(char *str);
 void	my_itoa(size_t input, char *buffer, unsigned int radix);
 size_t	my_nbrlen(size_t input, unsigned int radix);
@@ -68,7 +78,9 @@ void	my_putchar(char c);
 size_t	my_nbrlen(size_t input, unsigned int radix);
 void	my_putstr(char *str);
 
-// INSTRUCTIONS //
+/*
+**INSTRUCTIONS
+*/
 int			alive(t_corewar *core,
 				t_champion *champions);
 
