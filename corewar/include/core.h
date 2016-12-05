@@ -36,11 +36,13 @@
 
 typedef struct		s_champion
 {
+  int id_fork;
   header_t *head;
   unsigned char **PC;
   ssize_t i;
   int *reg;
   char carry;
+  int cycle_to_wait;
   struct 		s_champion	*next;
 }			t_champion;
 
