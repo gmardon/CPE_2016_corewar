@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Mon Dec  5 16:06:21 2016 Guillaume MARDON
+** Last update Mon Dec  5 16:28:33 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -54,3 +54,4 @@ instruction_t	*read_instruction(char *line);
 // COMPILER //
 char*  compile(int *size, instruction_t *first_instruction);
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);
+int	need_encode_args_type(int code);

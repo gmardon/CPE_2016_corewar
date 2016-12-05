@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 15:57:13 2016 Guillaume MARDON
-** Last update Mon Dec  5 15:57:53 2016 Guillaume MARDON
+** Last update Mon Dec  5 16:09:16 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -28,7 +28,6 @@ char	*filename_to_cor(char *file_path)
   new[last_index] = 'c';
   new[last_index + 1] = 'o';
   new[last_index + 2] = 'r';
-
   return (new);
 }
 
