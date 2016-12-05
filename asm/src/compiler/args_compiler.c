@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:27:42 2016 Guillaume MARDON
-** Last update Mon Dec  5 16:28:09 2016 Guillaume MARDON
+** Last update Mon Dec  5 20:16:09 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -26,6 +26,5 @@ char	get_encoded_args_type(char types[MAX_ARGS_NUMBER])
       encoded_args |= types[args_index++];
       encoded_args <<= 2;
     }
-  my_printf("%b\n", encoded_args);
   return (encoded_args);
 }

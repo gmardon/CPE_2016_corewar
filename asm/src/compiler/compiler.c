@@ -5,28 +5,29 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 11:27:08 2016 Guillaume MARDON
-** Last update Mon Dec  5 17:22:03 2016 Guillaume MARDON
+** Last update Mon Dec  5 20:52:27 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
-char*  compile(int *size, instruction_t *first_instruction)
+char	*compile(int *size, program_t *program)
 {
+  char *header_buffer;
+  char *instructions_buffer;
   char *buffer;
-  instruction_t *instruction;
+  int instructions_size;
+  int header_size;
   int index;
 
-  buffer = malloc(sizeof(char) * (*size + PROG_NAME_LENGTH + 4));
   index = 0;
-  compile_header(buffer, &index, "test", "comment");
-  instruction = first_instruction;
-  while (instruction)
-    {
-      buffer[index++] = instruction->op->code;
-      if (need_encode_args_type(instruction->op->code))
-				buffer[index++] = get_encoded_args_type(instruction->args->type);
-      my_printf("[%s]\n", instruction->op->mnemonique);
-      instruction = instruction->next;
-    }
+  instructions_size = 0;
+  header_size = 0;
+  instructions_buffer = create_instructions(program->first_instruction, &instructions_size);
+  header_buffer = create_header(program->name, program->comment, instructions_size, &header_size);
+
+  buffer = malloc(sizeof(char*) * (instructions_size + header_size));
+  write_to_buffer(buffer, &index, header_buffer, header_size);
+  write_to_buffer(buffer, &index, instructions_buffer, instructions_size);
+
   *size = index;
   return (buffer);
 }

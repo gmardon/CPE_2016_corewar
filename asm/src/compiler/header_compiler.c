@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:37:09 2016 Guillaume MARDON
-** Last update Mon Dec  5 17:48:06 2016 Guillaume MARDON
+** Last update Mon Dec  5 20:53:53 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -25,14 +25,28 @@ void	add_magic(char* buffer, int *index)
   *index += 1;
 }
 
-void	compile_header(char* buffer, int *index, char* name, char* comment)
+char	*create_header(char *name, char *comment, int instruction_size, int *size)
 {
-  add_magic(buffer, index);
-  write_to_buffer(buffer, index,
+  char *buffer;
+  int index;
+
+  index = 0;
+  buffer = malloc(sizeof(char*) * (COMMENT_LENGTH + PROG_NAME_LENGTH + 4));
+
+  if (!name)
+    name = "";
+  if (!comment)
+    comment = "";
+
+  add_magic(buffer, &index);
+  write_to_buffer(buffer, &index,
 		  right_padding(name, my_strlen(name),
 				PROG_NAME_LENGTH), PROG_NAME_LENGTH);
 
-	write_to_buffer(buffer, index,
+	write_to_buffer(buffer, &index,
     	right_padding(comment, my_strlen(comment),
 		      COMMENT_LENGTH), COMMENT_LENGTH);
+
+  *size = index;
+  return (buffer);
 }
