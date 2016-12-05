@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Tue Nov 29 16:46:11 2016 Guillaume MARDON
+** Last update Mon Dec  5 15:24:08 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -47,3 +47,7 @@ size_t	my_nbrlen(size_t input, unsigned int radix);
 int	parse_file(char* file_name);
 int	label_index(char *line);
 instruction_t	*read_instruction(char *line);
+
+// COMPILER //
+char*  compile(int *size, instruction_t *first_instruction);
+char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);

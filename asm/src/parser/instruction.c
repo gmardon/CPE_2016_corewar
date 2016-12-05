@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Wed Nov 30 15:37:17 2016 Guillaume MARDON
+** Last update Thu Dec  1 15:42:31 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -51,7 +51,6 @@ args_t	*retrieve_args(char *line)
   index = 0;
   while (line[index] != 32 && line[index] != '\t')
     index++;
-  
   line = my_cleanstr(line + index);
   args = malloc(sizeof(args_t));
   index = 0;
