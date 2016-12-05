@@ -37,12 +37,16 @@
 typedef struct		s_champion
 {
   int id_fork;
+  int is_dead;
   header_t *head;
   unsigned char **PC;
   ssize_t i;
   int *reg;
   char carry;
-  int cycle_to_wait;
+  int c_to_wait;
+  int							cycle_to_die_cur;
+  int							nbr_live_cur;
+  int n_data;
   struct 		s_champion	*next;
 }			t_champion;
 
@@ -50,8 +54,6 @@ typedef struct		s_corewar
 {
   unsigned char		*arena;
   t_champion			*champions;
-  int							nbr_live_cur;
-  int							cycle_to_die_cur;
 }			t_corewar;
 
 typedef struct		s_instruction
@@ -65,6 +67,10 @@ typedef struct		s_instruction
 /*
  **CORE
  */
+void the_core_war(t_corewar *core);
+int check_game_over(t_corewar *core);
+int check_nb_alive(int ch_alive[5]);
+void put_id_core_war(t_corewar *core);
 void print_arena(t_corewar *core);
 unsigned char *hex_conv(unsigned char c);
 

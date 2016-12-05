@@ -9,12 +9,12 @@
 */
 #include "read_core.h"
 
-t_champion *code2champ(t_code_champ *code, t_corewar *core)
+t_champion *code2champ(t_code_champ *code, t_corewar *core, int i)
 {
   t_champion *champ;
 
   code->i = 0;
-  champ = init_champ();
+  champ = init_champ(i);
   champ->head->magic = parse_magic(code, champ);
   parse_name(code, champ);
   champ->head->prog_size = parse_prog_size(code);
@@ -66,7 +66,7 @@ void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch)
   ch->PC[ch->i] = NULL;
 }
 
-t_champion *init_champ()
+t_champion *init_champ(int id)
 {
   t_champion *champ;
   ssize_t i;
@@ -78,7 +78,11 @@ t_champion *init_champ()
   champ->PC = NULL;
   if ((champ->head = malloc(sizeof(header_t))) == NULL)
     exit(84);
-  champ->carry = champ->i = 0;
+  champ->carry = champ->i = champ->c_to_wait = champ->is_dead = 0;
+  champ->n_data = 0;
+  champ->id_fork = id;
+  champ->cycle_to_die_cur = CYCLE_TO_DIE;
+  champ->nbr_live_cur = NBR_LIVE;
   if ((champ->reg = malloc(sizeof(int) * REG_NUMBER)) == NULL)
     exit(84);
   while (i < REG_NUMBER)

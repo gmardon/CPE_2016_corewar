@@ -21,8 +21,7 @@ t_corewar *read_core(int ac, char **av)
     {
       // check if .cor
       ch = cor2str(av[i]);
-      code2champ(ch, core);
-      //print_cor(ch);
+      code2champ(ch, core, i);
       free(ch); //to do: real free_code
       i++;
     }
@@ -46,8 +45,6 @@ t_corewar *init_corewar()
     i++;
   }
   core->champions = NULL;
-  core->nbr_live_cur = NBR_LIVE;
-  core->cycle_to_die_cur = CYCLE_TO_DIE;
   return (core);
 }
 
