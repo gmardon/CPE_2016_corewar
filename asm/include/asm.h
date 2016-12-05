@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Mon Dec  5 15:24:08 2016 Guillaume MARDON
+** Last update Mon Dec  5 16:06:21 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -42,10 +42,13 @@ char	*my_cleanstr(char *str);
 char 	*my_strlowcase(char *str);
 void	my_itoa(size_t input, char *buffer, unsigned int radix);
 size_t	my_nbrlen(size_t input, unsigned int radix);
+int my_printf(const char *format, ...);
+char	*filename_to_cor(char *file_path);
+char	**my_strsep(char *str, char delim);
+void	save(int length, char* buffer, char* filepath);
 
 // PARSER //
-int	parse_file(char* file_name);
-int	label_index(char *line);
+instruction_t	*	parse_file(char* file_name);
 instruction_t	*read_instruction(char *line);
 
 // COMPILER //

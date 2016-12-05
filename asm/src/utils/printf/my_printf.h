@@ -5,14 +5,12 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Nov  7 15:06:04 2016 Guillaume MARDON
-** Last update Tue Nov 29 16:36:07 2016 Guillaume MARDON
+** Last update Mon Dec  5 15:59:52 2016 Guillaume MARDON
 */
 #include "../../../include/asm.h"
 
 #include <stdarg.h>
 #include <stdlib.h>
-
-int my_printf(const char *format, ...);
 
 typedef struct		formatter_s
 {

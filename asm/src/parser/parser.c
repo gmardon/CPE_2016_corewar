@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Tue Nov 22 15:52:49 2016 Guillaume MARDON
+** Last update Mon Dec  5 16:07:35 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -21,7 +21,7 @@ instruction_t	*parse(const int fd)
     {
       if (*line == '.')
 				{
-
+	  				// TODO PARSE .name and .comment
 				}
       else
 				{
@@ -36,7 +36,7 @@ instruction_t	*parse(const int fd)
   return (first_instruction);
 }
 
-int	parse_file(char* file_name)
+instruction_t	*parse_file(char* file_name)
 {
   int	fd;
 
@@ -47,6 +47,6 @@ int	parse_file(char* file_name)
     }
   else
     {
-      parse(fd);
+      return (parse(fd));
     }
 }

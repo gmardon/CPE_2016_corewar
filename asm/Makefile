@@ -1,14 +1,16 @@
 ##
 ## Makefile for asm in /home/gmardon/CPE_2016_corewar/asm
 ##
-## Made by Guillaume Le MARDON
+## Made by Guillaume MARDON
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Wed Nov 30 15:05:55 2016 Guillaume MARDON
+## Last update Mon Dec  5 16:04:12 2016 Guillaume MARDON
 ##
 
 NAME		=	asm
+
+#CFLAGS	+=	-Wextra -Wall -Werror -pedantic
 
 SRC		=	src/parser/parser.c			\
 			src/compiler/compiler.c \
@@ -16,6 +18,7 @@ SRC		=	src/parser/parser.c			\
 			src/op.c 	\
 			src/main.c \
 			src/utils/get_next_line.c \
+			src/utils/file.c \
 			src/utils/my_putchar.c \
 			src/utils/my_strsep.c \
 			src/utils/my_putstr.c \
