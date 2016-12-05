@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 11:27:08 2016 Guillaume MARDON
-** Last update Mon Dec  5 16:29:04 2016 Guillaume MARDON
+** Last update Mon Dec  5 17:22:03 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -15,9 +15,10 @@ char*  compile(int *size, instruction_t *first_instruction)
   instruction_t *instruction;
   int index;
 
-  buffer = malloc(sizeof(char) * (*size));
-  instruction = first_instruction;
+  buffer = malloc(sizeof(char) * (*size + PROG_NAME_LENGTH + 4));
   index = 0;
+  compile_header(buffer, &index, "test", "comment");
+  instruction = first_instruction;
   while (instruction)
     {
       buffer[index++] = instruction->op->code;

@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:35:20 2016 Guillaume MARDON
-** Last update Wed Nov  9 18:43:13 2016 Guillaume MARDON
+** Last update Mon Dec  5 16:36:40 2016 Guillaume MARDON
 */
 #ifndef _OP_H_
 #define _OP_H_
@@ -24,6 +24,7 @@
 #define NAME_CMD_STRING         ".name"
 #define COMMENT_CMD_STRING      ".comment"
 
+#define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
 /*
  ** regs
  */
@@ -77,7 +78,6 @@ extern  op_t    op_tab[];
 struct header_s
 {
    int  magic;
-#define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
    char prog_name[PROG_NAME_LENGTH + 1];
    int  prog_size;
    char comment[COMMENT_LENGTH + 1];

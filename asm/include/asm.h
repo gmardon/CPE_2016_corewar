@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Mon Dec  5 16:28:33 2016 Guillaume MARDON
+** Last update Mon Dec  5 17:15:27 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -46,6 +46,8 @@ int my_printf(const char *format, ...);
 char	*filename_to_cor(char *file_path);
 char	**my_strsep(char *str, char delim);
 void	save(int length, char* buffer, char* filepath);
+char	*right_padding(char *data, int base_size, int requested_size);
+void	write_to_buffer(char *buffer, int *index, char *to_write, int size);
 
 // PARSER //
 instruction_t	*	parse_file(char* file_name);
@@ -55,3 +57,4 @@ instruction_t	*read_instruction(char *line);
 char*  compile(int *size, instruction_t *first_instruction);
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);
 int	need_encode_args_type(int code);
+void	compile_header(char* buffer, int *index, char* name, char* comment);
