@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Mon Dec  5 17:15:27 2016 Guillaume MARDON
+** Last update Mon Dec  5 20:52:51 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -31,6 +31,13 @@ typedef struct          instruction_s
   struct instruction_t  *next;
 }                       instruction_t;
 
+typedef struct          program_s
+{
+  char									*name;
+  char									*comment;
+  instruction_t  				*first_instruction;
+}												program_t;
+
 // UTILS //
 void	my_putchar(char c);
 void	my_putstr(char *str);
@@ -50,11 +57,11 @@ char	*right_padding(char *data, int base_size, int requested_size);
 void	write_to_buffer(char *buffer, int *index, char *to_write, int size);
 
 // PARSER //
-instruction_t	*	parse_file(char* file_name);
+program_t	*	parse_file(char* file_name);
 instruction_t	*read_instruction(char *line);
 
 // COMPILER //
-char*  compile(int *size, instruction_t *first_instruction);
+char*  compile(int *size, program_t *program);
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);
 int	need_encode_args_type(int code);
 void	compile_header(char* buffer, int *index, char* name, char* comment);
