@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:37:09 2016 Guillaume MARDON
-** Last update Mon Dec  5 20:53:53 2016 Guillaume MARDON
+** Last update Tue Dec  6 09:43:27 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -31,7 +31,7 @@ char	*create_header(char *name, char *comment, int instruction_size, int *size)
   int index;
 
   index = 0;
-  buffer = malloc(sizeof(char*) * (COMMENT_LENGTH + PROG_NAME_LENGTH + 4));
+  buffer = my_malloc(sizeof(char *) * (COMMENT_LENGTH + PROG_NAME_LENGTH + 4));
 
   if (!name)
     name = "";

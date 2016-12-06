@@ -5,9 +5,26 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Mon Dec  5 21:00:17 2016 Guillaume MARDON
+** Last update Tue Dec  6 09:44:54 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
+
+void	parse_extra(char *line, program_t *program)
+{
+  if (my_strncmp(NAME_CMD_STRING, line, my_strlen(NAME_CMD_STRING)) == 0)
+    {
+      line = line + (my_strlen(NAME_CMD_STRING) + 2);
+      line[my_strlen(line) - 1] = 0;
+      program->name = line;
+    }
+  else if (my_strncmp(COMMENT_CMD_STRING, line,
+		      my_strlen(COMMENT_CMD_STRING)) == 0)
+    {
+      line = line + (my_strlen(COMMENT_CMD_STRING) + 2);
+      line[my_strlen(line) - 1] = 0;
+      program->comment = line;
+    }
+}
 
 program_t	*parse(const int fd)
 {
@@ -35,23 +52,6 @@ program_t	*parse(const int fd)
     }
   program->first_instruction = first_instruction;
   return (program);
-}
-
-void	parse_extra(char *line, program_t *program)
-{
-  if (my_strncmp(NAME_CMD_STRING, line, my_strlen(NAME_CMD_STRING)) == 0)
-    {
-      line = line + (my_strlen(NAME_CMD_STRING) + 2);
-      line[my_strlen(line) - 1] = 0;
-      program->name = line;
-    }
-  else if (my_strncmp(COMMENT_CMD_STRING, line,
-		      my_strlen(COMMENT_CMD_STRING)) == 0)
-    {
-      line = line + (my_strlen(COMMENT_CMD_STRING) + 2);
-      line[my_strlen(line) - 1] = 0;
-      program->comment = line;
-    }
 }
 
 program_t	*parse_file(char* file_name)
