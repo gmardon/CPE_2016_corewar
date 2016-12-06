@@ -93,6 +93,7 @@ size_t	my_nbrlen(size_t input, unsigned int radix);
 void	my_putchar(char c);
 size_t	my_nbrlen(size_t input, unsigned int radix);
 void	my_putstr(char *str);
+int my_printf(const char *format, ...);
 
 /*
 **INSTRUCTIONS

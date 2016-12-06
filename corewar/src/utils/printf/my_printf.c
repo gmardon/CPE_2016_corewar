@@ -8,8 +8,6 @@
 ** Last update Sat Nov 26 15:12:26 2016 Guillaume MARDON
 */
 #include "my_printf.h"
-#include <stdarg.h>
-#include <stdio.h>
 
 formatter_t	format_type[] =
 {
