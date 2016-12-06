@@ -15,9 +15,11 @@ t_champion *code2champ(t_code_champ *code, t_corewar *core, int i)
 
   code->i = 0;
   champ = init_champ(i);
-  champ->head->magic = parse_magic(code, champ);
+  if ((champ->head->magic = parse_magic(code, champ)) == 0)
+    print_err_no_exit(MAGIC_FAIL);
   parse_name(code, champ);
-  champ->head->prog_size = parse_prog_size(code);
+  if ((champ->head->prog_size = parse_prog_size(code)) != (code->len - 2192))
+    print_err_no_exit(PROG_SIZE_FAIL);
   parse_comment(code, champ);
   if (core->champions == NULL)
     core->champions = champ;
@@ -53,7 +55,7 @@ void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch)
   }
   i = (MEM_SIZE / 4) * (nb_champ - 1);
   if ((ch->PC = malloc(sizeof(char *) * (code->len + 1 - code->i))) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   ch->PC[code->len - code->i] = NULL;
   while (code->i < code->len)
   {
@@ -73,18 +75,18 @@ t_champion *init_champ(int id)
 
   i = 0;
   if ((champ = malloc(sizeof(t_champion))) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   champ->next = NULL;
   champ->PC = NULL;
   if ((champ->head = malloc(sizeof(header_t))) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   champ->carry = champ->i = champ->c_to_wait = champ->is_dead = 0;
-  champ->n_data = 0;
+  champ->n_delta = 0;
   champ->id_fork = id;
   champ->cycle_to_die_cur = CYCLE_TO_DIE;
   champ->nbr_live_cur = NBR_LIVE;
   if ((champ->reg = malloc(sizeof(int) * REG_NUMBER)) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   while (i < REG_NUMBER)
   {
     champ->reg[i] = 0;

@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Mon Dec  5 19:19:00 2016 Aurelien
+## Last update Tue Dec  6 16:07:44 2016 Aurelien
 ##
 LDFLAGS=-lSDL -lSDL_ttf -lGLU -lGL
 
@@ -17,6 +17,7 @@ NAME	=	corewar
 
 SRCS	=	src/main.c \
 		src/core/print.c \
+		src/core/execute.c	\
 		src/core/runtime.c \
 		src/read/read_core.c \
 		src/read/champ_conv.c \
@@ -29,6 +30,7 @@ SRCS	=	src/main.c \
 		src/utils/my_strlen.c \
 		src/utils/my_putstr.c \
 		src/utils/my_strdup.c \
+		src/utils/my_str_srch.c	\
 		src/utils/printf/my_printf.c 	\
 		src/utils/printf/formats/numeric_format.c \
 		src/utils/printf/formats/alphabetic_format.c \

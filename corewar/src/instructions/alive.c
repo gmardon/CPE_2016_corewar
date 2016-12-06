@@ -7,11 +7,46 @@
 ** Started on  Fri Nov 11 10:28:11 2016 Guillaume MARDON
 ** Last update Fri Nov 11 11:39:12 2016 Guillaume MARDON
 */
-#include "../../include/core.h"
+#include "core.h"
 
-int		alive(t_corewar *core,
-			t_champion *champions/*,
-			t_instruction *instruction*/)
+int		alive(t_corewar *core, t_champion *ch)
 {
+	int id;
+	t_champion *tmp;
 
+	id = alive_read_id(ch);
+	tmp = core->champions;
+	while (tmp != NULL)
+	{
+		if (tmp->id_fork == id)
+		{
+			// write
+			tmp->nbr_live_cur--;
+			if (tmp->nbr_live_cur == 0)
+			{
+				tmp->n_delta++;
+				tmp->nbr_live_cur = NBR_LIVE;
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+int alive_read_id(t_champion *ch)
+{
+	int id;
+	int count;
+
+	id = 0;
+	count = ch->i + 5;
+	while (ch->i < count)
+	{
+		if (id > 0 && ch->PC[ch->i][0] > 0)
+			id = id * (int) ch->PC[ch->i][0];
+		else if (id == 0 && ch->PC[ch->i][0] > 0)
+			id += (int) ch->PC[ch->i][0];
+		ch->i++;
+	}
+	return (id);
 }

@@ -34,6 +34,8 @@
 # define LFORK	(15)
 # define AFF		(16)
 
+# define MALLOC_FAIL "malloc failure."
+
 typedef struct		s_champion
 {
   int id_fork;
@@ -46,7 +48,7 @@ typedef struct		s_champion
   int c_to_wait;
   int							cycle_to_die_cur;
   int							nbr_live_cur;
-  int n_data;
+  int n_delta;
   struct 		s_champion	*next;
 }			t_champion;
 
@@ -62,21 +64,27 @@ typedef struct		s_instruction
   int							(*function)(t_corewar *core,
 							 			t_champion *champions/*,
 							 			t_instruction *instruction*/);
+  int             nbr_cycle;
 }			t_instruction;
 
 /*
  **CORE
  */
+void exec_champ(t_corewar *core, t_champion *ch);
 void the_core_war(t_corewar *core);
 int check_game_over(t_corewar *core);
 int check_nb_alive(int ch_alive[5]);
 void put_id_core_war(t_corewar *core);
+void print_usage();
 void print_arena(t_corewar *core);
 unsigned char *hex_conv(unsigned char c);
+void print_err(char *str);
+void print_err_no_exit(char *str);
 
 /*
 **UTILS
 */
+int my_str_srch(char *to_search, char *str);
 char *my_strdup(char *str);
 size_t my_strlen(char *str);
 char 	*my_strlowcase(char *str);

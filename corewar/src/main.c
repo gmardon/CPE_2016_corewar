@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 18:45:17 2016 Guillaume MARDON
-** Last update Wed Nov  9 19:15:47 2016 Guillaume MARDON
+** Last update Tue Dec  6 09:54:09 2016 Aurelien
 */
 #include <SDL/SDL.h>
 #include <GL/gl.h>
@@ -20,15 +20,18 @@ int main(int ac, char **av)
 {
   t_corewar *core;
 
-  if (ac > 1)
+  if (ac > 2 && ac < 6)
   {
     core = read_core(ac, av);
-    //print_arena(core);
+    print_arena(core);
     put_id_core_war(core);
+    //init_c_to_wait(); // init c_to_wait with the next instruct to be exec.
     //the_core_war(core);
   }
+  else if (ac >= 6)
+    write(1, "The number of champion is above the limit.\n", 43);
   else
-    write(1, "Too few arguments.\n", 19); // to replace by Usage:
+    print_usage();
   return (0);
 }
 
@@ -38,12 +41,23 @@ void the_core_war(t_corewar *core)
 
   while (check_game_over(core) == 0)
   {
-    // check c_to_wait
-    // check cycle_to_die_cur
-    // check nbr_live_cur if live
-    // execute each prog (PC & move PC)
-    // - cycle_to_die_cur --
-    // - c_to_wait --
+    ch = core->champions;
+    while (ch != NULL)
+    {
+      if (ch->cycle_to_die_cur == 0)
+        ch->is_dead = 1;
+      if (ch->is_dead == 0 && ch->c_to_wait == 0)
+      {
+        // execute each prog (PC & move PC) (if PC null or unknown instruct, do nothing)
+        // set nbr_live_cur if live
+        // set c_to_wait (next instruction)
+      }
+      if (ch->is_dead == 0 && ch->c_to_wait > 0)
+        ch->c_to_wait--;
+      if (ch->is_dead == 0 && ch->cycle_to_die_cur > 0)
+        ch->cycle_to_die_cur--;
+      ch = ch->next;
+    }
   }
 }
 

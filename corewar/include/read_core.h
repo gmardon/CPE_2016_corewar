@@ -19,6 +19,14 @@
 # include "op.h"
 # include "core.h"
 
+# define OPEN_FAIL "Could not open the file."
+# define FILESIZE_MAX_FAIL "The file is too long."
+# define MAGIC_FAIL "The magic exec number is incorrect."
+# define PROG_SIZE_FAIL "Wrong prog_size number."
+# define HEADER_COMM_FAIL "Incorrect header. (in comment section)"
+# define HEADER_NAME_FAIL "Incorrect header. (in name section)"
+# define COR_FILE_FAIL "Incorrect .cor file."
+
 typedef struct s_code_champ
 {
   unsigned char *str;

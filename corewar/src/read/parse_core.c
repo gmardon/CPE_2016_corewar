@@ -13,8 +13,9 @@ void parse_comment(t_code_champ *code, t_champion *ch)
 {
   ssize_t j;
   int cond;
+  int bol;
 
-  j = 0;
+  j = bol = 0;
   while (code->i < ((PROG_NAME_LENGTH + 4) + (COMMENT_LENGTH + 12)))
   {
     cond = (code->str[code->i] >= 32 && code->str[code->i] < 127);
@@ -22,7 +23,11 @@ void parse_comment(t_code_champ *code, t_champion *ch)
     {
       ch->head->comment[j] = code->str[code->i];
       j++;
+      if (bol)
+        print_err(HEADER_COMM_FAIL);
     }
+    else if (code->str[code->i] == '\0')
+      bol = 1;
     code->i++;
   }
   ch->head->comment[j] = '\0';
@@ -32,8 +37,9 @@ void parse_name(t_code_champ *code, t_champion *ch)
 {
   ssize_t j;
   int cond;
+  int bol;
 
-  j = 0;
+  j = bol = 0;
   while (code->i < (PROG_NAME_LENGTH) + 4)
   {
     cond = (code->str[code->i] >= 32 && code->str[code->i] < 127);
@@ -41,7 +47,11 @@ void parse_name(t_code_champ *code, t_champion *ch)
     {
       ch->head->prog_name[j] = code->str[code->i];
       j++;
+      if (bol)
+        print_err(HEADER_NAME_FAIL);
     }
+    else if (code->str[code->i] == '\0')
+      bol = 1;
     code->i++;
   }
   ch->head->prog_name[j] = '\0';

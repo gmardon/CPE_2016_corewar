@@ -5,26 +5,27 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Fri Nov 11 10:31:57 2016 Guillaume MARDON
-** Last update Fri Nov 11 11:41:32 2016 Guillaume MARDON
+** Last update Tue Dec  6 15:46:44 2016 Aurelien
 */
 #include "../../include/core.h"
 
 t_instruction	tab_instruction[] =
 {
-  {1, alive}/*,
-  {2, ld},
-  {3, st},
-  {4, add},
-  {5, sub},
-  {6, and},
-  {7, or},
-  {8, xor},
-  {9, zjmp},
-  {10, ldi},
-  {11, sti},
-  {12, fork},
-  {13, lld},
-  {14, lldi},
-  {15, lfork},
-  {16, aff},*/
+  {1, alive, 10},/*,
+  {2, ld, 5},
+  {3, st, 5},
+  {4, add, 10},
+  {5, sub, 10},
+  {6, and, 6},
+  {7, or, 6},
+  {8, xor, 6},
+  {9, zjmp, 20},
+  {10, ldi, 25},
+  {11, sti, 25},
+  {12, fork, 800},
+  {13, lld, 10},
+  {14, lldi, 50},
+  {15, lfork, 1000},
+  {16, aff, 2},*/
+  {0, 0, 0}
 };

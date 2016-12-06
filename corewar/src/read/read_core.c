@@ -19,13 +19,13 @@ t_corewar *read_core(int ac, char **av)
   core = init_corewar();
   while (i < ac)
     {
-      // check if .cor
+      if ((my_str_srch(".cor", av[i])) != 1)
+        print_err(COR_FILE_FAIL);
       ch = cor2str(av[i]);
       code2champ(ch, core, i);
       free(ch); //to do: real free_code
       i++;
     }
-  //print_arena(core);
   return (core);
 }
 
@@ -36,9 +36,9 @@ t_corewar *init_corewar()
 
   i = 0;
   if ((core = malloc(sizeof(t_corewar))) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   if ((core->arena = malloc(sizeof(char) * MEM_SIZE)) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   while (i < MEM_SIZE)
   {
     core->arena[i] = 0;
@@ -69,10 +69,12 @@ ssize_t get_file_size(char *file)
 
   size = readed = 0;
   if ((fd = open(file, O_RDONLY)) == -1)
-    exit(84);
+    print_err(OPEN_FAIL);
   while ((readed = read(fd, buf, BUFF_SIZE)) > 0)
     size = size + readed;
   close(fd);
+  if ((size - 2192) > (MEM_SIZE / 4))
+    print_err(FILESIZE_MAX_FAIL);
   return (size);
 }
 
@@ -87,14 +89,14 @@ t_code_champ *cor2str(char *file)
 
   readed = file_size = i = 0;
   if ((fd = open(file, O_RDONLY)) == -1)
-    exit(84);
+    print_err(OPEN_FAIL);
   file_size = get_file_size(file);
   if ((str = malloc(sizeof(char) * (file_size + 1))) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   while ((readed = read(fd, (str + i), (file_size - i))) > 0 && i <= file_size)
     i = i + readed;
   if ((ch1 = malloc(sizeof(t_code_champ))) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   ch1->str = str;
   ch1->len = file_size;
   close(fd);
