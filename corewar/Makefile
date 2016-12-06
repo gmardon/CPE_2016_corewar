@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Tue Dec  6 16:07:44 2016 Aurelien
+## Last update Tue Dec  6 21:07:51 2016 Aurelien
 ##
 LDFLAGS=-lSDL -lSDL_ttf -lGLU -lGL
 

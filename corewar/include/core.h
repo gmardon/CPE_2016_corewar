@@ -67,6 +67,8 @@ typedef struct		s_instruction
   int             nbr_cycle;
 }			t_instruction;
 
+extern t_instruction	tab_instruction[];
+
 /*
  **CORE
  */
@@ -98,7 +100,6 @@ int my_printf(const char *format, ...);
 /*
 **INSTRUCTIONS
 */
-int			alive(t_corewar *core,
-				t_champion *champions);
+int			alive(t_corewar *core, t_champion *champions);
 
 #endif

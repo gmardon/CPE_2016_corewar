@@ -23,10 +23,10 @@ int main(int ac, char **av)
   if (ac > 2 && ac < 6)
   {
     core = read_core(ac, av);
-    print_arena(core);
+    //print_arena(core);
     put_id_core_war(core);
     //init_c_to_wait(); // init c_to_wait with the next instruct to be exec.
-    //the_core_war(core);
+    the_core_war(core);
   }
   else if (ac >= 6)
     write(1, "The number of champion is above the limit.\n", 43);
@@ -45,9 +45,14 @@ void the_core_war(t_corewar *core)
     while (ch != NULL)
     {
       if (ch->cycle_to_die_cur == 0)
+      {
         ch->is_dead = 1;
+        //printf("DEAD..\n");
+        write(1, "DEAD ?\n", 7);
+      }
       if (ch->is_dead == 0 && ch->c_to_wait == 0)
       {
+        printf("IS_HERE\n");
         // execute each prog (PC & move PC) (if PC null or unknown instruct, do nothing)
         // set nbr_live_cur if live
         // set c_to_wait (next instruction)
@@ -59,6 +64,7 @@ void the_core_war(t_corewar *core)
       ch = ch->next;
     }
   }
+  printf("GAME OVER\n");
 }
 
 int check_game_over(t_corewar *core)

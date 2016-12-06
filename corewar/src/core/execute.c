@@ -16,7 +16,7 @@ void exec_champ(t_corewar *core, t_champion *ch)
   if (ch->PC[ch->i] == NULL)
     return ;
   index = 0;
-  while (tab_instruction[index])
+  while (tab_instruction[index].id)
   {
     if (tab_instruction[index].id == ch->PC[ch->i][0])
     {
@@ -26,14 +26,13 @@ void exec_champ(t_corewar *core, t_champion *ch)
     index++;
   }
   index = 0;
-  while (tab_instruction[index] && ch->PC[ch->i] != NULL)
+  while (tab_instruction[index].id && ch->PC[ch->i] != NULL)
   {
     if (tab_instruction[index].id == ch->PC[ch->i][0])
     {
-      ch->c_to_wait = ab_instruction[index].nbr_cycle;
+      ch->c_to_wait = tab_instruction[index].nbr_cycle;
       break;
     }
     index++;
   }
-  return ;
 }

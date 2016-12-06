@@ -20,7 +20,7 @@ int		alive(t_corewar *core, t_champion *ch)
 	{
 		if (tmp->id_fork == id)
 		{
-			// write
+			my_printf("The Player %d (%s) is alive.", id, tmp->head->prog_name);
 			tmp->nbr_live_cur--;
 			if (tmp->nbr_live_cur == 0)
 			{
