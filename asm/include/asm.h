@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Mon Dec  5 20:52:51 2016 Guillaume MARDON
+** Last update Tue Dec  6 09:46:08 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -51,10 +51,13 @@ void	my_itoa(size_t input, char *buffer, unsigned int radix);
 size_t	my_nbrlen(size_t input, unsigned int radix);
 int my_printf(const char *format, ...);
 char	*filename_to_cor(char *file_path);
+int 	my_strncmp(char *s1, char *s2, int size);
 char	**my_strsep(char *str, char delim);
 void	save(int length, char* buffer, char* filepath);
 char	*right_padding(char *data, int base_size, int requested_size);
 void	write_to_buffer(char *buffer, int *index, char *to_write, int size);
+int		my_int_convert(int i);
+void	*my_malloc(int size);
 
 // PARSER //
 program_t	*	parse_file(char* file_name);
