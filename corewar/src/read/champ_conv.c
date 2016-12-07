@@ -26,6 +26,7 @@ t_champion *code2champ(t_code_champ *code, t_corewar *core, int i)
   else
     add_new_champ(core, champ);
   code2arena(code, core, champ);
+  champ->i = 0;
   return (champ);
 }
 

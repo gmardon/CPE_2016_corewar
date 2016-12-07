@@ -18,18 +18,22 @@ int		alive(t_corewar *core, t_champion *ch)
 	tmp = core->champions;
 	while (tmp != NULL)
 	{
-		if (tmp->id_fork == id)
+		if (tmp->id_fork == id && tmp->is_dead == 0)
 		{
 			my_printf("The Player %d (%s) is alive.", id, tmp->head->prog_name);
+			tmp->cycle_to_die_cur = (CYCLE_TO_DIE - (CYCLE_DELTA * tmp->n_delta));
 			tmp->nbr_live_cur--;
 			if (tmp->nbr_live_cur == 0)
 			{
 				tmp->n_delta++;
 				tmp->nbr_live_cur = NBR_LIVE;
 			}
+			break;
 		}
 		tmp = tmp->next;
 	}
+	if (tmp == NULL)
+		my_printf("%s (%d) is alive.\n", "YOLO", id);
 	return (0);
 }
 

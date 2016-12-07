@@ -5,9 +5,9 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Tue Dec  6 21:07:51 2016 Aurelien
+## Last update Wed Dec  7 18:46:17 2016 Aurelien
 ##
-LDFLAGS=-lSDL -lSDL_ttf -lGLU -lGL
+LDFLAGS =-lSDL -lSDL_ttf -lGLU -lGL
 
 #CFLAGS	+=	-Wextra -Wall -Werror -pedantic
 
@@ -23,6 +23,7 @@ SRCS	=	src/main.c \
 		src/read/champ_conv.c \
 		src/read/parse_core.c \
 		src/instructions/alive.c \
+		src/utils/init_int_tab.c	\
 		src/utils/my_strlowcase.c \
 		src/utils/my_putchar.c \
 		src/utils/my_nbrlen.c \

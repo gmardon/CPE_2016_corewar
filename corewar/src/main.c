@@ -45,17 +45,11 @@ void the_core_war(t_corewar *core)
     while (ch != NULL)
     {
       if (ch->cycle_to_die_cur == 0)
-      {
-        ch->is_dead = 1;
-        //printf("DEAD..\n");
-        write(1, "DEAD ?\n", 7);
-      }
+        A ch->is_dead = 1;
       if (ch->is_dead == 0 && ch->c_to_wait == 0)
       {
-        printf("IS_HERE\n");
+        exec_champ(core, ch);
         // execute each prog (PC & move PC) (if PC null or unknown instruct, do nothing)
-        // set nbr_live_cur if live
-        // set c_to_wait (next instruction)
       }
       if (ch->is_dead == 0 && ch->c_to_wait > 0)
         ch->c_to_wait--;
@@ -76,6 +70,8 @@ int check_game_over(t_corewar *core)
   ch = core->champions;
 
   ch_id[4] = ch_alive[4] = i = 0;
+  init_int_tab(ch_id, 4);
+  init_int_tab(ch_alive, 4);
   while (ch != NULL)
   {
     if (ch->id_fork < 0)
@@ -86,8 +82,7 @@ int check_game_over(t_corewar *core)
     }
     else
       ch_id[i] = ch->id_fork;
-    if (ch->is_dead == 0)
-      ch_alive[i] = 1;
+    ch_alive[i] = (ch->is_dead) ? (0) : (1);
     ch = ch->next;
     i++;
   }

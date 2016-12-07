@@ -86,6 +86,7 @@ void print_err_no_exit(char *str);
 /*
 **UTILS
 */
+void init_int_tab(int *tab, ssize_t max);
 int my_str_srch(char *to_search, char *str);
 char *my_strdup(char *str);
 size_t my_strlen(char *str);
@@ -101,5 +102,6 @@ int my_printf(const char *format, ...);
 **INSTRUCTIONS
 */
 int			alive(t_corewar *core, t_champion *champions);
+int alive_read_id(t_champion *ch);
 
 #endif
