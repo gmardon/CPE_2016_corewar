@@ -14,11 +14,11 @@ int		alive(t_corewar *core, t_champion *ch)
 	int id;
 	t_champion *tmp;
 
-	id = alive_read_id(ch);
+	id = alive_read_id(core, ch);
 	tmp = core->champions;
 	while (tmp != NULL)
 	{
-		if (tmp->id_fork == id && tmp->is_dead == 0)
+		if (tmp->id == id && tmp->is_dead == 0)
 		{
 			my_printf("The Player %d (%s) is alive.", id, tmp->head->prog_name);
 			tmp->cycle_to_die_cur = (CYCLE_TO_DIE - (CYCLE_DELTA * tmp->n_delta));
@@ -37,20 +37,20 @@ int		alive(t_corewar *core, t_champion *ch)
 	return (0);
 }
 
-int alive_read_id(t_champion *ch)
+int alive_read_id(t_corewar *core, t_champion *ch)
 {
 	int id;
-	int count;
+	ssize_t count;
 
 	id = 0;
-	count = ch->i + 5;
-	while (ch->i < count)
+	count = inc_PC(ch->PC, 5);
+	while (ch->PC < count)
 	{
-		if (id > 0 && ch->PC[ch->i][0] > 0)
-			id = id * (int) ch->PC[ch->i][0];
-		else if (id == 0 && ch->PC[ch->i][0] > 0)
-			id += (int) ch->PC[ch->i][0];
-		ch->i++;
+		if (id > 0 && core->arena[ch->PC] > 0)
+			id = id * (int) core->arena[ch->PC];
+		else if (id == 0 && core->arena[ch->PC] > 0)
+			id += (int) core->arena[ch->PC];
+		ch->PC = inc_PC(ch->PC, 1);
 	}
 	return (id);
 }

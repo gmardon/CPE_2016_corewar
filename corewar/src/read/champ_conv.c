@@ -26,7 +26,6 @@ t_champion *code2champ(t_code_champ *code, t_corewar *core, int i)
   else
     add_new_champ(core, champ);
   code2arena(code, core, champ);
-  champ->i = 0;
   return (champ);
 }
 
@@ -55,18 +54,13 @@ void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch)
     nb_champ++;
   }
   i = (MEM_SIZE / 4) * (nb_champ - 1);
-  if ((ch->PC = malloc(sizeof(char *) * (code->len + 1 - code->i))) == NULL)
-    print_err(MALLOC_FAIL);
-  ch->PC[code->len - code->i] = NULL;
+  ch->PC = i;
   while (code->i < code->len)
   {
     core->arena[i] = code->str[code->i];
-    ch->PC[ch->i] = (core->arena + i);
     code->i++;
-    ch->i++;
     i++;
   }
-  ch->PC[ch->i] = NULL;
 }
 
 t_champion *init_champ(int id)
@@ -78,16 +72,18 @@ t_champion *init_champ(int id)
   if ((champ = malloc(sizeof(t_champion))) == NULL)
     print_err(MALLOC_FAIL);
   champ->next = NULL;
-  champ->PC = NULL;
   if ((champ->head = malloc(sizeof(header_t))) == NULL)
     print_err(MALLOC_FAIL);
-  champ->carry = champ->i = champ->c_to_wait = champ->is_dead = 0;
-  champ->n_delta = 0;
-  champ->id_fork = id;
+  champ->carry = champ->c_to_wait = champ->is_dead = 0;
+  champ->n_delta = champ->PC = champ->is_exec = 0;
+  champ->id = id;
   champ->cycle_to_die_cur = CYCLE_TO_DIE;
   champ->nbr_live_cur = NBR_LIVE;
   if ((champ->reg = malloc(sizeof(int) * REG_NUMBER)) == NULL)
     print_err(MALLOC_FAIL);
+  if ((champ->next_instr = malloc(sizeof(char) * 20)) == NULL)
+    print_err(MALLOC_FAIL);
+  init_str(champ->next_instr, 20);
   while (i < REG_NUMBER)
   {
     champ->reg[i] = 0;

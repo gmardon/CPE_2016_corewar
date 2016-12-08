@@ -13,26 +13,57 @@ void exec_champ(t_corewar *core, t_champion *ch)
 {
   int index;
 
-  if (ch->PC[ch->i] == NULL)
-    return ;
+  //if (core->arena[ch->PC] == NULL)
+  //  return ;
+  if (ch->is_exec == 1)
+  {
+    index = 0;
+    ch->is_exec = 0;
+    while (tab_instruction[index].id)
+    {
+      if (tab_instruction[index].id == core->arena[ch->PC])
+      {
+	     tab_instruction[index].function(core, ch);
+	     break;
+      }
+      index++;
+    }
+  }
+  //get c to wait
+  else
+    set_next_exec(core, ch);
+}
+
+void set_next_exec(t_corewar *core, t_champion *ch)
+{
+  int index;
+
   index = 0;
   while (tab_instruction[index].id)
   {
-    if (tab_instruction[index].id == ch->PC[ch->i][0])
-    {
-	    tab_instruction[index].function(core, ch);
-	    break;
-    }
-    index++;
-  }
-  index = 0;
-  while (tab_instruction[index].id && ch->PC[ch->i] != NULL)
-  {
-    if (tab_instruction[index].id == ch->PC[ch->i][0])
+    if (tab_instruction[index].id == core->arena[ch->PC])
     {
       ch->c_to_wait = tab_instruction[index].nbr_cycle;
       break;
     }
     index++;
   }
+  // copy next instruction
+  ch->is_exec = 1;
+}
+
+ssize_t inc_PC(ssize_t PC, int inc)
+{
+  ssize_t i;
+
+  i = 0;
+  if ((PC + inc) < 0)
+  {
+    while ((PC + inc + (MEM_SIZE * i)) < 0)
+      i++;
+    PC = PC + inc + (MEM_SIZE * i);
+  }
+  else
+    PC = (PC + inc) % MEM_SIZE;
+  return (PC);
 }

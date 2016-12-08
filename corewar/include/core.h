@@ -38,13 +38,15 @@
 
 typedef struct		s_champion
 {
-  int id_fork;
+  int id;
   int is_dead;
   header_t *head;
-  unsigned char **PC;
-  ssize_t i;
+  //unsigned char **PC;
+  ssize_t PC;
   int *reg;
   char carry;
+  int is_exec;
+  unsigned char *next_instr;
   int c_to_wait;
   int							cycle_to_die_cur;
   int							nbr_live_cur;
@@ -102,6 +104,6 @@ int my_printf(const char *format, ...);
 **INSTRUCTIONS
 */
 int			alive(t_corewar *core, t_champion *champions);
-int alive_read_id(t_champion *ch);
+int alive_read_id(t_corewar *core, t_champion *ch);
 
 #endif
