@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Wed Dec  7 18:46:17 2016 Aurelien
+## Last update Fri Dec  9 18:44:13 2016 Aurelien
 ##
 LDFLAGS =-lSDL -lSDL_ttf -lGLU -lGL
 
@@ -18,6 +18,7 @@ NAME	=	corewar
 SRCS	=	src/main.c \
 		src/core/print.c \
 		src/core/execute.c	\
+		src/core/execute2.c	\
 		src/core/runtime.c \
 		src/read/read_core.c \
 		src/read/champ_conv.c \

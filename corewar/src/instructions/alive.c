@@ -41,16 +41,18 @@ int alive_read_id(t_corewar *core, t_champion *ch)
 {
 	int id;
 	ssize_t count;
+	ssize_t i;
 
 	id = 0;
-	count = inc_PC(ch->PC, 5);
-	while (ch->PC < count)
+	i = 1;
+	count = 5;
+	while (i < count)
 	{
-		if (id > 0 && core->arena[ch->PC] > 0)
-			id = id * (int) core->arena[ch->PC];
-		else if (id == 0 && core->arena[ch->PC] > 0)
-			id += (int) core->arena[ch->PC];
-		ch->PC = inc_PC(ch->PC, 1);
+		if (id > 0 && ch->next_instr[i] > 0)
+			id = id * (int) ch->next_instr[i];
+		else if (id == 0 && ch->next_instr[i] > 0)
+			id += (int) ch->next_instr[i];
+		i++;
 	}
 	return (id);
 }

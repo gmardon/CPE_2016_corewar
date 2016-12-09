@@ -75,6 +75,10 @@ extern t_instruction	tab_instruction[];
  **CORE
  */
 void exec_champ(t_corewar *core, t_champion *ch);
+void copy_next_instr(t_corewar *core, t_champion *ch);
+ssize_t get_instr_len(t_corewar *core, ssize_t PC, unsigned char instr);
+char *decode_octet(unsigned char c);
+char decode_bit(char arg, char bit1, char bit2);
 void the_core_war(t_corewar *core);
 int check_game_over(t_corewar *core);
 int check_nb_alive(int ch_alive[5]);
