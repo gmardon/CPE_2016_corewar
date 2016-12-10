@@ -110,6 +110,9 @@ int my_printf(const char *format, ...);
 /*
 **INSTRUCTIONS
 */
+int xor(t_corewar *core, t_champion *ch);
+int or(t_corewar *core, t_champion *ch);
+int and(t_corewar *core, t_champion *ch);
 int sub(t_corewar *core, t_champion *ch);
 int add(t_corewar *core, t_champion *ch);
 int st(t_corewar *core, t_champion *ch);
@@ -118,7 +121,8 @@ int			alive(t_corewar *core, t_champion *champions);
 int alive_read_id(t_champion *ch);
 int check_reg(unsigned char r);
 int st_dir_pc(t_corewar *core, t_champion *ch, ssize_t PC, int dir);
-int read_dir_pc(t_corewar *core, t_champion *ch, short ind);
+int read_dir_pc(t_corewar *core, t_champion *ch, short ind, int len);
 short read_ind(t_champion *ch, ssize_t *k);
+int get_dir_form_arg(t_corewar *core, t_champion *ch, char a, ssize_t *i);
 
 #endif

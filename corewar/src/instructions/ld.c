@@ -22,7 +22,7 @@ int ld(t_corewar *core, t_champion *ch)
   if (arg[0] == 2)
     {
       ind = read_ind(ch, &i);
-      dir = read_dir_pc(core, ch, ind);
+      dir = read_dir_pc(core, ch, ind, INSTR_LEN_ARG);
     }
   else if (arg[0] == 4)
     dir = read_dir(ch, &i);
@@ -45,7 +45,7 @@ int check_reg(unsigned char r)
     return (0);
 }
 
-int read_dir_pc(t_corewar *core, t_champion *ch, short ind)
+int read_dir_pc(t_corewar *core, t_champion *ch, short ind, int len)
 {
   int dir;
   ssize_t j;
@@ -55,7 +55,7 @@ int read_dir_pc(t_corewar *core, t_champion *ch, short ind)
 
   dir = 0;
   i = 1;
-  k = (inc_PC(inc_PC(ch->PC, -5), (ind % IDX_MOD)));
+  k = (inc_PC(inc_PC(ch->PC, -len), (ind % IDX_MOD)));
   while (i < 5)
   {
     j = (i - 1);

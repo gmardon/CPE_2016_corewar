@@ -15,10 +15,10 @@ t_instruction	tab_instruction[] =
   {2, ld, 5},
   {3, st, 5},
   {4, add, 10},
-  {5, sub, 10},/*
+  {5, sub, 10},
   {6, and, 6},
   {7, or, 6},
-  {8, xor, 6},
+  {8, xor, 6},/*
   {9, zjmp, 20},
   {10, ldi, 25},
   {11, sti, 25},
