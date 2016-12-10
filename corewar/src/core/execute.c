@@ -12,20 +12,24 @@
 void exec_champ(t_corewar *core, t_champion *ch)
 {
   int index;
+  int ret;
 
+  ret = 0;
   if (ch->is_exec == 1)
   {
     index = 0;
     ch->is_exec = 0;
     while (tab_instruction[index].id)
     {
-      if (tab_instruction[index].id == ch->next_instr[0])
+      if (tab_instruction[index].id == ch->instr[0])
       {
-	     tab_instruction[index].function(core, ch);
+	     ret = tab_instruction[index].function(core, ch);
 	     break;
       }
       index++;
     }
+    if (ret != 0)
+      ch->PC = inc_PC(ch->PC, -ret);
   }
   else
     set_next_exec(core, ch);

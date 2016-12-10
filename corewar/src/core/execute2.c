@@ -25,9 +25,9 @@ void copy_next_instr(t_corewar *core, t_champion *ch)
     len = get_instr_len(core, ch->PC, instr);
   while (i < len)
   {
-    ch->next_instr[i] = core->arena[ch->PC];
+    ch->instr[i] = core->arena[ch->PC];
     i++;
-    ch->PC++;
+    ch->PC = inc_PC(ch->PC, 1);
   }
 }
 
@@ -38,7 +38,7 @@ ssize_t get_instr_len(t_corewar *core, ssize_t PC, unsigned char instr)
   ssize_t i;
 
   i = 0;
-  arg = decode_octet(core->arena[PC + 1]);
+  arg = decode_octet(core->arena[inc_PC(PC, 1)]);
   len = 2;
   while (i < 4)
   {

@@ -35,6 +35,7 @@
 # define AFF		(16)
 
 # define MALLOC_FAIL "malloc failure."
+# define INSTR_LEN_ARG (arg[0] + arg[1] + arg[2] + arg[3] + 2)
 
 typedef struct		s_champion
 {
@@ -46,7 +47,7 @@ typedef struct		s_champion
   int *reg;
   char carry;
   int is_exec;
-  unsigned char *next_instr;
+  unsigned char *instr;
   int c_to_wait;
   int							cycle_to_die_cur;
   int							nbr_live_cur;
@@ -74,7 +75,9 @@ extern t_instruction	tab_instruction[];
 /*
  **CORE
  */
+ssize_t inc_PC(ssize_t PC, int inc);
 void exec_champ(t_corewar *core, t_champion *ch);
+void set_next_exec(t_corewar *core, t_champion *ch);
 void copy_next_instr(t_corewar *core, t_champion *ch);
 ssize_t get_instr_len(t_corewar *core, ssize_t PC, unsigned char instr);
 char *decode_octet(unsigned char c);
@@ -107,7 +110,15 @@ int my_printf(const char *format, ...);
 /*
 **INSTRUCTIONS
 */
+int sub(t_corewar *core, t_champion *ch);
+int add(t_corewar *core, t_champion *ch);
+int st(t_corewar *core, t_champion *ch);
+int ld(t_corewar *core, t_champion *ch);
 int			alive(t_corewar *core, t_champion *champions);
-int alive_read_id(t_corewar *core, t_champion *ch);
+int alive_read_id(t_champion *ch);
+int check_reg(unsigned char r);
+int st_dir_pc(t_corewar *core, t_champion *ch, ssize_t PC, int dir);
+int read_dir_pc(t_corewar *core, t_champion *ch, short ind);
+short read_ind(t_champion *ch, ssize_t *k);
 
 #endif

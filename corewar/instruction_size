@@ -1,0 +1,20 @@
+01 = reg, (1 oct)
+10 = %dir, (4 oct)
+11 = ind. (2 oct)
+
+- live (01) : 1arg (4 oct)
+ - ld (02) : 1arg = (dir(4 oct), ind(2 oct)) , ONLY (2arg = reg)
+ - st (03) : ONLY (1arg = reg(1 oct), 2arg = (ind(2 oct) or reg(1 oct)))
+ - add (04) : ONLY (3 reg(1 oct/each))
+ - sub (05) : ONLY (3 reg(1 oct/each))
+ - and (06) : NORMAL 3arg, last is reg
+ - or (07) : NORMAL, same
+ - xor (08) : NORMAL, same
+ - zjump (09) : ONLY 1arg = dir, BUT 2 oct (no codage octet) **EXCEPTION
+ - ldi (0a) : **EXCEPTION, normal BUT dir=(2 oct)
+ - sti (0b) : **EXCEPTION, normal BUT dir=(2 oct)
+ - fork (0c) : ONLY 1arg = dir, BUT 2 oct (no codage octet) **EXCEPTION
+ - lld (0d) : ref to ld (normal)
+ - lldi (0e) : ref to ldi (EXCEPTION)
+ - lfork (0f) : ref to fork (EXCEPTION) (no codage oct)
+ - aff (10) : ONLY 1arg = reg (1 oct) (and 1 oct for codage: usualy 40)

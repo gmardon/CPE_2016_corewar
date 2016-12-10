@@ -16,6 +16,15 @@
 #include "core.h"
 #include "read_core.h"
 
+/*
+** TO DO LIST:
+** set the carry
+**
+** add funct to decide who win
+** add arg options (ex: -dump)
+** modif print_arena for arg options
+*/
+
 int main(int ac, char **av)
 {
   t_corewar *core;
@@ -25,7 +34,6 @@ int main(int ac, char **av)
     core = read_core(ac, av);
     //print_arena(core);
     put_id_core_war(core);
-    //init_c_to_wait(); // init c_to_wait with the next instruct to be exec.
     the_core_war(core);
   }
   else if (ac >= 6)

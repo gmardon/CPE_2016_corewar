@@ -79,11 +79,11 @@ t_champion *init_champ(int id)
   champ->id = id;
   champ->cycle_to_die_cur = CYCLE_TO_DIE;
   champ->nbr_live_cur = NBR_LIVE;
-  if ((champ->reg = malloc(sizeof(int) * REG_NUMBER)) == NULL)
+  if ((champ->reg = malloc(sizeof(int) * (REG_NUMBER + 1))) == NULL)
     print_err(MALLOC_FAIL);
-  if ((champ->next_instr = malloc(sizeof(char) * 20)) == NULL)
+  if ((champ->instr = malloc(sizeof(char) * 20)) == NULL)
     print_err(MALLOC_FAIL);
-  init_str(champ->next_instr, 20);
+  init_str(champ->instr, 20);
   while (i < REG_NUMBER)
   {
     champ->reg[i] = 0;

@@ -14,13 +14,13 @@ int		alive(t_corewar *core, t_champion *ch)
 	int id;
 	t_champion *tmp;
 
-	id = alive_read_id(core, ch);
+	id = alive_read_id(ch);
 	tmp = core->champions;
 	while (tmp != NULL)
 	{
-		if (tmp->id == id && tmp->is_dead == 0)
+		if (tmp->id == id && tmp->is_dead == 0 && 1 == 2)
 		{
-			my_printf("The Player %d (%s) is alive.", id, tmp->head->prog_name);
+			my_printf("The Player %d (%s) is alive.\n", id, tmp->head->prog_name);
 			tmp->cycle_to_die_cur = (CYCLE_TO_DIE - (CYCLE_DELTA * tmp->n_delta));
 			tmp->nbr_live_cur--;
 			if (tmp->nbr_live_cur == 0)
@@ -33,25 +33,31 @@ int		alive(t_corewar *core, t_champion *ch)
 		tmp = tmp->next;
 	}
 	if (tmp == NULL)
-		my_printf("%s (%d) is alive.\n", "YOLO", id);
+		printf("%s (%d) is alive.\n", "YOLO", id);
 	return (0);
 }
 
-int alive_read_id(t_corewar *core, t_champion *ch)
+int alive_read_id(t_champion *ch)
 {
 	int id;
 	ssize_t count;
 	ssize_t i;
+	ssize_t j;
+	unsigned int value;
 
 	id = 0;
 	i = 1;
 	count = 5;
 	while (i < count)
 	{
-		if (id > 0 && ch->next_instr[i] > 0)
-			id = id * (int) ch->next_instr[i];
-		else if (id == 0 && ch->next_instr[i] > 0)
-			id += (int) ch->next_instr[i];
+		j = (i - 1);
+		value = ((j + 1) < 4) ? (1) : (0);
+		while (++j < 4)
+			value = (value * 256);
+		if (value > 0)
+			id = id + (int) (ch->instr[i] * value);
+		else
+			id += (int) ch->instr[i];
 		i++;
 	}
 	return (id);

@@ -19,6 +19,7 @@ int my_str_srch(char *to_search, char *str)
   i = j = bol = ret = 0;
   while (bol == 0 && str[i] != '\0')
   {
+    j = 0;
     while (to_search[j] == str[i] && (to_search[j] != '\0' || str[i] != '\0'))
     {
       bol = 1;
@@ -27,6 +28,8 @@ int my_str_srch(char *to_search, char *str)
     }
     if (bol == 1 && to_search[j] == '\0')
       ret = 1;
+    else
+      bol = 0;
     i++;
   }
   return (ret);
