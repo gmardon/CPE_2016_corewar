@@ -19,10 +19,16 @@
 /*
 ** TO DO LIST:
 ** set the carry
-**
+** check for IDX_MOD
+** check for (and, or, xor)
+** check for label (?)
+** check for fork
+** check for live
+** update/change my_printf
 ** add funct to decide who win
-** add arg options (ex: -dump)
+** add arg options (-dump, ...)
 ** modif print_arena for arg options
+** norme...
 */
 
 int main(int ac, char **av)
