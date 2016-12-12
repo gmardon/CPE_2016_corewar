@@ -27,11 +27,11 @@ int ld(t_corewar *core, t_champion *ch)
   else if (arg[0] == 4)
     dir = read_dir(ch, &i);
   else
-    return (-1);
+    return (INSTR_LEN_ARG);
   if (arg[1] == 1 && check_reg(ch->instr[i]) == 0)
     ch->reg[ch->instr[i]] = dir;
   else
-    return (-1);
+    return (INSTR_LEN_ARG);
   ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
   return (0);
 }

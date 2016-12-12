@@ -20,9 +20,7 @@
 ** TO DO LIST:
 ** set the carry
 ** test zjump
-** check for IDX_MOD
-** check for (and, or, xor)
-** check for label (?)
+** test sti, ldi, lld, lldi
 ** check for fork
 ** check for live
 ** update/change my_printf
@@ -30,6 +28,7 @@
 ** add arg options (-dump, ...)
 ** modif print_arena for arg options
 ** do some free (arg, ...)
+** modif thing to put champ far away each other
 ** norme...
 */
 
@@ -72,6 +71,7 @@ void the_core_war(t_corewar *core)
     }
   }
   printf("GAME OVER\n");
+  // free all ?
 }
 
 int check_game_over(t_corewar *core)
@@ -127,7 +127,7 @@ void put_id_core_war(t_corewar *core)
   ch = core->champions;
   while (ch != NULL)
   {
-    ch->reg[0] = ch->id;
+    ch->reg[1] = ch->id;
     ch = ch->next;
   }
 }

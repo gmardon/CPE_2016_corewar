@@ -18,7 +18,7 @@ int		alive(t_corewar *core, t_champion *ch)
 	tmp = core->champions;
 	while (tmp != NULL)
 	{
-		if (tmp->id == id && tmp->is_dead == 0 && 1 == 2)
+		if (tmp->id == id && tmp->is_dead == 0)
 		{
 			my_printf("The Player %d (%s) is alive.\n", id, tmp->head->prog_name);
 			tmp->cycle_to_die_cur = (CYCLE_TO_DIE - (CYCLE_DELTA * tmp->n_delta));

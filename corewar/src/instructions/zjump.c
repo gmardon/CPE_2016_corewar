@@ -9,7 +9,7 @@
 */
 #include "core.h"
 
-int zjump(t_corewar *core, t_champion *ch)
+int zjmp(t_corewar *core, t_champion *ch)
 {
   ssize_t i;
   short ind;

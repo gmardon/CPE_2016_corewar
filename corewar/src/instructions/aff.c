@@ -25,10 +25,10 @@ int aff(t_corewar *core, t_champion *ch)
       my_printf("%c", c);
     }
     else
-      return (-1);
+      return (INSTR_LEN_ARG);
   }
   else
-    return (-1);
+    return (INSTR_LEN_ARG);
   ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
   return (0);
 }
