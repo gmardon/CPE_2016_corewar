@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:27:42 2016 Guillaume MARDON
-** Last update Mon Dec 12 15:57:55 2016 Guillaume MARDON
+** Last update Mon Dec 12 17:15:01 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -21,7 +21,8 @@ void	write_args(instruction_t *instruction, int *index, char *buffer)
   while (args->type[args_index])
     {
       if (args->type[args_index] == T_REG)
-				write_register(op, *(args->argv[args_index] + 1) - 48, index, buffer);
+				write_register(op, *(args->argv[args_index] + 1) - 48,
+					       index, buffer);
       if (args->type[args_index] == T_DIR)
 				write_direct(op, args->argv[args_index] + 1, index, buffer);
       if (args->type[args_index] == T_IND)
@@ -38,15 +39,22 @@ void	write_register(op_t *op, char value, int *index, char *buffer)
 
 void	write_direct(op_t *op, char *value, int *index, char *buffer)
 {
-  if (*value == ':')
+  if (op->code == 11 || op->code == 10 || op->code == 9
+      || op->code == 12 || op->code == 14 || op->code == 15)
     {
-
+      if (*value == ':')
+        {
+          write_empty(2, index, buffer);
+        }
+      else
+				write_int_2(my_str_to_int(value), index, buffer);
     }
   else
     {
-			if (op->code == 11 || op->code == 10 || op->code == 9
-			    || op->code == 12 || op->code == 14 || op->code == 15)
-				write_int_2(my_str_to_int(value), index, buffer);
+      if (*value == ':')
+        {
+          write_empty(4, index, buffer);
+        }
       else
 				write_int_4(my_str_to_int(value), index, buffer);
     }
@@ -54,5 +62,10 @@ void	write_direct(op_t *op, char *value, int *index, char *buffer)
 
 void	write_indirect(op_t *op, char *value, int *index, char *buffer)
 {
-  write_int_2(my_str_to_int(value), index, buffer);
+  if (*value == ':')
+    {
+      write_empty(2, index, buffer);
+    }
+  else
+    write_int_2(my_str_to_int(value), index, buffer);
 }

@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 11:27:08 2016 Guillaume MARDON
-** Last update Mon Dec  5 20:52:27 2016 Guillaume MARDON
+** Last update Mon Dec 12 17:14:50 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -21,8 +21,10 @@ char	*compile(int *size, program_t *program)
   index = 0;
   instructions_size = 0;
   header_size = 0;
-  instructions_buffer = create_instructions(program->first_instruction, &instructions_size);
-  header_buffer = create_header(program->name, program->comment, instructions_size, &header_size);
+  instructions_buffer = create_instructions(program->first_instruction,
+					    &instructions_size);
+  header_buffer = create_header(program->name, program->comment,
+				instructions_size, &header_size);
 
   buffer = malloc(sizeof(char*) * (instructions_size + header_size));
   write_to_buffer(buffer, &index, header_buffer, header_size);
