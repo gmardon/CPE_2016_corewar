@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 20:21:45 2016 Guillaume MARDON
-** Last update Mon Dec 12 21:08:20 2016 Guillaume MARDON
+** Last update Mon Dec 12 22:52:30 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -23,11 +23,10 @@ void	resolve_labels(buffer_t *buffer, labelref_t *refs)
 	  			if (target->name)
 	    			{
 	      			buffer->index = refs[index].index;
-	    //  my_printf("write at index: %d, index: %d\n", refs[index].index, target->index);
-	      			if (target->index <= refs[index].index)
+	      			if (target->index <= (refs[index].index + 2))
 								write_int_2(65536 - (refs[index].index - target->index - 1), buffer);
 	      			else
-								write_int_2(target->index, buffer);
+								write_int_2((target->index + 3) - refs[index].index, buffer);
 	    			}
 						// TODO Handle label cannot be find
 				}
