@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec 12 17:48:59 2016 Guillaume MARDON
-** Last update Mon Dec 12 19:04:05 2016 Guillaume MARDON
+** Last update Mon Dec 12 20:20:27 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -45,6 +45,20 @@ labelref_t	*create_refs_stack()
       stack[index++].name = 0;
     }
   return (stack);
+}
+
+labelref_t	*find_label(labelref_t *refs, char *name)
+{
+  int index;
+
+  index = 0;
+  while (refs[index].name)
+    {
+      if (my_strcmp(refs[index].name, name) == 0 && refs[index].is_label)
+				return (refs + index);
+      index++;
+    }
+  return (refs + index);
 }
 
 void	show_alls_label(labelref_t *refs)
