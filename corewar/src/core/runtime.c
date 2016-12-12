@@ -19,9 +19,9 @@ t_instruction	tab_instruction[] =
   {6, and, 6},
   {7, or, 6},
   {8, xor, 6},
-  {9, zjmp, 20},/*
+  {9, zjmp, 20},
   {10, ldi, 25},
-  {11, sti, 25},
+  {11, sti, 25},/*
   {12, fork, 800},
   {13, lld, 10},
   {14, lldi, 50},

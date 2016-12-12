@@ -71,7 +71,7 @@ typedef struct		s_instruction
 extern t_instruction	tab_instruction[];
 
 /*
- **CORE
+ ** CORE
  */
 ssize_t inc_PC(ssize_t PC, int inc);
 void exec_champ(t_corewar *core, t_champion *ch);
@@ -91,7 +91,7 @@ void print_err(char *str);
 void print_err_no_exit(char *str);
 
 /*
-**UTILS
+** UTILS
 */
 void init_int_tab(int *tab, ssize_t max);
 int my_str_srch(char *to_search, char *str);
@@ -106,8 +106,13 @@ void	my_putstr(char *str);
 int my_printf(const char *format, ...);
 
 /*
-**INSTRUCTIONS
+** INSTRUCTIONS
 */
+int lldi(t_corewar *core, t_champion *ch);
+int lld(t_corewar *core, t_champion *ch);
+int sti(t_corewar *core, t_champion *ch);
+int ldi(t_corewar *core, t_champion *ch);
+int zjmp(t_corewar *core, t_champion *ch);
 int aff(t_corewar *core, t_champion *ch);
 int xor(t_corewar *core, t_champion *ch);
 int or(t_corewar *core, t_champion *ch);
@@ -121,7 +126,16 @@ int alive_read_id(t_champion *ch);
 int check_reg(unsigned char r);
 int st_dir_pc(t_corewar *core, t_champion *ch, ssize_t PC, int dir);
 int read_dir_pc(t_corewar *core, t_champion *ch, short ind);
+int read_dir(t_champion *ch, ssize_t *k);
 short read_ind(t_champion *ch, ssize_t *k);
+short read_ind_pc(t_corewar *core, t_champion *ch, short ind);
+int read_dir_pc_int(t_corewar *core, t_champion *ch, int sum);
+int read_dir_pc_l(t_corewar *core, t_champion *ch, short ind);
+int read_dir_pc_int_l(t_corewar *core, t_champion *ch, int sum);
+short read_ind_pc_l(t_corewar *core, t_champion *ch, short ind);
 int get_dir_form_arg(t_corewar *core, t_champion *ch, char a, ssize_t *i);
+int get_sum(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
+int get_sum2(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
+int get_sum_l(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
 
 #endif

@@ -40,7 +40,7 @@ void parse_name(t_code_champ *code, t_champion *ch)
   int bol;
 
   j = bol = 0;
-  while (code->i < (PROG_NAME_LENGTH) + 4)
+  while (code->i < (PROG_NAME_LENGTH + 4))
   {
     cond = (code->str[code->i] >= 32 && code->str[code->i] < 127);
     if (code->str[code->i] != '\0' && cond)
@@ -89,13 +89,42 @@ int parse_magic(t_code_champ *code, t_champion *ch)
 int parse_prog_size(t_code_champ *code)
 {
   int size;
+  ssize_t i;
+  ssize_t j;
+  unsigned int value;
 
-  size = 1;
+  size = 0;
+  i = 1;
+  code->i = code->i + 4;
   while (code->i < (PROG_NAME_LENGTH + 12))
   {
+    j = (i - 1);
+    value = ((j + 1) < 4) ? (1) : (0);
+    while (++j < 4)
+      value = (value * 256);
     if (code->str[code->i] != 0)
-      size = size * code->str[code->i];
+    {
+      if (value > 0)
+        size = size + (int) (code->str[code->i] * value);
+      else
+        size += (int) code->str[code->i];
+    }
     code->i++;
+    i++;
   }
   return (size);
 }
+
+/*
+while (i < 5)
+{
+  j = (i - 1);
+  value = ((j + 1) < 4) ? (1) : (0);
+  while (++j < 4)
+    value = (value * 256);
+  if (value > 0)
+    dir = dir + (int) (core->arena[k] * value);
+  else
+    dir += (int) core->arena[k];
+  i++;
+*/

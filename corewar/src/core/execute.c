@@ -15,6 +15,7 @@ void exec_champ(t_corewar *core, t_champion *ch)
   int ret;
 
   ret = 0;
+  //printf("intruction = %d\n", ch->instr[0]);
   if (ch->is_exec == 1)
   {
     index = 0;
@@ -28,6 +29,8 @@ void exec_champ(t_corewar *core, t_champion *ch)
       }
       index++;
     }
+    if (ret != 0)
+      inc_PC(ch->PC, ret);
   }
   else
     set_next_exec(core, ch);
