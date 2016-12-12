@@ -34,6 +34,7 @@ int		alive(t_corewar *core, t_champion *ch)
 	}
 	if (tmp == NULL)
 		printf("%s (%d) is alive.\n", "YOLO", id);
+	ch->PC = inc_PC(ch->PC, 5);
 	return (0);
 }
 

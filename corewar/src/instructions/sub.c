@@ -22,14 +22,15 @@ int sub(t_corewar *core, t_champion *ch)
     if (check_reg(ch->instr[i]) == 0 && check_reg(ch->instr[i + 1]) == 0)
       sum = ch->reg[ch->instr[i]] - ch->reg[ch->instr[i + 1]];
     else
-      return (INSTR_LEN_ARG);
+      return (-1);
     i += 2;
     if (check_reg(ch->instr[i]) == 0)
       ch->reg[ch->instr[i]] = sum;
     else
-      return (INSTR_LEN_ARG);
+      return (-1);
   }
   else
-    return (INSTR_LEN_ARG);
+    return (-1);
+  ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
   return (0);
 }

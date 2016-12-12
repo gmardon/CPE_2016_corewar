@@ -19,6 +19,7 @@
 /*
 ** TO DO LIST:
 ** set the carry
+** test zjump
 ** check for IDX_MOD
 ** check for (and, or, xor)
 ** check for label (?)
@@ -28,6 +29,7 @@
 ** add funct to decide who win
 ** add arg options (-dump, ...)
 ** modif print_arena for arg options
+** do some free (arg, ...)
 ** norme...
 */
 

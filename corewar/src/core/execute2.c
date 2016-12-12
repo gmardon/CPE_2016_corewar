@@ -14,20 +14,22 @@ void copy_next_instr(t_corewar *core, t_champion *ch)
   unsigned char instr;
   ssize_t len;
   ssize_t i;
+  ssize_t tmp_pc;
 
   len = i = 0;
-  instr = core->arena[ch->PC];
+  tmp_pc = ch->PC;
+  instr = core->arena[tmp_pc];
   if (instr == 1)
     len = 5;
   else if (instr == 9 || instr == 12 || instr == 15)
     len = 3;
   else
-    len = get_instr_len(core, ch->PC, instr);
+    len = get_instr_len(core, tmp_pc, instr);
   while (i < len)
   {
-    ch->instr[i] = core->arena[ch->PC];
+    ch->instr[i] = core->arena[tmp_pc];
     i++;
-    ch->PC = inc_PC(ch->PC, 1);
+    tmp_pc = inc_PC(tmp_pc, 1);
   }
 }
 

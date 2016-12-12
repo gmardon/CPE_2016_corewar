@@ -19,18 +19,19 @@ int st(t_corewar *core, t_champion *ch)
   arg = decode_octet(ch->instr[1]);
   i = 2;
   if (arg[0] != 1 || check_reg(ch->instr[i]) != 0)
-    return (INSTR_LEN_ARG);
+    return (-1);
   i++;
   if (arg[1] == 1 && check_reg(ch->instr[i]) == 0)
     ch->reg[ch->instr[i]] = ch->reg[ch->instr[i - 1]];
   else if (arg[1] == 2)
   {
     ind = read_ind(ch, &i);
-    cp_PC = inc_PC(inc_PC(ch->PC, -INSTR_LEN_ARG), (ind % IDX_MOD));
+    cp_PC = inc_PC(ch->PC, (ind % IDX_MOD));
     st_dir_pc(core, ch, cp_PC, (ch->reg[ch->instr[i - 3]]));
   }
   else
-    return (INSTR_LEN_ARG);
+    return (-1);
+  ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
   return (0);
 }
 

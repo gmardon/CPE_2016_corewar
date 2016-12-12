@@ -28,8 +28,6 @@ void exec_champ(t_corewar *core, t_champion *ch)
       }
       index++;
     }
-    if (ret != 0)
-      ch->PC = inc_PC(ch->PC, -ret);
   }
   else
     set_next_exec(core, ch);
