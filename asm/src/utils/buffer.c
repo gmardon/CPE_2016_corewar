@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 17:10:27 2016 Guillaume MARDON
-** Last update Mon Dec 12 16:42:39 2016 Guillaume MARDON
+** Last update Mon Dec 12 18:45:26 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -30,19 +30,18 @@ char	*right_padding(char *data, int base_size, int requested_size)
   return (newdata);
 }
 
-void	write_to_buffer(char *buffer, int *index, char *to_write, int size)
+void	write_to_buffer(buffer_t *buffer, char *to_write, int size)
 {
   int aindex;
 
   aindex = 0;
   while (aindex < size)
     {
-      buffer[*index] = to_write[aindex++];
-      *index += 1;
+      buffer->data[buffer->index++] = to_write[aindex++];
     }
 }
 
-void write_int_2(int value, int *index, char *buffer)
+void write_int_2(int value, buffer_t *buffer)
 {
   char bytes[4];
 
@@ -51,13 +50,11 @@ void write_int_2(int value, int *index, char *buffer)
   bytes[2] = (value >> 8) & 0xFF;
   bytes[3] = value & 0xFF;
 
-  buffer[*index] = bytes[2];
-  *index += 1;
-  buffer[*index] = bytes[3];
-  *index += 1;
+  buffer->data[buffer->index++] = bytes[2];
+  buffer->data[buffer->index++] = bytes[3];
 }
 
-void	write_int_4(int value, int *index, char *buffer)
+void	write_int_4(int value, buffer_t *buffer)
 {
   char bytes[4];
 
@@ -66,25 +63,31 @@ void	write_int_4(int value, int *index, char *buffer)
   bytes[2] = (value >> 8) & 0xFF;
   bytes[3] = value & 0xFF;
 
-  buffer[*index] = bytes[0];
-  *index += 1;
-  buffer[*index] = bytes[1];
-  *index += 1;
-  buffer[*index] = bytes[2];
-  *index += 1;
-  buffer[*index] = bytes[3];
-  *index += 1;
+  buffer->data[buffer->index++] = bytes[0];
+  buffer->data[buffer->index++] = bytes[1];
+  buffer->data[buffer->index++] = bytes[2];
+  buffer->data[buffer->index++] = bytes[3];
 }
 
-void	write_empty(int count, int *index, char *buffer)
+void	write_empty(int count, buffer_t *buffer)
 {
   int actual_index;
 
   actual_index = 0;
   while (actual_index < count)
     {
-      buffer[*index] = 0x00;
-      *index += 1;
+      buffer->data[buffer->index++] = 0x00;
       actual_index++;
     }
+}
+
+buffer_t	*create_buffer(int size)
+{
+  buffer_t *buffer;
+
+  buffer = my_malloc(sizeof(buffer_t));
+  buffer->index = 0;
+  buffer->data = my_malloc(size * sizeof(char*));
+
+  return (buffer);
 }

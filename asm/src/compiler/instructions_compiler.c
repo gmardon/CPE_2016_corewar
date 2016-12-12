@@ -5,29 +5,36 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 20:21:45 2016 Guillaume MARDON
-** Last update Mon Dec 12 15:58:24 2016 Guillaume MARDON
+** Last update Mon Dec 12 19:01:47 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
-char	*create_instructions(instruction_t *first_instruction, int *size)
+buffer_t	*create_instructions(instruction_t *first_instruction, int *size)
 {
-  char *buffer;
+  buffer_t *buffer;
   instruction_t *instruction;
-  int index;
   int args_index;
+  labelref_t *labelrefs;
 
-  buffer = malloc(sizeof(char) * BUFF_SIZE);
-  index = 0;
+  buffer = create_buffer(BUFF_SIZE);
+  labelrefs = create_refs_stack();
   instruction = first_instruction;
   while (instruction)
     {
-      buffer[index++] = instruction->op->code;
+      my_printf("[%s]", instruction->op->mnemonique);
+      if (instruction->label)
+	{
+	  my_printf("-> '%s'", instruction->label);
+    add_label_ref(buffer->index, instruction->label, labelrefs);
+	}
+			my_printf("\n");
+      buffer->data[buffer->index++] = instruction->op->code;
       if (need_encode_args_type(instruction->op->code))
-				buffer[index++] = get_encoded_args_type(instruction->args->type);
-      my_printf("[%s]\n", instruction->op->mnemonique);
-      write_args(instruction, &index, buffer);
+				buffer->data[buffer->index++] = get_encoded_args_type(instruction->args->type);
+      write_args(instruction, buffer, labelrefs);
       instruction = instruction->next;
     }
-  *size = index;
+  show_alls_label(labelrefs);
+  *size = buffer->index;
   return (buffer);
 }
