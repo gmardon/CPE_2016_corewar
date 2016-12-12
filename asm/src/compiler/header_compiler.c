@@ -5,49 +5,43 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:37:09 2016 Guillaume MARDON
-** Last update Mon Dec 12 16:42:26 2016 Guillaume MARDON
+** Last update Mon Dec 12 18:36:25 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
-void	add_magic(char* buffer, int *index)
+void	add_magic(buffer_t *buffer)
 {
   int magic = COREWAR_EXEC_MAGIC;
   char m1 = (magic >> 16) & 0xff;
   char m2 = (magic >> 8) & 0xff;
   char m3 = magic & 0xff;
-  buffer[*index] = 0x00;
-  *index += 1;
-  buffer[*index] = m1;
-  *index += 1;
-  buffer[*index] = m2;
-  *index += 1;
-  buffer[*index] = m3;
-  *index += 1;
+  buffer->data[buffer->index++] = 0x00;
+  buffer->data[buffer->index++] = m1;
+  buffer->data[buffer->index++] = m2;
+  buffer->data[buffer->index++] = m3;
 }
 
-char	*create_header(char *name, char *comment, int instruction_size, int *size)
+buffer_t	*create_header(char *name, char *comment, int instruction_size, int *size)
 {
-  char *buffer;
-  int index;
+  buffer_t *buffer;
 
-  index = 0;
-  buffer = my_malloc(sizeof(char *) * (COMMENT_LENGTH + PROG_NAME_LENGTH + 4));
+  buffer = create_buffer(COMMENT_LENGTH + PROG_NAME_LENGTH + (4 * 3));
 
   if (!name)
     name = "";
   if (!comment)
     comment = "";
 
-  add_magic(buffer, &index);
-  write_to_buffer(buffer, &index,
+  add_magic(buffer);
+  write_to_buffer(buffer,
 		  right_padding(name, my_strlen(name),
 				PROG_NAME_LENGTH), PROG_NAME_LENGTH);
-  write_empty(4, &index, buffer);
-  write_int_4(instruction_size, &index, buffer);
-	write_to_buffer(buffer, &index,
+  write_empty(4, buffer);
+  write_int_4(instruction_size, buffer);
+	write_to_buffer(buffer,
     	right_padding(comment, my_strlen(comment),
 		      COMMENT_LENGTH), COMMENT_LENGTH);
-  write_empty(4, &index, buffer);
-  *size = index;
+  write_empty(4, buffer);
+  *size = buffer->index;
   return (buffer);
 }

@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Mon Dec 12 16:47:06 2016 Guillaume MARDON
+** Last update Mon Dec 12 18:52:20 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -22,6 +22,21 @@ typedef struct          args_s
   char                  type[MAX_ARGS_NUMBER];
   char                  *argv[MAX_ARGS_NUMBER];
 }                       args_t;
+
+typedef struct          buffer_s
+{
+  int										index;
+  char                  *data;
+}                       buffer_t;
+
+typedef struct          labelref_s
+{
+  char                  *name;
+  int										index;
+  int										size;
+  char									is_label;
+  char									is_direct;
+}                       labelref_t;
 
 typedef struct          instruction_s
 {
@@ -55,12 +70,12 @@ int 	my_strncmp(char *s1, char *s2, int size);
 char	**my_strsep(char *str, char delim);
 void	save(int length, char* buffer, char* filepath);
 char	*right_padding(char *data, int base_size, int requested_size);
-void	write_to_buffer(char *buffer, int *index, char *to_write, int size);
+void	write_to_buffer(buffer_t *index, char *to_write, int size);
 int		my_int_convert(int i);
 void	*my_malloc(int size);
-void	write_empty(int count, int *index, char *buffer);
-void	write_int_4(int value, int *index, char *buffer);
-void write_int_2(int value, int *index, char *buffer);
+void	write_empty(int count, buffer_t *buffer);
+void	write_int_4(int value, buffer_t *buffer);
+void write_int_2(int value, buffer_t *buffer);
 int my_str_to_int(char *str);
 
 // PARSER //
@@ -68,13 +83,14 @@ program_t	*	parse_file(char* file_name);
 instruction_t	*read_instruction(char *line);
 
 // COMPILER //
-char*  compile(int *size, program_t *program);
+buffer_t*  compile(int *size, program_t *program);
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);
 int	need_encode_args_type(int code);
-void	compile_header(char* buffer, int *index, char* name, char* comment);
-char	*create_header(char *name, char *comment, int instruction_size, int *size);
-char	*create_instructions(instruction_t *first_instruction, int *size);
-void	write_args(instruction_t *instruction, int *index, char *buffer);
-void	write_direct(op_t *op, char *value, int *index, char *buffer);
-void	write_indirect(op_t *op, char *value, int *index, char *buffer);
-void	write_register(op_t *op, char value, int *index, char *buffer);
+void	compile_header(buffer_t *buffer, char* name, char* comment);
+buffer_t	*create_header(char *name, char *comment, int instruction_size, int *size);
+buffer_t	*create_instructions(instruction_t *first_instruction, int *size);
+void	write_args(instruction_t *instruction, buffer_t *buffer, labelref_t *refs);
+void	write_direct(op_t *op, char *value, buffer_t *buffer, labelref_t *refs);
+void	write_indirect(op_t *op, char *value, buffer_t *buffer, labelref_t *refs);
+void	write_register(op_t *op, char value, buffer_t *buffer);
+labelref_t	*create_refs_stack();

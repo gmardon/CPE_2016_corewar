@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Mon Dec 12 14:43:42 2016 Guillaume MARDON
+** Last update Mon Dec 12 17:41:54 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -37,8 +37,14 @@ int	label_index(char *line)
 char	*retrieve_label(char *line)
 {
   char *label;
+  int index;
+
+  index = 0;
   label = malloc(label_index(line) * sizeof(char*));
   my_strcpy(label, line);
+  while (label[index] != ':')
+    index++;
+  label[index] = 0;
   return (label);
 }
 
