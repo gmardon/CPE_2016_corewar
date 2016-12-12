@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Thu Dec  1 15:42:31 2016 Guillaume MARDON
+** Last update Mon Dec 12 14:43:42 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -58,9 +58,9 @@ args_t	*retrieve_args(char *line)
   while (args_c[index])
     {
       args->argv[index] = my_cleanstr(args_c[index]);
-      if (args->argv[index][0] == DIRECT_CHAR)
+      if (*args->argv[index] == DIRECT_CHAR)
 				args->type[index] = T_DIR;
-      else if (args->argv[index][0] == 'r')
+      else if (*args->argv[index] == 'r')
 				args->type[index] = T_REG;
       else
 				args->type[index] = T_IND;

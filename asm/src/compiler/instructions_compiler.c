@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 20:21:45 2016 Guillaume MARDON
-** Last update Mon Dec  5 20:39:28 2016 Guillaume MARDON
+** Last update Mon Dec 12 15:58:24 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -14,6 +14,7 @@ char	*create_instructions(instruction_t *first_instruction, int *size)
   char *buffer;
   instruction_t *instruction;
   int index;
+  int args_index;
 
   buffer = malloc(sizeof(char) * BUFF_SIZE);
   index = 0;
@@ -24,6 +25,7 @@ char	*create_instructions(instruction_t *first_instruction, int *size)
       if (need_encode_args_type(instruction->op->code))
 				buffer[index++] = get_encoded_args_type(instruction->args->type);
       my_printf("[%s]\n", instruction->op->mnemonique);
+      write_args(instruction, &index, buffer);
       instruction = instruction->next;
     }
   *size = index;

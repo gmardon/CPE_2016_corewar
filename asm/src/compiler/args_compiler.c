@@ -5,26 +5,54 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:27:42 2016 Guillaume MARDON
-** Last update Mon Dec  5 20:16:09 2016 Guillaume MARDON
+** Last update Mon Dec 12 15:57:55 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
-int	need_encode_args_type(int code)
+void	write_args(instruction_t *instruction, int *index, char *buffer)
 {
-  return ((code != 1 && code != 9 && code != 12 && code != 15) ? 1 : 0);
+  int	args_index;
+  op_t *op;
+  args_t *args;
+
+  args_index = 0;
+  args = instruction->args;
+  op = instruction->op;
+  while (args->type[args_index])
+    {
+      if (args->type[args_index] == T_REG)
+				write_register(op, *(args->argv[args_index] + 1) - 48, index, buffer);
+      if (args->type[args_index] == T_DIR)
+				write_direct(op, args->argv[args_index] + 1, index, buffer);
+      if (args->type[args_index] == T_IND)
+				write_indirect(op, args->argv[args_index], index, buffer);
+      args_index++;
+    }
 }
 
-char	get_encoded_args_type(char types[MAX_ARGS_NUMBER])
+void	write_register(op_t *op, char value, int *index, char *buffer)
 {
-  char encoded_args;
-  int args_index;
+	buffer[*index] = value;
+  *index += 1;
+}
 
-  encoded_args = 0;
-  args_index = 0;
-  while (types[args_index])
+void	write_direct(op_t *op, char *value, int *index, char *buffer)
+{
+  if (*value == ':')
     {
-      encoded_args |= types[args_index++];
-      encoded_args <<= 2;
+
     }
-  return (encoded_args);
+  else
+    {
+			if (op->code == 11 || op->code == 10 || op->code == 9
+			    || op->code == 12 || op->code == 14 || op->code == 15)
+				write_int_2(my_str_to_int(value), index, buffer);
+      else
+				write_int_4(my_str_to_int(value), index, buffer);
+    }
+}
+
+void	write_indirect(op_t *op, char *value, int *index, char *buffer)
+{
+  write_int_2(my_str_to_int(value), index, buffer);
 }

@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Tue Dec  6 09:40:53 2016 Guillaume MARDON
+## Last update Mon Dec 12 15:49:11 2016 Guillaume MARDON
 ##
 
 NAME		=	asm
@@ -15,6 +15,7 @@ NAME		=	asm
 SRC		=	src/parser/parser.c			\
 			src/compiler/compiler.c \
 			src/compiler/args_compiler.c \
+			src/compiler/args_utils.c \
 			src/compiler/header_compiler.c \
 			src/compiler/instructions_compiler.c \
 			src/parser/instruction.c			\
@@ -25,6 +26,7 @@ SRC		=	src/parser/parser.c			\
 			src/utils/buffer.c \
 			src/utils/my_putchar.c \
 			src/utils/my_strsep.c \
+			src/utils/my_str_to_int.c \
 			src/utils/my_putstr.c \
 			src/utils/my_strlen.c \
 			src/utils/my_strcpy.c \

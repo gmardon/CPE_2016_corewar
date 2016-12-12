@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Tue Dec  6 09:46:08 2016 Guillaume MARDON
+** Last update Mon Dec 12 16:47:06 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -58,6 +58,10 @@ char	*right_padding(char *data, int base_size, int requested_size);
 void	write_to_buffer(char *buffer, int *index, char *to_write, int size);
 int		my_int_convert(int i);
 void	*my_malloc(int size);
+void	write_empty(int count, int *index, char *buffer);
+void	write_int_4(int value, int *index, char *buffer);
+void write_int_2(int value, int *index, char *buffer);
+int my_str_to_int(char *str);
 
 // PARSER //
 program_t	*	parse_file(char* file_name);
@@ -68,3 +72,9 @@ char*  compile(int *size, program_t *program);
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);
 int	need_encode_args_type(int code);
 void	compile_header(char* buffer, int *index, char* name, char* comment);
+char	*create_header(char *name, char *comment, int instruction_size, int *size);
+char	*create_instructions(instruction_t *first_instruction, int *size);
+void	write_args(instruction_t *instruction, int *index, char *buffer);
+void	write_direct(op_t *op, char *value, int *index, char *buffer);
+void	write_indirect(op_t *op, char *value, int *index, char *buffer);
+void	write_register(op_t *op, char value, int *index, char *buffer);

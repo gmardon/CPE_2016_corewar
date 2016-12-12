@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:37:09 2016 Guillaume MARDON
-** Last update Tue Dec  6 09:43:27 2016 Guillaume MARDON
+** Last update Mon Dec 12 16:42:26 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -42,11 +42,12 @@ char	*create_header(char *name, char *comment, int instruction_size, int *size)
   write_to_buffer(buffer, &index,
 		  right_padding(name, my_strlen(name),
 				PROG_NAME_LENGTH), PROG_NAME_LENGTH);
-
+  write_empty(4, &index, buffer);
+  write_int_4(instruction_size, &index, buffer);
 	write_to_buffer(buffer, &index,
     	right_padding(comment, my_strlen(comment),
 		      COMMENT_LENGTH), COMMENT_LENGTH);
-
+  write_empty(4, &index, buffer);
   *size = index;
   return (buffer);
 }
