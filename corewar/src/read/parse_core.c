@@ -57,12 +57,12 @@ void parse_name(t_code_champ *code, t_champion *ch)
   ch->head->prog_name[j] = '\0';
 }
 
-int parse_magic(t_code_champ *code, t_champion *ch)
+int parse_magic(t_code_champ *code)
 {
   char *exec_magic;
   ssize_t i;
   int magic;
-  char *hex;
+  unsigned char *hex;
 
   exec_magic = my_strdup(COREWAR_EXEC_MAGIC);
   i = magic = 0;

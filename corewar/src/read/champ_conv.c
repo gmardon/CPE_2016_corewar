@@ -15,7 +15,7 @@ t_champion *code2champ(t_code_champ *code, t_corewar *core, int i)
 
   code->i = 0;
   champ = init_champ(i);
-  if ((champ->head->magic = parse_magic(code, champ)) == 0)
+  if ((champ->head->magic = parse_magic(code)) == 0)
     print_err_no_exit(MAGIC_FAIL);
   parse_name(code, champ);
   if ((champ->head->prog_size = parse_prog_size(code)) != (code->len - 2192))
@@ -44,7 +44,6 @@ void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch)
   int nb_champ;
   t_champion *ch_tmp;
   ssize_t i;
-  ssize_t j;
 
   nb_champ = i = 0;
   ch_tmp = core->champions;

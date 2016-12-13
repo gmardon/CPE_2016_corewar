@@ -24,6 +24,7 @@
 ** add arg options (-dump, ...)
 ** modif thing to put champ far away each other
 ** modif print_arena for arg options
+** set a limit prog_size !!
 ** do some free (arg, ...)
 ** check if dec_nbr_live if is wrong live
 ** check for carry (why: ldi 6, %4, r3 set carry to 0 ?)
@@ -32,9 +33,8 @@
 ** check for fork
 ** check if extern is up to the norme
 ** check if PC en maj is up to norme
-** set a var to check if is a fork ??
 ** check if the jump (fork & zjmp) is done from good start pts
-** inc PC if instr not found
+** inc PC if instr not found ??
 ** norme...
 */
 

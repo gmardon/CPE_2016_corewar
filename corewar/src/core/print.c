@@ -11,7 +11,7 @@
 
 void print_arena(t_corewar *core)
 {
-  char *hex;
+  unsigned char *hex;
   ssize_t i;
 
   i = 0;
@@ -34,12 +34,9 @@ void print_arena(t_corewar *core)
 unsigned char *hex_conv(unsigned char c)
 {
   ssize_t base;
-  ssize_t i;
-  char *hex;
-  unsigned char tmp;
+  unsigned char *hex;
 
   base = 16;
-  i = 0;
   if ((hex = malloc(sizeof(char) * 3)) == NULL)
     print_err(MALLOC_FAIL);
   hex[2] = '\0';

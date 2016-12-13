@@ -52,7 +52,7 @@ t_corewar *init_corewar()
   return (core);
 }
 
-void init_str(char *str, int max)
+void init_str(unsigned char *str, int max)
 {
   int i;
 

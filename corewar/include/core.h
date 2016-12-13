@@ -133,7 +133,7 @@ int alive_read_id(t_champion *ch);
 void add_live_to_core(t_corewar *core, int id);
 void dec_nbr_live(t_corewar *core);
 int check_reg(unsigned char r);
-int st_dir_pc(t_corewar *core, t_champion *ch, ssize_t PC, int dir);
+int st_dir_pc(t_corewar *core, ssize_t PC, int dir);
 int read_dir_pc(t_corewar *core, t_champion *ch, short ind);
 int read_dir(t_champion *ch, ssize_t *k);
 short read_ind(t_champion *ch, ssize_t *k);

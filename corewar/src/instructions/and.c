@@ -12,7 +12,6 @@
 int and(t_corewar *core, t_champion *ch)
 {
   char *arg;
-  short ind;
   int dir;
   int dir2;
   ssize_t i;
