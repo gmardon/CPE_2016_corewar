@@ -44,6 +44,8 @@ t_corewar *init_corewar()
     core->arena[i] = 0;
     i++;
   }
+  core->live_on_this_cycle = 0;
+  core->last_live_id = 0;
   core->nbr_live_cur = NBR_LIVE;
   core->n_delta = 0;
   core->champions = NULL;

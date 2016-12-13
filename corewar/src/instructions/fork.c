@@ -33,6 +33,7 @@ t_champion *ch_dup(t_corewar *core, t_champion *ch)
   i = 1;
   tmp = core->champions;
   new = init_champ(ch->id);
+  new->id = ch->id;
   new->is_dead = ch->is_dead;
   new->head = ch->head;
   new->PC = ch->PC;

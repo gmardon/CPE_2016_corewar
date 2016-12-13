@@ -9,6 +9,56 @@
 */
 #include "core.h"
 
+void decide_winner(t_corewar *core)
+{
+  t_champion *ch;
+
+  ch = core->champions;
+  if (core->last_live_id == 0)
+    my_printf("Game is draw.\n");
+  else
+  {
+    while (ch != NULL)
+    {
+      if (ch->id == core->last_live_id)
+        break;
+      ch = ch->next;
+    }
+    if (ch == NULL)
+      my_printf("Game is draw.\n");
+    else
+      my_printf("The Player %d (%s) has won.\n", ch->id, ch->head->prog_name);
+  }
+}
+
+int is_already_in(t_champion *ch, int ch_id[5])
+{
+  int j;
+  int bol;
+
+  j = bol = 0;
+  while (j < 4)
+  {
+    if (ch_id[j] == ch->id)
+      bol = 1;
+    j++;
+  }
+  return (bol);
+}
+
+void kill_all_child(t_corewar *core, int id)
+{
+  t_champion *tmp;
+
+  tmp = core->champions;
+  while (tmp != NULL)
+  {
+    if (tmp->id == id)
+      tmp->is_dead = 1;
+    tmp = tmp->next;
+  }
+}
+
 void copy_next_instr(t_corewar *core, t_champion *ch)
 {
   unsigned char instr;

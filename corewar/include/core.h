@@ -54,6 +54,8 @@ typedef struct		s_champion
 
 typedef struct		s_corewar
 {
+  int last_live_id;
+  int live_on_this_cycle;
   int							nbr_live_cur;
   int n_delta;
   unsigned char		*arena;
@@ -73,10 +75,13 @@ extern t_instruction	tab_instruction[];
 /*
  ** CORE
  */
+void decide_winner(t_corewar *core);
+int is_already_in(t_champion *ch, int ch_id[5]);
 ssize_t inc_PC(ssize_t PC, int inc);
 void exec_champ(t_corewar *core, t_champion *ch);
 void set_next_exec(t_corewar *core, t_champion *ch);
 void copy_next_instr(t_corewar *core, t_champion *ch);
+void kill_all_child(t_corewar *core, int id);
 ssize_t get_instr_len(t_corewar *core, ssize_t PC, unsigned char instr);
 char *decode_octet(unsigned char c);
 char decode_bit(char arg, char bit1, char bit2);
@@ -125,6 +130,8 @@ int st(t_corewar *core, t_champion *ch);
 int ld(t_corewar *core, t_champion *ch);
 int			alive(t_corewar *core, t_champion *champions);
 int alive_read_id(t_champion *ch);
+void add_live_to_core(t_corewar *core, int id);
+void dec_nbr_live(t_corewar *core);
 int check_reg(unsigned char r);
 int st_dir_pc(t_corewar *core, t_champion *ch, ssize_t PC, int dir);
 int read_dir_pc(t_corewar *core, t_champion *ch, short ind);
