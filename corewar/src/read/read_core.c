@@ -44,6 +44,8 @@ t_corewar *init_corewar()
     core->arena[i] = 0;
     i++;
   }
+  core->nbr_live_cur = NBR_LIVE;
+  core->n_delta = 0;
   core->champions = NULL;
   return (core);
 }

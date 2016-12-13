@@ -21,12 +21,12 @@ int		alive(t_corewar *core, t_champion *ch)
 		if (tmp->id == id && tmp->is_dead == 0)
 		{
 			my_printf("The Player %d (%s) is alive.\n", id, tmp->head->prog_name);
-			tmp->cycle_to_die_cur = (CYCLE_TO_DIE - (CYCLE_DELTA * tmp->n_delta));
-			tmp->nbr_live_cur--;
-			if (tmp->nbr_live_cur == 0)
+			tmp->cycle_to_die_cur = (CYCLE_TO_DIE - (CYCLE_DELTA * core->n_delta));
+			core->nbr_live_cur--;
+			if (core->nbr_live_cur == 0)
 			{
-				tmp->n_delta++;
-				tmp->nbr_live_cur = NBR_LIVE;
+				core->n_delta++;
+				core->nbr_live_cur = NBR_LIVE;
 			}
 			break;
 		}

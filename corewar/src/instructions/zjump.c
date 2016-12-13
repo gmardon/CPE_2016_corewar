@@ -15,10 +15,12 @@ int zjmp(t_corewar *core, t_champion *ch)
   short ind;
 
   i = 1;
-  //if (ch->carry == 1)
-  //{
+  if (ch->carry == 1)
+  {
     ind = read_ind(ch, &i);
     ch->PC = inc_PC(ch->PC, (ind % IDX_MOD));
-  //}
+  }
+  else
+    ch->PC = inc_PC(ch->PC, 3);
   return (0);
 }

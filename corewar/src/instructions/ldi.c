@@ -15,6 +15,7 @@ int ldi(t_corewar *core, t_champion *ch)
   int sum;
   ssize_t i;
 
+  ch->carry = 0;
   arg = decode_octet(ch->instr[1]);
   i = 2;
   sum = 0;
@@ -31,6 +32,7 @@ int ldi(t_corewar *core, t_champion *ch)
   else
     return (instr_len_exception(arg));
   ch->PC = inc_PC(ch->PC, instr_len_exception(arg));
+  ch->carry = 1;
   return (0);
 }
 

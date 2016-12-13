@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Mon Dec 12 21:18:15 2016 Aurelien
+## Last update Tue Dec 13 17:00:30 2016 Aurelien
 ##
 LDFLAGS =-lSDL -lSDL_ttf -lGLU -lGL
 
@@ -23,6 +23,8 @@ SRCS	=	src/main.c \
 		src/read/read_core.c \
 		src/read/champ_conv.c \
 		src/read/parse_core.c \
+		src/instructions/fork.c	\
+		src/instructions/lfork.c	\
 		src/instructions/lld.c	\
 		src/instructions/lldi.c	\
 		src/instructions/sti.c	\

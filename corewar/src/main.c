@@ -18,11 +18,16 @@
 
 /*
 ** TO DO LIST:
-** set the carry
+** set all macro : v4.2
+** check for carry (why: ldi 6, %4, r3 set carry to 0 ?)
 ** test zjump
 ** test sti, ldi, lld, lldi
 ** check for fork
 ** check for live
+** check if extern is up to the norme
+** set a var to check if is a fork
+** check if the jump (fork & zjmp) is done from good start pts
+** inc PC if instr not found
 ** update/change my_printf
 ** add funct to decide who win
 ** add arg options (-dump, ...)
@@ -39,7 +44,7 @@ int main(int ac, char **av)
   if (ac > 2 && ac < 6)
   {
     core = read_core(ac, av);
-    //print_arena(core);
+    print_arena(core);
     put_id_core_war(core);
     the_core_war(core);
   }

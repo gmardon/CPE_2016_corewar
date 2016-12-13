@@ -49,13 +49,13 @@ typedef struct		s_champion
   unsigned char *instr;
   int c_to_wait;
   int							cycle_to_die_cur;
-  int							nbr_live_cur;
-  int n_delta;
   struct 		s_champion	*next;
 }			t_champion;
 
 typedef struct		s_corewar
 {
+  int							nbr_live_cur;
+  int n_delta;
   unsigned char		*arena;
   t_champion			*champions;
 }			t_corewar;
@@ -108,6 +108,8 @@ int my_printf(const char *format, ...);
 /*
 ** INSTRUCTIONS
 */
+int lfrk(t_corewar *core, t_champion *ch);
+int frk(t_corewar *core, t_champion *ch);
 int lldi(t_corewar *core, t_champion *ch);
 int lld(t_corewar *core, t_champion *ch);
 int sti(t_corewar *core, t_champion *ch);
@@ -137,5 +139,7 @@ int get_dir_form_arg(t_corewar *core, t_champion *ch, char a, ssize_t *i);
 int get_sum(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
 int get_sum2(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
 int get_sum_l(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
+int instr_len_exception(char *arg);
+t_champion *ch_dup(t_corewar *core, t_champion *ch);
 
 #endif

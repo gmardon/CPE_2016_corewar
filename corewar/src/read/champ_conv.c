@@ -75,10 +75,9 @@ t_champion *init_champ(int id)
   if ((champ->head = malloc(sizeof(header_t))) == NULL)
     print_err(MALLOC_FAIL);
   champ->carry = champ->c_to_wait = champ->is_dead = 0;
-  champ->n_delta = champ->PC = champ->is_exec = 0;
+  champ->PC = champ->is_exec = 0;
   champ->id = id;
   champ->cycle_to_die_cur = CYCLE_TO_DIE;
-  champ->nbr_live_cur = NBR_LIVE;
   if ((champ->reg = malloc(sizeof(int) * (REG_NUMBER + 1))) == NULL)
     print_err(MALLOC_FAIL);
   if ((champ->instr = malloc(sizeof(char) * 20)) == NULL)
