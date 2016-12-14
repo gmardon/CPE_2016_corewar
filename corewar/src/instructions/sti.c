@@ -31,8 +31,8 @@ int sti(t_corewar *core, t_champion *ch)
     sum = sum + read_ind(ch, &i);
   else
     return (instr_len_exception(arg));
-  st_dir_pc(core, (inc_PC(ch->PC, (sum % IDX_MOD))), dir);
-  ch->PC = inc_PC(ch->PC, instr_len_exception(arg));
+  st_dir_pc(core, (inc_pc(ch->pc, (sum % IDX_MOD))), dir);
+  ch->pc = inc_pc(ch->pc, instr_len_exception(arg));
   free(arg);
   return (0);
 }

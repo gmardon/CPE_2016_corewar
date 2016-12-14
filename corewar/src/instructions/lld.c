@@ -32,7 +32,7 @@ int lld(t_corewar *core, t_champion *ch)
     ch->reg[ch->instr[i]] = dir;
   else
     return (INSTR_LEN_ARG);
-  ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
+  ch->pc = inc_pc(ch->pc, INSTR_LEN_ARG);
   ch->carry = 1;
   free(arg);
   return (0);
@@ -48,7 +48,7 @@ int read_dir_pc_l(t_corewar *core, t_champion *ch, short ind)
 
   dir = 0;
   i = 1;
-  k = inc_PC(ch->PC, ind);
+  k = inc_pc(ch->pc, ind);
   while (i < 5)
   {
     j = (i - 1);
@@ -60,7 +60,7 @@ int read_dir_pc_l(t_corewar *core, t_champion *ch, short ind)
     else
       dir += (int) core->arena[k];
     i++;
-    k = inc_PC(k, 1);
+    k = inc_pc(k, 1);
   }
   return (dir);
 }

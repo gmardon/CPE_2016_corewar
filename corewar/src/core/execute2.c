@@ -67,7 +67,7 @@ void copy_next_instr(t_corewar *core, t_champion *ch)
   ssize_t tmp_pc;
 
   len = i = 0;
-  tmp_pc = ch->PC;
+  tmp_pc = ch->pc;
   instr = core->arena[tmp_pc];
   if (instr == 1)
     len = 5;
@@ -79,18 +79,18 @@ void copy_next_instr(t_corewar *core, t_champion *ch)
   {
     ch->instr[i] = core->arena[tmp_pc];
     i++;
-    tmp_pc = inc_PC(tmp_pc, 1);
+    tmp_pc = inc_pc(tmp_pc, 1);
   }
 }
 
-ssize_t get_instr_len(t_corewar *core, ssize_t PC, unsigned char instr)
+ssize_t get_instr_len(t_corewar *core, ssize_t pc, unsigned char instr)
 {
   char *arg;
   ssize_t len;
   ssize_t i;
 
   i = 0;
-  arg = decode_octet(core->arena[inc_PC(PC, 1)]);
+  arg = decode_octet(core->arena[inc_pc(pc, 1)]);
   len = 2;
   while (i < 4)
   {

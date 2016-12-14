@@ -33,7 +33,7 @@ int		alive(t_corewar *core, t_champion *ch)
 	dec_nbr_live(core);
 	//if (tmp == NULL)
 	//	printf("%s (%d) is alive.\n", "YOLO", id);
-	ch->PC = inc_PC(ch->PC, 5);
+	ch->pc = inc_pc(ch->pc, 5);
 	return (0);
 }
 

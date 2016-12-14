@@ -18,9 +18,9 @@ int zjmp(t_corewar *core, t_champion *ch)
   if (ch->carry == 1)
   {
     ind = read_ind(ch, &i);
-    ch->PC = inc_PC(ch->PC, (ind % IDX_MOD));
+    ch->pc = inc_pc(ch->pc, (ind % IDX_MOD));
   }
   else
-    ch->PC = inc_PC(ch->PC, 3);
+    ch->pc = inc_pc(ch->pc, 3);
   return (0);
 }

@@ -19,8 +19,8 @@ int frk(t_corewar *core, t_champion *ch)
   i = 1;
   ind = read_ind(ch, &i);
   new = ch_dup(core, ch);
-  new->PC = inc_PC(new->PC, (ind % IDX_MOD));
-  ch->PC = inc_PC(ch->PC, 3);
+  new->pc = inc_pc(new->pc, (ind % IDX_MOD));
+  ch->pc = inc_pc(ch->pc, 3);
   return (0);
 }
 
@@ -36,7 +36,7 @@ t_champion *ch_dup(t_corewar *core, t_champion *ch)
   new->id = ch->id;
   new->is_dead = ch->is_dead;
   new->head = ch->head;
-  new->PC = ch->PC;
+  new->pc = ch->pc;
   new->carry = ch->carry;
   new->is_exec = 0;
   new->c_to_wait = ch->c_to_wait;

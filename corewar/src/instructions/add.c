@@ -32,7 +32,7 @@ int add(t_corewar *core, t_champion *ch)
   }
   else
     return (INSTR_LEN_ARG);
-  ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
+  ch->pc = inc_pc(ch->pc, INSTR_LEN_ARG);
   ch->carry = 1;
   free(arg);
   return (0);

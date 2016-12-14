@@ -31,7 +31,7 @@ void exec_champ(t_corewar *core, t_champion *ch)
       index++;
     }
     if (ret != 0)
-      inc_PC(ch->PC, ret);
+      inc_pc(ch->pc, ret);
   }
   else
     set_next_exec(core, ch);
@@ -44,7 +44,7 @@ void set_next_exec(t_corewar *core, t_champion *ch)
   index = 0;
   while (tab_instruction[index].id)
   {
-    if (tab_instruction[index].id == core->arena[ch->PC])
+    if (tab_instruction[index].id == core->arena[ch->pc])
     {
       ch->c_to_wait = tab_instruction[index].nbr_cycle;
       break;
@@ -100,18 +100,18 @@ char decode_bit(char arg, char bit1, char bit2)
   return (arg);
 }
 
-ssize_t inc_PC(ssize_t PC, int inc)
+ssize_t inc_pc(ssize_t pc, int inc)
 {
   ssize_t i;
 
   i = 0;
-  if ((PC + inc) < 0)
+  if ((pc + inc) < 0)
   {
-    while ((PC + inc + (MEM_SIZE * i)) < 0)
+    while ((pc + inc + (MEM_SIZE * i)) < 0)
       i++;
-    PC = PC + inc + (MEM_SIZE * i);
+    pc = pc + inc + (MEM_SIZE * i);
   }
   else
-    PC = (PC + inc) % MEM_SIZE;
-  return (PC);
+    pc = (pc + inc) % MEM_SIZE;
+  return (pc);
 }

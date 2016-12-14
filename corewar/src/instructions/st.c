@@ -14,7 +14,7 @@ int st(t_corewar *core, t_champion *ch)
   char *arg;
   short ind;
   ssize_t i;
-  ssize_t cp_PC;
+  ssize_t cp_pc;
 
   arg = decode_octet(ch->instr[1]);
   i = 2;
@@ -26,17 +26,17 @@ int st(t_corewar *core, t_champion *ch)
   else if (arg[1] == 2)
   {
     ind = read_ind(ch, &i);
-    cp_PC = inc_PC(ch->PC, (ind % IDX_MOD));
-    st_dir_pc(core, cp_PC, (ch->reg[ch->instr[i - 3]]));
+    cp_pc = inc_pc(ch->pc, (ind % IDX_MOD));
+    st_dir_pc(core, cp_pc, (ch->reg[ch->instr[i - 3]]));
   }
   else
     return (INSTR_LEN_ARG);
-  ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
+  ch->pc = inc_pc(ch->pc, INSTR_LEN_ARG);
   free(arg);
   return (0);
 }
 
-int st_dir_pc(t_corewar *core, ssize_t PC, int dir)
+int st_dir_pc(t_corewar *core, ssize_t pc, int dir)
 {
   unsigned char *b;
   ssize_t i;
@@ -45,9 +45,9 @@ int st_dir_pc(t_corewar *core, ssize_t PC, int dir)
   b = (unsigned char *) &dir;
   while (i >= 0)
   {
-    core->arena[PC] = b[i];
+    core->arena[pc] = b[i];
     i--;
-    PC = inc_PC(PC, 1);
+    pc = inc_pc(pc, 1);
   }
   return (0);
 }

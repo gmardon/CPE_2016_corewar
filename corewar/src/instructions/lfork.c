@@ -20,8 +20,8 @@ int lfrk(t_corewar *core, t_champion *ch)
   ch->carry = 0;
   ind = read_ind(ch, &i);
   new = ch_dup(core, ch);
-  new->PC = inc_PC(new->PC, ind);
-  ch->PC = inc_PC(ch->PC, 3);
+  new->pc = inc_pc(new->pc, ind);
+  ch->pc = inc_pc(ch->pc, 3);
   ch->carry = 1;
   new->carry = 1;
   return (0);
