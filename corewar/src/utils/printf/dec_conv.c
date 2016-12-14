@@ -5,7 +5,7 @@
 ** Login   <aurelien.olibe@epitech.net>
 **
 ** Started on  Thu Nov 10 15:30:30 2016 Aurelien Olibe
-** Last update Sat Nov 19 00:51:50 2016 Aurelien Olibe
+** Last update Wed Dec 14 18:24:53 2016 Aurelien
 */
 #include <unistd.h>
 #include <stdlib.h>
@@ -69,13 +69,15 @@ char	*int2char(int d, int *i, t_stockarg *store)
   str[11] = '\0';
   *i = 10;
   init_str(str, (*i + 1));
+  if (d == 0)
+    str[*i] = '0';
   while (d != 0)
     {
       if (d == -2147483648)
-      {
-        d = (d + 1) * -1;
-        str[*i] = ((d % 10) + 1) + '0';
-      }
+	{
+	  d = (d + 1) * -1;
+	  str[*i] = ((d % 10) + 1) + '0';
+	}
       else
         str[*i] = (d % 10) + '0';
       d = d - (d % 10);
@@ -106,6 +108,8 @@ char	*d_conv(t_farg *avs, va_list args, t_stockarg *store)
       str[i] = '-';
       str = str + i;
     }
+  else if (d == 0)
+    str = str + i;
   else
     str = str + (i + 1);
   str = gest_flag(avs, str, 0, store);

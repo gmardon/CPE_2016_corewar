@@ -24,7 +24,6 @@
 ** check for carry (why: ldi 6, %4, r3 set carry to 0 ?)
 ** test sti, ldi, lld, lldi
 ** check for fork
-** check if extern is up to the norme
 ** check if the jump (fork & zjmp) is done from good start pts
 ** inc PC if instr not found ??
 ** norme...
