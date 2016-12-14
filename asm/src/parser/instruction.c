@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Mon Dec 12 17:41:54 2016 Guillaume MARDON
+** Last update Wed Dec 14 15:00:00 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -40,7 +40,7 @@ char	*retrieve_label(char *line)
   int index;
 
   index = 0;
-  label = malloc(label_index(line) * sizeof(char*));
+  label = my_malloc(label_index(line) * sizeof(char*));
   my_strcpy(label, line);
   while (label[index] != ':')
     index++;
@@ -58,7 +58,7 @@ args_t	*retrieve_args(char *line)
   while (line[index] != 32 && line[index] != '\t')
     index++;
   line = my_cleanstr(line + index);
-  args = malloc(sizeof(args_t));
+  args = my_malloc(sizeof(args_t));
   index = 0;
   args_c = my_strsep(line, ',');
   while (args_c[index])
@@ -81,12 +81,12 @@ op_t	*retrieve_op(char *line)
   int		index;
 	op_t 	*opt;
 
-  opt = malloc(sizeof(op_t));
+  opt = my_malloc(sizeof(op_t));
   index = 0;
   while (line[index] != 32 && line[index] != '\t')
     index++;
 
-	op = malloc(index * sizeof(char*));
+	op = my_malloc(index * sizeof(char*));
   my_strcpy(op, line);
   op[index] = '\0';
   index = 0;
@@ -106,7 +106,7 @@ instruction_t	*read_instruction(char *line)
 {
   instruction_t *instruction;
 
-  instruction = malloc(sizeof(instruction_t));
+  instruction = my_malloc(sizeof(instruction_t));
   line = my_cleanstr(line);
   if (label_index(line) != 0)
     {
