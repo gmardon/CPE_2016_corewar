@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Mon Dec 12 18:52:20 2016 Guillaume MARDON
+** Last update Wed Dec 14 14:51:30 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -77,6 +77,7 @@ void	write_empty(int count, buffer_t *buffer);
 void	write_int_4(int value, buffer_t *buffer);
 void write_int_2(int value, buffer_t *buffer);
 int my_str_to_int(char *str);
+char	**my_commandsep(char *str);
 
 // PARSER //
 program_t	*	parse_file(char* file_name);
@@ -94,3 +95,7 @@ void	write_direct(op_t *op, char *value, buffer_t *buffer, labelref_t *refs);
 void	write_indirect(op_t *op, char *value, buffer_t *buffer, labelref_t *refs);
 void	write_register(op_t *op, char value, buffer_t *buffer);
 labelref_t	*create_refs_stack();
+labelref_t	*find_label(labelref_t *refs, char *name);
+buffer_t	*create_buffer(int size);
+void	add_label_ref(int index, char *name, labelref_t *stack);
+void	add_ref(labelref_t *stack, labelref_t *labelref);

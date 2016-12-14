@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Tue Dec  6 09:44:54 2016 Guillaume MARDON
+** Last update Wed Dec 14 15:00:15 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -35,9 +35,10 @@ program_t	*parse(const int fd)
   instruction_t *current_instruction;
 
   last_instruction = NULL;
-  program = malloc(sizeof(program_t));
-  while (*(line = get_next_line(fd)) != '\0')
+  program = my_malloc(sizeof(program_t));
+  while (*(line = get_next_line(fd)))
     {
+      line = my_cleanstr(line);
       if (*line == '.' || *line == COMMENT_CHAR)
 				parse_extra(line, program);
       else

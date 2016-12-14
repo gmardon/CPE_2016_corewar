@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec 12 17:48:59 2016 Guillaume MARDON
-** Last update Mon Dec 12 20:20:27 2016 Guillaume MARDON
+** Last update Mon Dec 12 23:08:16 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -59,16 +59,4 @@ labelref_t	*find_label(labelref_t *refs, char *name)
       index++;
     }
   return (refs + index);
-}
-
-void	show_alls_label(labelref_t *refs)
-{
-  int index;
-
-  index = 0;
-  while (refs[index].name)
-    {
-      my_printf("ref name: %s, is label ref: %d, with index: %d, with size: %d\n", refs[index].name, refs[index].is_label, refs[index].index, refs[index].size);
-      index++;
-    }
 }

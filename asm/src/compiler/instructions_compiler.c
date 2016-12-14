@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 20:21:45 2016 Guillaume MARDON
-** Last update Mon Dec 12 22:52:30 2016 Guillaume MARDON
+** Last update Mon Dec 12 23:48:10 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -48,19 +48,14 @@ buffer_t	*create_instructions(instruction_t *first_instruction, int *size)
     {
       my_printf("[%s]", instruction->op->mnemonique);
       if (instruction->label)
-	{
-	  my_printf("-> '%s'", instruction->label);
-    add_label_ref(buffer->index, instruction->label, labelrefs);
-	}
-      my_printf(" writed at: %d", buffer->index);
+				add_label_ref(buffer->index, instruction->label, labelrefs);
       buffer->data[buffer->index++] = instruction->op->code;
-      my_printf("\n");
       if (need_encode_args_type(instruction->op->code))
-				buffer->data[buffer->index++] = get_encoded_args_type(instruction->args->type);
+				buffer->data[buffer->index++] =
+	  			get_encoded_args_type(instruction->args->type);
       write_args(instruction, buffer, labelrefs);
       instruction = instruction->next;
     }
-  show_alls_label(labelrefs);
   resolve_labels(buffer, labelrefs);
   *size = buffer->index;
   return (buffer);
