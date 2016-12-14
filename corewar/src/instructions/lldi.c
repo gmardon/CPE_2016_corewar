@@ -15,6 +15,7 @@ int lldi(t_corewar *core, t_champion *ch)
   int sum;
   ssize_t i;
 
+  ch->carry = 0;
   arg = decode_octet(ch->instr[1]);
   i = 2;
   sum = 0;
@@ -23,7 +24,7 @@ int lldi(t_corewar *core, t_champion *ch)
   if (arg[1] == 1 && check_reg(ch->instr[i]) == 0)
     sum = sum + ch->reg[ch->instr[i++]];
   else if (arg[1] == 4)
-    sum = sum + read_dir(ch, &i);
+    sum = sum + read_ind(ch, &i);
   else
     return (-1);
   if (arg[2] == 1 && check_reg(ch->instr[i]) == 0)
@@ -31,6 +32,7 @@ int lldi(t_corewar *core, t_champion *ch)
   else
     return (instr_len_exception(arg));
   ch->PC = inc_PC(ch->PC, instr_len_exception(arg));
+  ch->carry = 1;
   return (0);
 }
 
@@ -78,7 +80,7 @@ int get_sum_l(t_corewar *core, t_champion *ch, ssize_t *i, int *sum)
       *sum = (int) read_ind_pc_l(core, ch, ind);
     }
   else if (arg[0] == 4)
-    *sum = read_dir(ch, i);
+    *sum = read_ind(ch, i);
   else
     return (-1);
   return (0);

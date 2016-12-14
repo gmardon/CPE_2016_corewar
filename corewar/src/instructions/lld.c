@@ -16,6 +16,7 @@ int lld(t_corewar *core, t_champion *ch)
   short ind;
   ssize_t i;
 
+  ch->carry = 0;
   arg = decode_octet(ch->instr[1]);
   i = 2;
   if (arg[0] == 2)
@@ -32,6 +33,7 @@ int lld(t_corewar *core, t_champion *ch)
   else
     return (INSTR_LEN_ARG);
   ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
+  ch->carry = 1;
   return (0);
 }
 

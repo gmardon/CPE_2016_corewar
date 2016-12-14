@@ -49,13 +49,18 @@ typedef struct		s_champion
   unsigned char *instr;
   int c_to_wait;
   int							cycle_to_die_cur;
-  int							nbr_live_cur;
-  int n_delta;
   struct 		s_champion	*next;
 }			t_champion;
 
 typedef struct		s_corewar
 {
+  int prog_number;
+  ssize_t dump;
+  ssize_t load_address;
+  int last_live_id;
+  int live_on_this_cycle;
+  int							nbr_live_cur;
+  int n_delta;
   unsigned char		*arena;
   t_champion			*champions;
 }			t_corewar;
@@ -73,10 +78,13 @@ extern t_instruction	tab_instruction[];
 /*
  ** CORE
  */
+void decide_winner(t_corewar *core);
+int is_already_in(t_champion *ch, int ch_id[5]);
 ssize_t inc_PC(ssize_t PC, int inc);
 void exec_champ(t_corewar *core, t_champion *ch);
 void set_next_exec(t_corewar *core, t_champion *ch);
 void copy_next_instr(t_corewar *core, t_champion *ch);
+void kill_all_child(t_corewar *core, int id);
 ssize_t get_instr_len(t_corewar *core, ssize_t PC, unsigned char instr);
 char *decode_octet(unsigned char c);
 char decode_bit(char arg, char bit1, char bit2);
@@ -108,6 +116,8 @@ int my_printf(const char *format, ...);
 /*
 ** INSTRUCTIONS
 */
+int lfrk(t_corewar *core, t_champion *ch);
+int frk(t_corewar *core, t_champion *ch);
 int lldi(t_corewar *core, t_champion *ch);
 int lld(t_corewar *core, t_champion *ch);
 int sti(t_corewar *core, t_champion *ch);
@@ -123,8 +133,10 @@ int st(t_corewar *core, t_champion *ch);
 int ld(t_corewar *core, t_champion *ch);
 int			alive(t_corewar *core, t_champion *champions);
 int alive_read_id(t_champion *ch);
+void add_live_to_core(t_corewar *core, int id);
+void dec_nbr_live(t_corewar *core);
 int check_reg(unsigned char r);
-int st_dir_pc(t_corewar *core, t_champion *ch, ssize_t PC, int dir);
+int st_dir_pc(t_corewar *core, ssize_t PC, int dir);
 int read_dir_pc(t_corewar *core, t_champion *ch, short ind);
 int read_dir(t_champion *ch, ssize_t *k);
 short read_ind(t_champion *ch, ssize_t *k);
@@ -137,5 +149,7 @@ int get_dir_form_arg(t_corewar *core, t_champion *ch, char a, ssize_t *i);
 int get_sum(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
 int get_sum2(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
 int get_sum_l(t_corewar *core, t_champion *ch, ssize_t *i, int *sum);
+int instr_len_exception(char *arg);
+t_champion *ch_dup(t_corewar *core, t_champion *ch);
 
 #endif

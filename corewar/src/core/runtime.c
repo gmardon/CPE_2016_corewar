@@ -21,11 +21,11 @@ t_instruction	tab_instruction[] =
   {8, xor, 6},
   {9, zjmp, 20},
   {10, ldi, 25},
-  {11, sti, 25},/*
-  {12, fork, 800},
+  {11, sti, 25},
+  {12, frk, 800},
   {13, lld, 10},
   {14, lldi, 50},
-  {15, lfork, 1000},*/
+  {15, lfrk, 1000},
   {16, aff, 2},
   {0, 0, 0}
 };

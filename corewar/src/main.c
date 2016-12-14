@@ -18,33 +18,48 @@
 
 /*
 ** TO DO LIST:
-** set the carry
+** set all macro : v4.2
+** update/change my_printf
+** add arg options (-dump, ...)
+** modif thing to put champ far away each other
+** modif print_arena for arg options
+** set a limit prog_size !!
+** do some free (arg, ...)
+** check for live
+** check if dec_nbr_live if is wrong live
+** check for carry (why: ldi 6, %4, r3 set carry to 0 ?)
 ** test zjump
 ** test sti, ldi, lld, lldi
 ** check for fork
-** check for live
-** update/change my_printf
-** add funct to decide who win
-** add arg options (-dump, ...)
-** modif print_arena for arg options
-** do some free (arg, ...)
-** modif thing to put champ far away each other
+** check if extern is up to the norme
+** check if PC en maj is up to norme
+** check if the jump (fork & zjmp) is done from good start pts
+** inc PC if instr not found ??
 ** norme...
 */
 
 int main(int ac, char **av)
 {
   t_corewar *core;
+  ssize_t total_ch;
+  ssize_t i;
 
-  if (ac > 2 && ac < 6)
+  i = 1;
+  total_ch = 0;
+  while (i < ac)
   {
-    core = read_core(ac, av);
-    //print_arena(core);
+    if (my_str_srch(".cor", av[i]) == 1)
+      total_ch++;
+    i++;
+  }
+  if (total_ch > 4)
+    print_err(CH_ABOVE_LIMIT);
+  if (ac > 2 && total_ch > 1)
+  {
+    core = read_core(ac, av, total_ch);
     put_id_core_war(core);
     the_core_war(core);
   }
-  else if (ac >= 6)
-    write(1, "The number of champion is above the limit.\n", 43);
   else
     print_usage();
   return (0);
@@ -60,7 +75,7 @@ void the_core_war(t_corewar *core)
     while (ch != NULL)
     {
       if (ch->cycle_to_die_cur == 0)
-        ch->is_dead = 1;
+        kill_all_child(core, ch->id);
       if (ch->is_dead == 0 && ch->c_to_wait == 0)
         exec_champ(core, ch);
       if (ch->is_dead == 0 && ch->c_to_wait > 0)
@@ -69,8 +84,16 @@ void the_core_war(t_corewar *core)
         ch->cycle_to_die_cur--;
       ch = ch->next;
     }
+    core->live_on_this_cycle = 0;
+    if (core->dump > 0)
+      core->dump--;
+    if (core->dump == 0)
+    {
+      print_arena(core);
+      core->dump = -1;
+    }
   }
-  printf("GAME OVER\n");
+  decide_winner(core);
   // free all ?
 }
 
@@ -80,22 +103,18 @@ int check_game_over(t_corewar *core)
   int ch_id[5];
   int ch_alive[5];
   int i;
-  ch = core->champions;
 
+  ch = core->champions;
   ch_id[4] = ch_alive[4] = i = 0;
   init_int_tab(ch_id, 4);
   init_int_tab(ch_alive, 4);
   while (ch != NULL)
   {
-    if (ch->id < 0)
+    if (is_already_in(ch, ch_id) == 0)
     {
-      i = 0;
-      while (ch_id[i] != (ch->id * -1))
-        i++;
-    }
-    else
       ch_id[i] = ch->id;
-    ch_alive[i] = (ch->is_dead) ? (0) : (1);
+      ch_alive[i] = (ch->is_dead) ? (0) : (1);
+    }
     ch = ch->next;
     i++;
   }

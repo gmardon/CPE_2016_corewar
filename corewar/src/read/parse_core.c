@@ -9,6 +9,25 @@
 */
 #include "read_core.h"
 
+ssize_t parse_arg(t_corewar *core, int ac, char **av, ssize_t j)
+{
+  if (my_strcmp(av[j], "-a") == 0 && ac > (j + 1))
+    core->load_address = str2size(av[j + 1]);
+  else if (my_strcmp(av[j], "-n") == 0 && ac > (j + 1))
+  {
+    if (av[j + 1][0] >= '1' && av[j + 1][0] <= '4' && av[j + 1][1] == '\0')
+      core->prog_number = (av[j + 1][0] - '0');
+    else
+      print_err(N_ARG_INVALID);
+  }
+  else if (my_strcmp(av[j], "-dump") == 0 && ac > (j + 1))
+    core->dump = str2size(av[j + 1]);
+  else
+    print_err(INVALID_ARG);
+  j += 2;
+  return (j);
+}
+
 void parse_comment(t_code_champ *code, t_champion *ch)
 {
   ssize_t j;
@@ -57,12 +76,12 @@ void parse_name(t_code_champ *code, t_champion *ch)
   ch->head->prog_name[j] = '\0';
 }
 
-int parse_magic(t_code_champ *code, t_champion *ch)
+int parse_magic(t_code_champ *code)
 {
   char *exec_magic;
   ssize_t i;
   int magic;
-  char *hex;
+  unsigned char *hex;
 
   exec_magic = my_strdup(COREWAR_EXEC_MAGIC);
   i = magic = 0;
@@ -114,17 +133,3 @@ int parse_prog_size(t_code_champ *code)
   }
   return (size);
 }
-
-/*
-while (i < 5)
-{
-  j = (i - 1);
-  value = ((j + 1) < 4) ? (1) : (0);
-  while (++j < 4)
-    value = (value * 256);
-  if (value > 0)
-    dir = dir + (int) (core->arena[k] * value);
-  else
-    dir += (int) core->arena[k];
-  i++;
-*/

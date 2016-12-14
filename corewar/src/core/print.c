@@ -11,7 +11,7 @@
 
 void print_arena(t_corewar *core)
 {
-  char *hex;
+  unsigned char *hex;
   ssize_t i;
 
   i = 0;
@@ -34,12 +34,9 @@ void print_arena(t_corewar *core)
 unsigned char *hex_conv(unsigned char c)
 {
   ssize_t base;
-  ssize_t i;
-  char *hex;
-  unsigned char tmp;
+  unsigned char *hex;
 
   base = 16;
-  i = 0;
   if ((hex = malloc(sizeof(char) * 3)) == NULL)
     print_err(MALLOC_FAIL);
   hex[2] = '\0';
@@ -76,7 +73,8 @@ void print_usage()
 {
   write(1, "USAGE\n", 6);
   write(1, "         ./corewar ", 19);
-  write(1, "[-dump nbr_cycle] [[-n prog_number] [-a load_address]...\n\n", 58);
+  write(1, "[-dump nbr_cycle] [[-n prog_number] [-a load_address] ", 54);
+  write(1, "prog_name] ...\n\n", 16);
   write(1, "DESCRIPTION\n", 12);
   write(1, "        -dump nbr_cycle dumps the memory after the nbr_cycle", 60);
   write(1, " execution (if the\n                        round isn't", 54);
