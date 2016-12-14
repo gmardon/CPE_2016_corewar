@@ -5,39 +5,9 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Nov 22 11:10:18 2016 Aurelien
-** Last update Fri Dec  2 22:07:20 2016 Aurelien
+** Last update Wed Dec 14 16:58:56 2016 Guillaume MARDON
 */
-#include <unistd.h>
-#include "get_next_line.h"
-
-char			*get_next_line(const int fd)
-{
-  static char		buffer[READ_SIZE + 1] = {'\0'};
-  static ssize_t	i = 0;
-  ssize_t		readed;
-  char			*new;
-
-  new = NULL;
-  while (buffer[i] != '\0')
-    {
-      if ((new = buffer2str(buffer, &i, new)) == NULL)
-	return (NULL);
-      if (buffer[i] == '\n')
-	{
-	  i++;
-	  return (new);
-	}
-      if ((readed = read(fd, buffer, READ_SIZE)) == 0 || readed == -1)
-	return (new);
-      i = 0;
-      buffer[readed] = '\0';
-    }
-  i = 0;
-  if ((readed = read(fd, buffer, READ_SIZE)) == 0 || readed == -1)
-    return (NULL);
-  buffer[readed] ='\0';
-  return (get_next_line(fd));
-}
+#include "../../include/asm.h"
 
 char		*my_realloc(char *str, ssize_t aloc, ssize_t *j)
 {
@@ -85,4 +55,33 @@ char		*buffer2str(char *buffer, ssize_t *i, char *new)
     }
   new[k] = '\0';
   return (new);
+}
+
+char			*get_next_line(const int fd)
+{
+  static char		buffer[BUFF_SIZE& + 1] = { '\0' };
+  static ssize_t	i = 0;
+  ssize_t		readed;
+  char			*new;
+
+  new = NULL;
+  while (buffer[i] != '\0')
+    {
+      if ((new = buffer2str(buffer, &i, new)) == NULL)
+	return (NULL);
+      if (buffer[i] == '\n')
+	{
+	  i++;
+	  return (new);
+	}
+      if ((readed = read(fd, buffer, BUFF_SIZE)) == 0 || readed == -1)
+	return (new);
+      i = 0;
+      buffer[readed] = '\0';
+    }
+  i = 0;
+  if ((readed = read(fd, buffer, BUFF_SIZE)) == 0 || readed == -1)
+    return (NULL);
+  buffer[readed] ='\0';
+  return (get_next_line(fd));
 }

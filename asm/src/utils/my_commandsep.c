@@ -5,9 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Nov 21 16:26:00 2016 Guillaume MARDON
-** Last update Wed Dec 14 14:12:46 2016 Guillaume MARDON
+** Last update Wed Dec 14 16:57:28 2016 Guillaume MARDON
 */
-#include "../../include/mysh.h"
+#include "../../include/asm.h"
 
 int	my_next_(char *str)
 {
