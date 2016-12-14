@@ -9,7 +9,7 @@
 */
 #include "read_core.h"
 
-t_champion *code2champ(t_code_champ *code, t_corewar *core, int i)
+t_champion *code2champ(t_code_champ *code, t_corewar *core, int i, ssize_t total_ch)
 {
   t_champion *champ;
 
@@ -25,7 +25,7 @@ t_champion *code2champ(t_code_champ *code, t_corewar *core, int i)
     core->champions = champ;
   else
     add_new_champ(core, champ);
-  code2arena(code, core, champ);
+  code2arena(code, core, champ, total_ch);
   return (champ);
 }
 
@@ -39,7 +39,7 @@ void add_new_champ(t_corewar *core, t_champion *ch)
   tmp->next = ch;
 }
 
-void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch)
+void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch, ssize_t total_ch)
 {
   int nb_champ;
   t_champion *ch_tmp;
@@ -52,7 +52,11 @@ void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch)
     ch_tmp = ch_tmp->next;
     nb_champ++;
   }
-  i = (MEM_SIZE / 4) * (nb_champ - 1);
+  if (core->load_address != 0)
+    i = (core->load_address % MEM_SIZE);
+  else
+    i = (MEM_SIZE / total_ch) * (nb_champ - 1);
+  core->load_address = 0;
   ch->PC = i;
   while (code->i < code->len)
   {
@@ -88,4 +92,24 @@ t_champion *init_champ(int id)
     i++;
   }
   return (champ);
+}
+
+ssize_t str2size(char *str)
+{
+  ssize_t nb;
+  ssize_t i;
+
+  nb = i = 0;
+  while (str[i] != '\0')
+  {
+    if (str[i] >= '0' && str[i] <= '9')
+    {
+      nb = nb * 10;
+      nb += (str[i] - '0');
+    }
+    else
+      print_err(INVALID_NUMBER);
+    i++;
+  }
+  return (nb);
 }

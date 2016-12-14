@@ -26,6 +26,10 @@
 # define HEADER_COMM_FAIL "Incorrect header. (in comment section)"
 # define HEADER_NAME_FAIL "Incorrect header. (in name section)"
 # define COR_FILE_FAIL "Incorrect .cor file."
+# define N_ARG_INVALID "-n : argument should be between 1 and 4."
+# define INVALID_ARG "This is not a valid argument."
+# define INVALID_NUMBER "This is not a valid numer."
+# define CH_ABOVE_LIMIT "The number of champion load is above the limit."
 
 typedef struct s_code_champ
 {
@@ -34,11 +38,15 @@ typedef struct s_code_champ
   ssize_t i;
 } t_code_champ;
 
-t_corewar *read_core(int ac, char **av);
-void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch);
-ssize_t get_file_size(char *);
-t_code_champ *cor2str(char *file);
-t_champion *code2champ(t_code_champ *code, t_corewar *core, int i);
+t_corewar *read_core(int ac, char **av, ssize_t total_ch);
+void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch,
+                ssize_t total_ch);
+ssize_t get_file_size(char *, ssize_t total_ch);
+t_code_champ *cor2str(char *file, ssize_t total_ch);
+t_champion *code2champ(t_code_champ *code, t_corewar *core, int i,
+                        ssize_t total_ch);
+ssize_t parse_arg(t_corewar *core, int ac, char **av, ssize_t j);
+int parse_arg_intro(t_corewar *core, int ac, char **av, ssize_t j);
 int parse_magic(t_code_champ *code);
 void parse_comment(t_code_champ *code, t_champion *ch);
 void parse_name(t_code_champ *code, t_champion *ch);
@@ -46,6 +54,8 @@ int parse_prog_size(t_code_champ *code);
 t_corewar *init_corewar();
 t_champion *init_champ(int id);
 void init_str(unsigned char *str, int max);
+int	my_strcmp(char *s1, char *s2);
+ssize_t str2size(char *str);
 void add_new_champ(t_corewar *core, t_champion *ch);
 
 #endif

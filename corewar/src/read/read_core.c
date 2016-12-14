@@ -9,22 +9,30 @@
 */
 #include "read_core.h"
 
-t_corewar *read_core(int ac, char **av)
+t_corewar *read_core(int ac, char **av, ssize_t total_ch)
 {
   t_code_champ *ch;
   t_corewar *core;
   int i;
+  int j;
 
-  i = 1;
+  i = j = 1;
   core = init_corewar();
-  while (i < ac)
+  while (j < ac)
     {
-      if ((my_str_srch(".cor", av[i])) != 1)
+      if ((j = parse_arg_intro(core, ac, av, j)) == -1)
+        break;
+      if ((my_str_srch(".cor", av[j])) != 1)
         print_err(COR_FILE_FAIL);
-      ch = cor2str(av[i]);
-      code2champ(ch, core, i);
+      ch = cor2str(av[j], total_ch);
+      if (core->prog_number != 0)
+        code2champ(ch, core, (int) core->prog_number, total_ch);
+      else
+        code2champ(ch, core, i, total_ch);
+      core->prog_number = 0;
       free(ch); //to do: real free_code
       i++;
+      j++;
     }
   return (core);
 }
@@ -44,6 +52,9 @@ t_corewar *init_corewar()
     core->arena[i] = 0;
     i++;
   }
+  core->load_address = 0;
+  core->prog_number = 0;
+  core->dump = -1;
   core->live_on_this_cycle = 0;
   core->last_live_id = 0;
   core->nbr_live_cur = NBR_LIVE;
@@ -64,7 +75,7 @@ void init_str(unsigned char *str, int max)
     }
 }
 
-ssize_t get_file_size(char *file)
+ssize_t get_file_size(char *file, ssize_t total_ch)
 {
   int fd;
   ssize_t readed;
@@ -77,12 +88,12 @@ ssize_t get_file_size(char *file)
   while ((readed = read(fd, buf, BUFF_SIZE)) > 0)
     size = size + readed;
   close(fd);
-  if ((size - 2192) > (MEM_SIZE / 4))
+  if ((size - 2192) > (MEM_SIZE / total_ch))
     print_err(FILESIZE_MAX_FAIL);
   return (size);
 }
 
-t_code_champ *cor2str(char *file)
+t_code_champ *cor2str(char *file, ssize_t total_ch)
 {
   unsigned char *str;
   int fd;
@@ -94,7 +105,7 @@ t_code_champ *cor2str(char *file)
   readed = file_size = i = 0;
   if ((fd = open(file, O_RDONLY)) == -1)
     print_err(OPEN_FAIL);
-  file_size = get_file_size(file);
+  file_size = get_file_size(file, total_ch);
   if ((str = malloc(sizeof(char) * (file_size + 1))) == NULL)
     print_err(MALLOC_FAIL);
   while ((readed = read(fd, (str + i), (file_size - i))) > 0 && i <= file_size)

@@ -54,6 +54,9 @@ typedef struct		s_champion
 
 typedef struct		s_corewar
 {
+  int prog_number;
+  ssize_t dump;
+  ssize_t load_address;
   int last_live_id;
   int live_on_this_cycle;
   int							nbr_live_cur;

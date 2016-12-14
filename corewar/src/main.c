@@ -18,7 +18,6 @@
 
 /*
 ** TO DO LIST:
-** check for live
 ** set all macro : v4.2
 ** update/change my_printf
 ** add arg options (-dump, ...)
@@ -26,6 +25,7 @@
 ** modif print_arena for arg options
 ** set a limit prog_size !!
 ** do some free (arg, ...)
+** check for live
 ** check if dec_nbr_live if is wrong live
 ** check for carry (why: ldi 6, %4, r3 set carry to 0 ?)
 ** test zjump
@@ -41,15 +41,25 @@
 int main(int ac, char **av)
 {
   t_corewar *core;
+  ssize_t total_ch;
+  ssize_t i;
 
-  if (ac > 2 && ac < 6)
+  i = 1;
+  total_ch = 0;
+  while (i < ac)
   {
-    core = read_core(ac, av);
+    if (my_str_srch(".cor", av[i]) == 1)
+      total_ch++;
+    i++;
+  }
+  if (total_ch > 4)
+    print_err(CH_ABOVE_LIMIT);
+  if (ac > 2 && total_ch > 1)
+  {
+    core = read_core(ac, av, total_ch);
     put_id_core_war(core);
     the_core_war(core);
   }
-  else if (ac >= 6)
-    write(1, "The number of champion is above the limit.\n", 43);
   else
     print_usage();
   return (0);
@@ -75,6 +85,13 @@ void the_core_war(t_corewar *core)
       ch = ch->next;
     }
     core->live_on_this_cycle = 0;
+    if (core->dump > 0)
+      core->dump--;
+    if (core->dump == 0)
+    {
+      print_arena(core);
+      core->dump = -1;
+    }
   }
   decide_winner(core);
   // free all ?

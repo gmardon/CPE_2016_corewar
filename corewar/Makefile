@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Tue Dec 13 20:20:54 2016 Aurelien
+## Last update Wed Dec 14 13:03:06 2016 Aurelien
 ##
 LDFLAGS =-lSDL -lSDL_ttf -lGLU -lGL
 
@@ -23,6 +23,7 @@ SRCS	=	src/main.c \
 		src/read/read_core.c \
 		src/read/champ_conv.c \
 		src/read/parse_core.c \
+		src/read/i_love_norme.c	\
 		src/instructions/fork.c	\
 		src/instructions/lfork.c	\
 		src/instructions/lld.c	\
@@ -39,6 +40,7 @@ SRCS	=	src/main.c \
 		src/instructions/st.c	\
 		src/instructions/ld.c	\
 		src/instructions/alive.c \
+		src/utils/my_strcmp.c	\
 		src/utils/init_int_tab.c	\
 		src/utils/my_strlowcase.c \
 		src/utils/my_putchar.c \
