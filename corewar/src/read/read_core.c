@@ -30,7 +30,7 @@ t_corewar *read_core(int ac, char **av, ssize_t total_ch)
       else
         code2champ(ch, core, i, total_ch);
       core->prog_number = 0;
-      free(ch); //to do: real free_code
+      free_code_ch(ch);
       i++;
       j++;
     }
@@ -63,7 +63,7 @@ t_corewar *init_corewar()
   return (core);
 }
 
-void init_str(unsigned char *str, int max)
+void init_str_un(unsigned char *str, int max)
 {
   int i;
 

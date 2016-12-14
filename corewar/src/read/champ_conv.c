@@ -85,7 +85,7 @@ t_champion *init_champ(int id)
     print_err(MALLOC_FAIL);
   if ((champ->instr = malloc(sizeof(char) * 20)) == NULL)
     print_err(MALLOC_FAIL);
-  init_str(champ->instr, 20);
+  init_str_un(champ->instr, 20);
   while (i < REG_NUMBER)
   {
     champ->reg[i] = 0;

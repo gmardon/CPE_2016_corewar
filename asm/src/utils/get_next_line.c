@@ -1,32 +1,88 @@
 /*
-** get_next_line.c for asm in /media/gmardon/1aa9b3b8-3e24-4ea9-9b0d-d57254b2d1b9/guillaume.mardon/delivery/CPE_2016_corewar/asm/src/utils/
+** get_next_line.c for get_next_line in /home/aurelien.olibe/delivery/CPE_2016_getnextline
 **
-** Made by Guillaume MARDON
-** Login   <guillaume.mardon@epitech.eu@epitech.eu>
+** Made by Aurelien
+** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
-** Started on  Wed Nov  9 13:26:44 2016 Guillaume MARDON
-** Last update Wed Nov  9 14:44:57 2016 Guillaume MARDON
+** Started on  Tue Nov 22 11:10:18 2016 Aurelien
+** Last update Fri Dec  2 22:07:20 2016 Aurelien
 */
-#include "../../include/asm.h"
+#include <unistd.h>
+#include "get_next_line.h"
 
-char *get_next_line(const int fd)
+char			*get_next_line(const int fd)
 {
-  char	buffer[BUFF_SIZE];
-	char	*resized_buffer;
-  size_t	total_readed = 0;
+  static char		buffer[READ_SIZE + 1] = {'\0'};
+  static ssize_t	i = 0;
+  ssize_t		readed;
+  char			*new;
 
-  while ((read(fd, (buffer + total_readed), 1)) != 0
-	 && buffer[total_readed] != '\n')
+  new = NULL;
+  while (buffer[i] != '\0')
     {
-      if ((total_readed + 1) > BUFF_SIZE)
-			{
-	  			break;
-			}
-      total_readed++;
+      if ((new = buffer2str(buffer, &i, new)) == NULL)
+	return (NULL);
+      if (buffer[i] == '\n')
+	{
+	  i++;
+	  return (new);
+	}
+      if ((readed = read(fd, buffer, READ_SIZE)) == 0 || readed == -1)
+	return (new);
+      i = 0;
+      buffer[readed] = '\0';
     }
-  buffer[total_readed] = '\0';
-  resized_buffer = malloc(total_readed * sizeof(char*));
-  my_strcpy(resized_buffer, buffer);
-  resized_buffer[total_readed] = '\0';
-  return (resized_buffer);
+  i = 0;
+  if ((readed = read(fd, buffer, READ_SIZE)) == 0 || readed == -1)
+    return (NULL);
+  buffer[readed] ='\0';
+  return (get_next_line(fd));
+}
+
+char		*my_realloc(char *str, ssize_t aloc, ssize_t *j)
+{
+  char		*new;
+  ssize_t	i;
+
+  i = 0;
+  while (str[i] != '\0')
+    i++;
+  if ((new = malloc(sizeof(char) * (i + aloc))) == NULL)
+    return (NULL);
+  new[i + aloc - 1] = '\0';
+  i = 0;
+  while (str[i] != '\0')
+    {
+      new[i] = str[i];
+      i++;
+    }
+  *j = i;
+  free(str);
+  return (new);
+}
+
+char		*buffer2str(char *buffer, ssize_t *i, char *new)
+{
+  ssize_t	j;
+  ssize_t	k;
+
+  j = *i;
+  k = 0;
+  while (buffer[j] != '\n' && buffer[j] != '\0')
+    j++;
+  if (new != NULL)
+    {
+      if ((new = my_realloc(new, (j - *i + 2), &k)) == NULL)
+	return (NULL);
+    }
+  else if ((new = malloc(sizeof(char) * (j - *i + 2))) == NULL)
+    return (NULL);
+  while (buffer[*i] != '\n' && buffer[*i] != '\0')
+    {
+      new[k] = buffer[*i];
+      k++;
+      *i = *i + 1;
+    }
+  new[k] = '\0';
+  return (new);
 }

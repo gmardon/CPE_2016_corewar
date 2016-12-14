@@ -17,3 +17,14 @@ int parse_arg_intro(t_corewar *core, int ac, char **av, ssize_t j)
     return (-1);
   return (j);
 }
+
+void do_dump(t_corewar *core)
+{
+  if (core->dump > 0)
+    core->dump--;
+  if (core->dump == 0)
+  {
+    print_arena(core);
+    core->dump = -1;
+  }
+}

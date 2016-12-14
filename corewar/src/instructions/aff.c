@@ -30,5 +30,6 @@ int aff(t_corewar *core, t_champion *ch)
   else
     return (INSTR_LEN_ARG);
   ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
+  free(arg);
   return (0);
 }

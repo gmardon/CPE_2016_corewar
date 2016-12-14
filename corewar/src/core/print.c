@@ -26,6 +26,7 @@ void print_arena(t_corewar *core)
       write(1, "\033[0m", 5);
     write(1, hex, 2);
     write(1, " ", 1);
+    free(hex);
     i++;
   }
   write(1, "\n", 1);

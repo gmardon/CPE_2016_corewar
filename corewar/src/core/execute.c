@@ -24,6 +24,8 @@ void exec_champ(t_corewar *core, t_champion *ch)
       if (tab_instruction[index].id == ch->instr[0])
       {
 	     ret = tab_instruction[index].function(core, ch);
+       if (ret != 0 && ch->instr[0] == 2)
+        ch->carry = 0;
 	     break;
       }
       index++;
@@ -69,7 +71,7 @@ char *decode_octet(unsigned char c)
   i = 0;
   j = 3;
   if ((arg = malloc(sizeof(char) * 4)) == NULL)
-    exit(84);
+    print_err(MALLOC_FAIL);
   while (i < 8)
   {
     bits[i] = (c & (1 << i)) >> i;

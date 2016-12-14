@@ -5,7 +5,7 @@
 ** Login   <aurelien.olibe@epitech.net>
 **
 ** Started on  Wed Oct 12 14:39:44 2016 Aurelien Olibe
-** Last update Wed Nov 30 18:45:40 2016 Aurelien
+** Last update Wed Dec 14 14:30:36 2016 Aurelien
 */
 #include <stdlib.h>
 
@@ -19,7 +19,8 @@ char	*my_strdup(char *src)
     {
       i++;
     }
-  dest = malloc(sizeof(char) * (i + 1));
+  if ((dest = malloc(sizeof(char) * (i + 1))) == NULL)
+    exit(84);
   i = 0;
   while (src[i] != '\0')
     {

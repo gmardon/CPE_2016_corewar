@@ -5,13 +5,16 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Wed Dec 14 13:03:06 2016 Aurelien
+## Last update Wed Dec 14 16:11:06 2016 Aurelien
 ##
+
 LDFLAGS =-lSDL -lSDL_ttf -lGLU -lGL
 
 #CFLAGS	+=	-Wextra -Wall -Werror -pedantic
 
 CC	=	gcc
+
+MY_PRINTF =	src/utils/printf
 
 NAME	=	corewar
 
@@ -20,6 +23,7 @@ SRCS	=	src/main.c \
 		src/core/execute.c	\
 		src/core/execute2.c	\
 		src/core/runtime.c \
+		src/core/free.c	\
 		src/read/read_core.c \
 		src/read/champ_conv.c \
 		src/read/parse_core.c \
@@ -50,26 +54,29 @@ SRCS	=	src/main.c \
 		src/utils/my_putstr.c \
 		src/utils/my_strdup.c \
 		src/utils/my_str_srch.c	\
-		src/utils/printf/my_printf.c 	\
-		src/utils/printf/formats/numeric_format.c \
-		src/utils/printf/formats/alphabetic_format.c \
-		src/utils/printf/formats/extra_format.c
 
 OBJS	=	$(SRCS:.c=.o)
 
+LIB	=	-L./src/utils/printf -lmy
+
 RM	=	rm -f
 
-all:	$(NAME)
+all:	$(MY_PRINTF) $(NAME)
 
 $(NAME):
-	$(CC) $(SRCS) -o $(NAME) -g $(LDFLAGS) $(CFLAGS) -I./include
+	$(CC) $(SRCS) -o $(NAME) -g $(LDFLAGS) $(CFLAGS) -I./include $(LIB)
+
+$(MY_PRINTF):
+	$(MAKE) -C $(MY_PRINTF)
 
 clean:
 	$(RM) $(OBJS)
+	$(MAKE) -C $(MY_PRINTF) clean
 
 fclean:	clean
 	$(RM) $(NAME)
+	$(MAKE) -C $(MY_PRINTF) fclean
 
 re:	fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re $(MY_PRINTF)

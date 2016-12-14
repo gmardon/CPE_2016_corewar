@@ -95,8 +95,10 @@ void put_id_core_war(t_corewar *core);
 void print_usage();
 void print_arena(t_corewar *core);
 unsigned char *hex_conv(unsigned char c);
+void do_dump(t_corewar *core);
 void print_err(char *str);
 void print_err_no_exit(char *str);
+void free_core_ch(t_corewar *core);
 
 /*
 ** UTILS

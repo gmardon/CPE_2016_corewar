@@ -31,6 +31,7 @@ int and(t_corewar *core, t_champion *ch)
     return (INSTR_LEN_ARG);
   ch->PC = inc_PC(ch->PC, INSTR_LEN_ARG);
   ch->carry = 1;
+  free(arg);
   return (0);
 }
 

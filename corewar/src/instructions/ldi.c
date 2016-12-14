@@ -33,6 +33,7 @@ int ldi(t_corewar *core, t_champion *ch)
     return (instr_len_exception(arg));
   ch->PC = inc_PC(ch->PC, instr_len_exception(arg));
   ch->carry = 1;
+  free(arg);
   return (0);
 }
 

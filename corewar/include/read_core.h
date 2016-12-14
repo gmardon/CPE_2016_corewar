@@ -53,9 +53,10 @@ void parse_name(t_code_champ *code, t_champion *ch);
 int parse_prog_size(t_code_champ *code);
 t_corewar *init_corewar();
 t_champion *init_champ(int id);
-void init_str(unsigned char *str, int max);
+void init_str_un(unsigned char *str, int max);
 int	my_strcmp(char *s1, char *s2);
 ssize_t str2size(char *str);
 void add_new_champ(t_corewar *core, t_champion *ch);
+void free_code_ch(t_code_champ *ch);
 
 #endif
