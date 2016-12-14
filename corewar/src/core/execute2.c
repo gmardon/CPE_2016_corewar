@@ -100,5 +100,6 @@ ssize_t get_instr_len(t_corewar *core, ssize_t PC, unsigned char instr)
       len = len + arg[i];
     i++;
   }
+  free(arg);
   return (len);
 }

@@ -13,16 +13,8 @@
 
 void		free_store(t_stockarg *store)
 {
-  ssize_t	i;
-
-  i = 0;
   free(store->start);
   free(store->p_len);
-  while (store->to_free[i] != NULL)
-    {
-      free(store->to_free[i]);
-      i++;
-    }
   free(store->all_arg);
   free(store->to_free);
   free(store);

@@ -57,5 +57,6 @@ int get_sum2(t_corewar *core, t_champion *ch, ssize_t *i, int *sum)
     *sum = read_ind(ch, i);
   else
     return (-1);
+  free(arg);
   return (0);
 }
