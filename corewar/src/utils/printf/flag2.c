@@ -77,7 +77,6 @@ char		*neg_pad(t_farg *avs, char *str, t_stockarg *store)
   return (new);
 }
 
-
 void	field_pad2(t_farg *avs, char *str, char *new, ssize_t i)
 {
   int	j;

@@ -59,7 +59,6 @@ char		*udx_conv(t_farg *avs, va_list args, int base,
   return (str);
 }
 
-
 char	*int2char(int d, int *i, t_stockarg *store)
 {
   char	*str;
@@ -105,7 +104,7 @@ char	*d_conv(t_farg *avs, va_list args, t_stockarg *store)
   if (neg)
     {
       str[i] = '-';
-      str = str + i ;
+      str = str + i;
     }
   else
     str = str + (i + 1);
