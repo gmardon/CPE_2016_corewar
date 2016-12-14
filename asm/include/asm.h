@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Wed Dec 14 14:51:30 2016 Guillaume MARDON
+** Last update Wed Dec 14 18:56:18 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -78,6 +78,7 @@ void	write_int_4(int value, buffer_t *buffer);
 void write_int_2(int value, buffer_t *buffer);
 int my_str_to_int(char *str);
 char	**my_commandsep(char *str);
+int	my_indexof(char c, char *str);
 
 // PARSER //
 program_t	*	parse_file(char* file_name);
@@ -88,7 +89,7 @@ buffer_t*  compile(int *size, program_t *program);
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);
 int	need_encode_args_type(int code);
 void	compile_header(buffer_t *buffer, char* name, char* comment);
-buffer_t	*create_header(char *name, char *comment, int instruction_size, int *size);
+buffer_t	*create_header(char *name, char *comment, int i_size, int *size);
 buffer_t	*create_instructions(instruction_t *first_instruction, int *size);
 void	write_args(instruction_t *instruction, buffer_t *buffer, labelref_t *refs);
 void	write_direct(op_t *op, char *value, buffer_t *buffer, labelref_t *refs);

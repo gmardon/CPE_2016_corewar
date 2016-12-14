@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Wed Dec 14 15:00:15 2016 Guillaume MARDON
+** Last update Wed Dec 14 19:02:05 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -13,15 +13,19 @@ void	parse_extra(char *line, program_t *program)
 {
   if (my_strncmp(NAME_CMD_STRING, line, my_strlen(NAME_CMD_STRING)) == 0)
     {
-      line = line + (my_strlen(NAME_CMD_STRING) + 2);
-      line[my_strlen(line) - 1] = 0;
+      line = line + (my_strlen(NAME_CMD_STRING));
+      line = my_cleanstr(line);
+      line++;
+      line[my_indexof('\"', line)] = 0;
       program->name = line;
     }
   else if (my_strncmp(COMMENT_CMD_STRING, line,
 		      my_strlen(COMMENT_CMD_STRING)) == 0)
     {
-      line = line + (my_strlen(COMMENT_CMD_STRING) + 2);
-      line[my_strlen(line) - 1] = 0;
+      line = line + (my_strlen(COMMENT_CMD_STRING));
+      line = my_cleanstr(line);
+      line++;
+      line[my_indexof('\"', line)] = 0;
       program->comment = line;
     }
 }
@@ -36,11 +40,11 @@ program_t	*parse(const int fd)
 
   last_instruction = NULL;
   program = my_malloc(sizeof(program_t));
-  while (*(line = get_next_line(fd)))
+  while (line = get_next_line(fd))
     {
       line = my_cleanstr(line);
-      if (*line == '.' || *line == COMMENT_CHAR)
-				parse_extra(line, program);
+      if (!*line) continue;
+      if (*line == '.' || *line == COMMENT_CHAR) parse_extra(line, program);
       else
 				{
 	  			current_instruction = read_instruction(line);

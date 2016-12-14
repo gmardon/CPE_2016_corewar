@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:34:46 2016 Guillaume MARDON
-** Last update Mon Dec 12 18:38:29 2016 Guillaume MARDON
+** Last update Wed Dec 14 18:29:23 2016 Guillaume MARDON
 */
 #include "../include/asm.h"
 
@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
   buffer_t *buffer;
   int *size;
 
-  size = malloc(sizeof(int));
+  size = my_malloc(sizeof(int));
   if (argc >= 2)
     {
       index = 0;

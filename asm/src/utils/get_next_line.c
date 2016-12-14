@@ -5,7 +5,7 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Nov 22 11:10:18 2016 Aurelien
-** Last update Wed Dec 14 16:58:56 2016 Guillaume MARDON
+** Last update Wed Dec 14 18:33:29 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -17,7 +17,7 @@ char		*my_realloc(char *str, ssize_t aloc, ssize_t *j)
   i = 0;
   while (str[i] != '\0')
     i++;
-  if ((new = malloc(sizeof(char) * (i + aloc))) == NULL)
+  if ((new = my_malloc(sizeof(char) * (i + aloc))) == NULL)
     return (NULL);
   new[i + aloc - 1] = '\0';
   i = 0;
@@ -43,9 +43,9 @@ char		*buffer2str(char *buffer, ssize_t *i, char *new)
   if (new != NULL)
     {
       if ((new = my_realloc(new, (j - *i + 2), &k)) == NULL)
-	return (NULL);
+				return (NULL);
     }
-  else if ((new = malloc(sizeof(char) * (j - *i + 2))) == NULL)
+  else if ((new = my_malloc(sizeof(char) * (j - *i + 2))) == NULL)
     return (NULL);
   while (buffer[*i] != '\n' && buffer[*i] != '\0')
     {
@@ -59,7 +59,7 @@ char		*buffer2str(char *buffer, ssize_t *i, char *new)
 
 char			*get_next_line(const int fd)
 {
-  static char		buffer[BUFF_SIZE& + 1] = { '\0' };
+  static char		buffer[BUFF_SIZE + 1] = { '\0' };
   static ssize_t	i = 0;
   ssize_t		readed;
   char			*new;
@@ -68,14 +68,14 @@ char			*get_next_line(const int fd)
   while (buffer[i] != '\0')
     {
       if ((new = buffer2str(buffer, &i, new)) == NULL)
-	return (NULL);
+				return (NULL);
       if (buffer[i] == '\n')
-	{
-	  i++;
-	  return (new);
-	}
+				{
+	  			i++;
+	  			return (new);
+				}
       if ((readed = read(fd, buffer, BUFF_SIZE)) == 0 || readed == -1)
-	return (new);
+				return (new);
       i = 0;
       buffer[readed] = '\0';
     }
