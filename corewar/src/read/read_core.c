@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.net>
 **
 ** Started on  Wed Nov 16 18:25:41 2016 Aurelien Olibe
-** Last update Wed Nov 16 18:25:42 2016 Aurelien Olibe
+** Last update Thu Dec 15 10:59:16 2016 Aurelien
 */
 #include "read_core.h"
 
-t_corewar *read_core(int ac, char **av, ssize_t total_ch)
+t_corewar	*read_core(int ac, char **av, ssize_t total_ch)
 {
-  t_code_champ *ch;
-  t_corewar *core;
-  int i;
-  int j;
+  t_code_champ	*ch;
+  t_corewar	*core;
+  int		i;
+  int		j;
 
   i = j = 1;
   core = init_corewar();
@@ -37,10 +37,10 @@ t_corewar *read_core(int ac, char **av, ssize_t total_ch)
   return (core);
 }
 
-t_corewar *init_corewar()
+t_corewar	*init_corewar()
 {
-  t_corewar *core;
-  ssize_t i;
+  t_corewar	*core;
+  ssize_t	i;
 
   i = 0;
   if ((core = malloc(sizeof(t_corewar))) == NULL)
@@ -48,10 +48,10 @@ t_corewar *init_corewar()
   if ((core->arena = malloc(sizeof(char) * MEM_SIZE)) == NULL)
     print_err(MALLOC_FAIL);
   while (i < MEM_SIZE)
-  {
-    core->arena[i] = 0;
-    i++;
-  }
+    {
+      core->arena[i] = 0;
+      i++;
+    }
   core->load_address = 0;
   core->prog_number = 0;
   core->dump = -1;
@@ -63,9 +63,9 @@ t_corewar *init_corewar()
   return (core);
 }
 
-void init_str_un(unsigned char *str, int max)
+void	init_str_un(unsigned char *str, int max)
 {
-  int i;
+  int	i;
 
   i = 0;
   while (i < max)
@@ -75,12 +75,12 @@ void init_str_un(unsigned char *str, int max)
     }
 }
 
-ssize_t get_file_size(char *file, ssize_t total_ch)
+ssize_t		get_file_size(char *file, ssize_t total_ch)
 {
-  int fd;
-  ssize_t readed;
-  ssize_t size;
-  char buf[BUFF_SIZE];
+  int		fd;
+  ssize_t	readed;
+  ssize_t	size;
+  char		buf[BUFF_SIZE];
 
   size = readed = 0;
   if ((fd = open(file, O_RDONLY)) == -1)
@@ -93,14 +93,14 @@ ssize_t get_file_size(char *file, ssize_t total_ch)
   return (size);
 }
 
-t_code_champ *cor2str(char *file, ssize_t total_ch)
+t_code_champ		*cor2str(char *file, ssize_t total_ch)
 {
-  unsigned char *str;
-  int fd;
-  ssize_t readed;
-  ssize_t i;
-  ssize_t file_size;
-  t_code_champ *ch1;
+  unsigned char		*str;
+  int			fd;
+  ssize_t		readed;
+  ssize_t		i;
+  ssize_t		file_size;
+  t_code_champ		*ch1;
 
   readed = file_size = i = 0;
   if ((fd = open(file, O_RDONLY)) == -1)

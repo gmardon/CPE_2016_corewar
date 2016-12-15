@@ -5,13 +5,14 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Nov 29 18:52:08 2016 Aurelien
-** Last update Tue Nov 29 18:52:09 2016 Aurelien
+** Last update Thu Dec 15 10:56:24 2016 Aurelien
 */
 #include "read_core.h"
 
-t_champion *code2champ(t_code_champ *code, t_corewar *core, int i, ssize_t total_ch)
+t_champion	*code2champ(t_code_champ *code, t_corewar *core, int i,
+			    ssize_t total_ch)
 {
-  t_champion *champ;
+  t_champion	*champ;
 
   code->i = 0;
   champ = init_champ(i);
@@ -29,9 +30,9 @@ t_champion *code2champ(t_code_champ *code, t_corewar *core, int i, ssize_t total
   return (champ);
 }
 
-void add_new_champ(t_corewar *core, t_champion *ch)
+void		add_new_champ(t_corewar *core, t_champion *ch)
 {
-  t_champion *tmp;
+  t_champion	*tmp;
 
   tmp = core->champions;
   while (tmp->next != NULL)
@@ -39,19 +40,21 @@ void add_new_champ(t_corewar *core, t_champion *ch)
   tmp->next = ch;
 }
 
-void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch, ssize_t total_ch)
+void		code2arena(t_code_champ *code, t_corewar *core,
+			   t_champion *ch,
+			   ssize_t total_ch)
 {
-  int nb_champ;
-  t_champion *ch_tmp;
-  ssize_t i;
+  int		nb_champ;
+  t_champion	*ch_tmp;
+  ssize_t	i;
 
   nb_champ = i = 0;
   ch_tmp = core->champions;
   while (ch_tmp != NULL)
-  {
-    ch_tmp = ch_tmp->next;
-    nb_champ++;
-  }
+    {
+      ch_tmp = ch_tmp->next;
+      nb_champ++;
+    }
   if (core->load_address != 0)
     i = (core->load_address % MEM_SIZE);
   else
@@ -59,17 +62,17 @@ void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch, ssize_t tot
   core->load_address = 0;
   ch->pc = i;
   while (code->i < code->len)
-  {
-    core->arena[i] = code->str[code->i];
-    code->i++;
-    i++;
-  }
+    {
+      core->arena[i] = code->str[code->i];
+      code->i++;
+      i++;
+    }
 }
 
-t_champion *init_champ(int id)
+t_champion	*init_champ(int id)
 {
-  t_champion *champ;
-  ssize_t i;
+  t_champion	*champ;
+  ssize_t	i;
 
   i = 0;
   if ((champ = malloc(sizeof(t_champion))) == NULL)
@@ -87,29 +90,29 @@ t_champion *init_champ(int id)
     print_err(MALLOC_FAIL);
   init_str_un(champ->instr, 20);
   while (i < REG_NUMBER)
-  {
-    champ->reg[i] = 0;
-    i++;
-  }
+    {
+      champ->reg[i] = 0;
+      i++;
+    }
   return (champ);
 }
 
-ssize_t str2size(char *str)
+ssize_t		str2size(char *str)
 {
-  ssize_t nb;
-  ssize_t i;
+  ssize_t	nb;
+  ssize_t	i;
 
   nb = i = 0;
   while (str[i] != '\0')
-  {
-    if (str[i] >= '0' && str[i] <= '9')
     {
-      nb = nb * 10;
-      nb += (str[i] - '0');
+      if (str[i] >= '0' && str[i] <= '9')
+	{
+	  nb = nb * 10;
+	  nb += (str[i] - '0');
+	}
+      else
+	print_err(INVALID_NUMBER);
+      i++;
     }
-    else
-      print_err(INVALID_NUMBER);
-    i++;
-  }
   return (nb);
 }

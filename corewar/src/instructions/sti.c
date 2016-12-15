@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Mon Dec 12 18:35:56 2016 Aurelien
-** Last update Mon Dec 12 18:35:57 2016 Aurelien
+** Last update Thu Dec 15 10:52:27 2016 Aurelien
 */
 #include "core.h"
 
-int sti(t_corewar *core, t_champion *ch)
+int		sti(t_corewar *core, t_champion *ch)
 {
-  char *arg;
-  ssize_t i;
-  int sum;
-  int dir;
+  char		*arg;
+  ssize_t	i;
+  int		sum;
+  int		dir;
 
   arg = decode_octet(ch->instr[1]);
   i = 2;
@@ -37,17 +37,17 @@ int sti(t_corewar *core, t_champion *ch)
   return (0);
 }
 
-int get_sum2(t_corewar *core, t_champion *ch, ssize_t *i, int *sum)
+int	get_sum2(t_corewar *core, t_champion *ch, ssize_t *i, int *sum)
 {
-  char *arg;
-  short ind;
+  char	*arg;
+  short	ind;
 
   arg = decode_octet(ch->instr[1]);
   if (arg[1] == 1 && check_reg(ch->instr[*i]) == 0)
-  {
-    *sum = ch->reg[ch->instr[*i]];
-    *i = *i + 1;
-  }
+    {
+      *sum = ch->reg[ch->instr[*i]];
+      *i = *i + 1;
+    }
   else if (arg[1] == 2)
     {
       ind = read_ind(ch, i);

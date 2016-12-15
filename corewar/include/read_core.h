@@ -5,7 +5,7 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Nov 29 18:45:01 2016 Aurelien
-** Last update Tue Nov 29 18:45:01 2016 Aurelien
+** Last update Thu Dec 15 11:16:31 2016 Aurelien
 */
 #ifndef _READ_CORE_H_
 # define _READ_CORE_H_
@@ -31,12 +31,12 @@
 # define INVALID_NUMBER "This is not a valid numer."
 # define CH_ABOVE_LIMIT "The number of champion load is above the limit."
 
-typedef struct s_code_champ
+typedef struct	s_code_champ
 {
-  unsigned char *str;
-  ssize_t len;
-  ssize_t i;
-} t_code_champ;
+  unsigned char	*str;
+  ssize_t	len;
+  ssize_t	i;
+}		t_code_champ;
 
 t_corewar *read_core(int ac, char **av, ssize_t total_ch);
 void code2arena(t_code_champ *code, t_corewar *core, t_champion *ch,

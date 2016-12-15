@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Sat Dec 10 15:29:31 2016 Aurelien
-** Last update Sat Dec 10 15:29:32 2016 Aurelien
+** Last update Thu Dec 15 10:51:55 2016 Aurelien
 */
 #include "core.h"
 
-int st(t_corewar *core, t_champion *ch)
+int		st(t_corewar *core, t_champion *ch)
 {
-  char *arg;
-  short ind;
-  ssize_t i;
-  ssize_t cp_pc;
+  char		*arg;
+  short		ind;
+  ssize_t	i;
+  ssize_t	cp_pc;
 
   arg = decode_octet(ch->instr[1]);
   i = 2;
@@ -24,11 +24,11 @@ int st(t_corewar *core, t_champion *ch)
   if (arg[1] == 1 && check_reg(ch->instr[i]) == 0)
     ch->reg[ch->instr[i]] = ch->reg[ch->instr[i - 1]];
   else if (arg[1] == 2)
-  {
-    ind = read_ind(ch, &i);
-    cp_pc = inc_pc(ch->pc, (ind % IDX_MOD));
-    st_dir_pc(core, cp_pc, (ch->reg[ch->instr[i - 3]]));
-  }
+    {
+      ind = read_ind(ch, &i);
+      cp_pc = inc_pc(ch->pc, (ind % IDX_MOD));
+      st_dir_pc(core, cp_pc, (ch->reg[ch->instr[i - 3]]));
+    }
   else
     return (INSTR_LEN_ARG);
   ch->pc = inc_pc(ch->pc, INSTR_LEN_ARG);
@@ -36,18 +36,18 @@ int st(t_corewar *core, t_champion *ch)
   return (0);
 }
 
-int st_dir_pc(t_corewar *core, ssize_t pc, int dir)
+int		st_dir_pc(t_corewar *core, ssize_t pc, int dir)
 {
-  unsigned char *b;
-  ssize_t i;
+  unsigned char	*b;
+  ssize_t	i;
 
   i = 3;
   b = (unsigned char *) &dir;
   while (i >= 0)
-  {
-    core->arena[pc] = b[i];
-    i--;
-    pc = inc_pc(pc, 1);
-  }
+    {
+      core->arena[pc] = b[i];
+      i--;
+      pc = inc_pc(pc, 1);
+    }
   return (0);
 }

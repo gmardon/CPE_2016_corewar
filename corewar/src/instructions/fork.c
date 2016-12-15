@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Dec 13 16:59:52 2016 Aurelien
-** Last update Tue Dec 13 16:59:54 2016 Aurelien
+** Last update Thu Dec 15 10:45:47 2016 Aurelien
 */
 #include "core.h"
 #include "read_core.h"
 
-int frk(t_corewar *core, t_champion *ch)
+int		frk(t_corewar *core, t_champion *ch)
 {
-  t_champion *new;
-  ssize_t i;
-  short ind;
+  t_champion	*new;
+  ssize_t	i;
+  short		ind;
 
   i = 1;
   ind = read_ind(ch, &i);
@@ -24,11 +24,11 @@ int frk(t_corewar *core, t_champion *ch)
   return (0);
 }
 
-t_champion *ch_dup(t_corewar *core, t_champion *ch)
+t_champion	*ch_dup(t_corewar *core, t_champion *ch)
 {
-  t_champion *new;
-  t_champion *tmp;
-  ssize_t i;
+  t_champion	*new;
+  t_champion	*tmp;
+  ssize_t	i;
 
   i = 1;
   tmp = core->champions;
@@ -42,10 +42,10 @@ t_champion *ch_dup(t_corewar *core, t_champion *ch)
   new->c_to_wait = ch->c_to_wait;
   new->cycle_to_die_cur = ch->cycle_to_die_cur;
   while (i < 17)
-  {
-    new->reg[i] = ch->reg[i];
-    i++;
-  }
+    {
+      new->reg[i] = ch->reg[i];
+      i++;
+    }
   while (tmp->next != NULL)
     tmp = tmp->next;
   tmp->next = new;

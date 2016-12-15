@@ -1,4 +1,3 @@
-
 /*
 ** ld.c for corewar in /home/aurelien/home/aurelien.olibe/delivery/CPE_2016_corewar/corewar
 **
@@ -6,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Fri Dec  9 20:45:15 2016 Aurelien
-** Last update Fri Dec  9 20:45:16 2016 Aurelien
+** Last update Thu Dec 15 10:47:11 2016 Aurelien
 */
 #include "core.h"
 
-int ld(t_corewar *core, t_champion *ch)
+int		ld(t_corewar *core, t_champion *ch)
 {
-  char *arg;
-  int dir;
-  short ind;
-  ssize_t i;
+  char		*arg;
+  int		dir;
+  short		ind;
+  ssize_t	i;
 
   arg = decode_octet(ch->instr[1]);
   i = 2;
@@ -38,7 +37,7 @@ int ld(t_corewar *core, t_champion *ch)
   return (0);
 }
 
-int check_reg(unsigned char r)
+int	check_reg(unsigned char r)
 {
   if (r > 16)
     return (-1);
@@ -48,83 +47,83 @@ int check_reg(unsigned char r)
     return (0);
 }
 
-int read_dir_pc(t_corewar *core, t_champion *ch, short ind)
+int		read_dir_pc(t_corewar *core, t_champion *ch, short ind)
 {
-  int dir;
-  ssize_t j;
-  ssize_t i;
-  ssize_t k;
-  unsigned int value;
+  int		dir;
+  ssize_t	j;
+  ssize_t	i;
+  ssize_t	k;
+  unsigned int	value;
 
   dir = 0;
   i = 1;
   k = inc_pc(ch->pc, (ind % IDX_MOD));
   while (i < 5)
-  {
-    j = (i - 1);
-    value = ((j + 1) < 4) ? (1) : (0);
-    while (++j < 4)
-      value = (value * 256);
-    if (value > 0)
-      dir = dir + (int) (core->arena[k] * value);
-    else
-      dir += (int) core->arena[k];
-    i++;
-    k = inc_pc(k, 1);
-  }
+    {
+      j = (i - 1);
+      value = ((j + 1) < 4) ? (1) : (0);
+      while (++j < 4)
+	value = (value * 256);
+      if (value > 0)
+	dir = dir + (int) (core->arena[k] * value);
+      else
+	dir += (int) core->arena[k];
+      i++;
+      k = inc_pc(k, 1);
+    }
   return (dir);
 }
 
-short read_ind(t_champion *ch, ssize_t *k)
+short		read_ind(t_champion *ch, ssize_t *k)
 {
-  short ind;
-  ssize_t count;
-  ssize_t j;
-  ssize_t i;
-  unsigned int value;
+  short		ind;
+  ssize_t	count;
+  ssize_t	j;
+  ssize_t	i;
+  unsigned int	value;
 
   ind = 0;
   i = 1;
   count = 3;
   while (i < count)
-  {
-    j = (i - 1);
-    value = ((j + 1) < 2) ? (1) : (0);
-    while (++j < 2)
-      value = (value * 256);
-    if (value > 0)
-      ind = ind + (int) (ch->instr[*k] * value);
-    else
-      ind += (int) ch->instr[*k];
-    i++;
-    *k = *k + 1;
-  }
+    {
+      j = (i - 1);
+      value = ((j + 1) < 2) ? (1) : (0);
+      while (++j < 2)
+	value = (value * 256);
+      if (value > 0)
+	ind = ind + (int) (ch->instr[*k] * value);
+      else
+	ind += (int) ch->instr[*k];
+      i++;
+      *k = *k + 1;
+    }
   return (ind);
 }
 
-int read_dir(t_champion *ch, ssize_t *k)
+int		read_dir(t_champion *ch, ssize_t *k)
 {
-  int dir;
-  ssize_t count;
-  ssize_t j;
-  ssize_t i;
-  unsigned int value;
+  int		dir;
+  ssize_t	count;
+  ssize_t	j;
+  ssize_t	i;
+  unsigned int	value;
 
   dir = 0;
   i = 1;
   count = 5;
   while (i < count)
-  {
-    j = (i - 1);
-    value = ((j + 1) < 4) ? (1) : (0);
-    while (++j < 4)
-      value = (value * 256);
-    if (value > 0)
-      dir = dir + (int) (ch->instr[*k] * value);
-    else
-      dir += (int) ch->instr[*k];
-    i++;
-    *k = *k + 1;
-  }
+    {
+      j = (i - 1);
+      value = ((j + 1) < 4) ? (1) : (0);
+      while (++j < 4)
+	value = (value * 256);
+      if (value > 0)
+	dir = dir + (int) (ch->instr[*k] * value);
+      else
+	dir += (int) ch->instr[*k];
+      i++;
+      *k = *k + 1;
+    }
   return (dir);
 }
