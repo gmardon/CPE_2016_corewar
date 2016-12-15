@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Sat Dec 10 20:56:47 2016 Aurelien
-** Last update Sat Dec 10 20:56:48 2016 Aurelien
+** Last update Thu Dec 15 10:53:10 2016 Aurelien
 */
 #include "core.h"
 
-int xor(t_corewar *core, t_champion *ch)
+int		xor(t_corewar *core, t_champion *ch)
 {
-  char *arg;
-  int dir;
-  int dir2;
-  ssize_t i;
+  char		*arg;
+  int		dir;
+  int		dir2;
+  ssize_t	i;
 
   ch->carry = 0;
   arg = decode_octet(ch->instr[1]);

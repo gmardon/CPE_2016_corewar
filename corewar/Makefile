@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Wed Dec 14 16:11:06 2016 Aurelien
+## Last update Thu Dec 15 10:29:05 2016 Aurelien
 ##
 
 LDFLAGS =-lSDL -lSDL_ttf -lGLU -lGL
@@ -46,12 +46,7 @@ SRCS	=	src/main.c \
 		src/instructions/alive.c \
 		src/utils/my_strcmp.c	\
 		src/utils/init_int_tab.c	\
-		src/utils/my_strlowcase.c \
-		src/utils/my_putchar.c \
-		src/utils/my_nbrlen.c \
-		src/utils/my_itoa.c \
 		src/utils/my_strlen.c \
-		src/utils/my_putstr.c \
 		src/utils/my_strdup.c \
 		src/utils/my_str_srch.c	\
 

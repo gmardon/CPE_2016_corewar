@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Sat Dec 10 19:55:11 2016 Aurelien
-** Last update Sat Dec 10 19:55:11 2016 Aurelien
+** Last update Thu Dec 15 10:45:15 2016 Aurelien
 */
 #include "core.h"
 
-int and(t_corewar *core, t_champion *ch)
+int		and(t_corewar *core, t_champion *ch)
 {
-  char *arg;
-  int dir;
-  int dir2;
-  ssize_t i;
+  char		*arg;
+  int		dir;
+  int		dir2;
+  ssize_t	i;
 
   ch->carry = 0;
   arg = decode_octet(ch->instr[1]);
@@ -35,21 +35,21 @@ int and(t_corewar *core, t_champion *ch)
   return (0);
 }
 
-int get_dir_form_arg(t_corewar *core, t_champion *ch, char a, ssize_t *i)
+int	get_dir_form_arg(t_corewar *core, t_champion *ch, char a, ssize_t *i)
 {
-  short ind;
-  int dir;
+  short	ind;
+  int	dir;
 
   if (a == 1 && check_reg(ch->instr[*i]) == 0)
-  {
-    dir = ch->reg[ch->instr[*i]];
-    *i = *i + 1;
-  }
+    {
+      dir = ch->reg[ch->instr[*i]];
+      *i = *i + 1;
+    }
   else if (a == 2)
-  {
-    ind = read_ind(ch, i);
-    dir = read_dir_pc(core, ch, ind);
-  }
+    {
+      ind = read_ind(ch, i);
+      dir = read_dir_pc(core, ch, ind);
+    }
   else if (a == 4)
     dir = read_dir(ch, i);
   return (dir);

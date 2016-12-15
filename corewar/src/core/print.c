@@ -5,37 +5,37 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Thu Dec  1 15:21:14 2016 Aurelien
-** Last update Thu Dec  1 15:21:19 2016 Aurelien
+** Last update Thu Dec 15 10:37:06 2016 Aurelien
 */
 #include "core.h"
 
-void print_arena(t_corewar *core)
+void		print_arena(t_corewar *core)
 {
-  unsigned char *hex;
-  ssize_t i;
+  unsigned char	*hex;
+  ssize_t	i;
 
   i = 0;
   while (i < MEM_SIZE)
-  {
-    hex = hex_conv(core->arena[i]);
-    if ((i % 24) == 0 && i != 0)
-      write(1, "\n", 1);
-    if (core->arena[i] != 0)
-      write(1, "\033[34m\033[1m", 10);
-    else
-      write(1, "\033[0m", 5);
-    write(1, hex, 2);
-    write(1, " ", 1);
-    free(hex);
-    i++;
-  }
+    {
+      hex = hex_conv(core->arena[i]);
+      if ((i % 24) == 0 && i != 0)
+	write(1, "\n", 1);
+      if (core->arena[i] != 0)
+	write(1, "\033[34m\033[1m", 10);
+      else
+	write(1, "\033[0m", 5);
+      write(1, hex, 2);
+      write(1, " ", 1);
+      free(hex);
+      i++;
+    }
   write(1, "\n", 1);
 }
 
-unsigned char *hex_conv(unsigned char c)
+unsigned char	*hex_conv(unsigned char c)
 {
-  ssize_t base;
-  unsigned char *hex;
+  ssize_t	base;
+  unsigned char	*hex;
 
   base = 16;
   if ((hex = malloc(sizeof(char) * 3)) == NULL)
@@ -55,7 +55,7 @@ unsigned char *hex_conv(unsigned char c)
   return (hex);
 }
 
-void print_err(char *str)
+void	print_err(char *str)
 {
   write(1, "Error: ", 7);
   write(1, str, my_strlen(str));
@@ -63,14 +63,14 @@ void print_err(char *str)
   exit(84);
 }
 
-void print_err_no_exit(char *str)
+void	print_err_no_exit(char *str)
 {
   write(1, "Error: ", 7);
   write(1, str, my_strlen(str));
   write(1, "\n", 1);
 }
 
-void print_usage()
+void	print_usage()
 {
   write(1, "USAGE\n", 6);
   write(1, "         ./corewar ", 19);

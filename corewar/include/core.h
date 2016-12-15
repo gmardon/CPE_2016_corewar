@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Fri Nov 11 10:33:26 2016 Guillaume MARDON
-** Last update Tue Nov 29 16:47:50 2016 Guillaume MARDON
+** Last update Thu Dec 15 11:10:58 2016 Aurelien
 */
 #ifndef _CORE_H_
 # define _CORE_H_
@@ -36,41 +36,42 @@
 
 # define MALLOC_FAIL "malloc failure."
 # define INSTR_LEN_ARG (arg[0] + arg[1] + arg[2] + arg[3] + 2)
+# define CYCLE_TO_DIE_DELTA (CYCLE_TO_DIE - (CYCLE_DELTA * core->n_delta))
 
 typedef struct		s_champion
 {
-  int id;
-  int is_dead;
-  header_t *head;
-  ssize_t pc;
-  int *reg;
-  char carry;
-  int is_exec;
-  unsigned char *instr;
-  int c_to_wait;
-  int							cycle_to_die_cur;
-  struct 		s_champion	*next;
+  int			id;
+  int			is_dead;
+  header_t		*head;
+  ssize_t		pc;
+  int			*reg;
+  char			carry;
+  int			is_exec;
+  unsigned char		*instr;
+  int			c_to_wait;
+  int			cycle_to_die_cur;
+  struct s_champion	*next;
 }			t_champion;
 
 typedef struct		s_corewar
 {
-  int prog_number;
-  ssize_t dump;
-  ssize_t load_address;
-  int last_live_id;
-  int live_on_this_cycle;
-  int							nbr_live_cur;
-  int n_delta;
+  int			prog_number;
+  ssize_t		dump;
+  ssize_t		load_address;
+  int			last_live_id;
+  int			live_on_this_cycle;
+  int			nbr_live_cur;
+  int			n_delta;
   unsigned char		*arena;
-  t_champion			*champions;
+  t_champion		*champions;
 }			t_corewar;
 
 typedef struct		s_instruction
 {
-  int							id;
-  int							(*function)(t_corewar *core,
-							 			t_champion *champions);
-  int             nbr_cycle;
+  int			id;
+  int			(*function)(t_corewar *core,
+				t_champion *champions);
+  int			nbr_cycle;
 }			t_instruction;
 
 extern t_instruction	tab_instruction[];

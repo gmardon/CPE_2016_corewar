@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Mon Dec 12 18:57:20 2016 Aurelien
-** Last update Mon Dec 12 18:57:20 2016 Aurelien
+** Last update Thu Dec 15 10:49:36 2016 Aurelien
 */
 #include "core.h"
 
-int lld(t_corewar *core, t_champion *ch)
+int		lld(t_corewar *core, t_champion *ch)
 {
-  char *arg;
-  int dir;
-  short ind;
-  ssize_t i;
+  char		*arg;
+  int		dir;
+  short		ind;
+  ssize_t	i;
 
   ch->carry = 0;
   arg = decode_octet(ch->instr[1]);
@@ -38,29 +38,29 @@ int lld(t_corewar *core, t_champion *ch)
   return (0);
 }
 
-int read_dir_pc_l(t_corewar *core, t_champion *ch, short ind)
+int		read_dir_pc_l(t_corewar *core, t_champion *ch, short ind)
 {
-  int dir;
-  ssize_t j;
-  ssize_t i;
-  ssize_t k;
-  unsigned int value;
+  int		dir;
+  ssize_t	j;
+  ssize_t	i;
+  ssize_t	k;
+  unsigned int	value;
 
   dir = 0;
   i = 1;
   k = inc_pc(ch->pc, ind);
   while (i < 5)
-  {
-    j = (i - 1);
-    value = ((j + 1) < 4) ? (1) : (0);
-    while (++j < 4)
-      value = (value * 256);
-    if (value > 0)
-      dir = dir + (int) (core->arena[k] * value);
-    else
-      dir += (int) core->arena[k];
-    i++;
-    k = inc_pc(k, 1);
-  }
+    {
+      j = (i - 1);
+      value = ((j + 1) < 4) ? (1) : (0);
+      while (++j < 4)
+	value = (value * 256);
+      if (value > 0)
+	dir = dir + (int) (core->arena[k] * value);
+      else
+	dir += (int) core->arena[k];
+      i++;
+      k = inc_pc(k, 1);
+    }
   return (dir);
 }

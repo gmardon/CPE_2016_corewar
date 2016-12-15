@@ -5,16 +5,16 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Dec 13 17:00:44 2016 Aurelien
-** Last update Tue Dec 13 17:00:45 2016 Aurelien
+** Last update Thu Dec 15 10:48:49 2016 Aurelien
 */
 #include "core.h"
 #include "read_core.h"
 
-int lfrk(t_corewar *core, t_champion *ch)
+int		lfrk(t_corewar *core, t_champion *ch)
 {
-  t_champion *new;
-  ssize_t i;
-  short ind;
+  t_champion	*new;
+  ssize_t	i;
+  short		ind;
 
   i = 1;
   ch->carry = 0;
