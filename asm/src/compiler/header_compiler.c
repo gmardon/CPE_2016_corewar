@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:37:09 2016 Guillaume MARDON
-** Last update Mon Dec 12 18:36:25 2016 Guillaume MARDON
+** Last update Wed Dec 14 17:06:59 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -21,7 +21,7 @@ void	add_magic(buffer_t *buffer)
   buffer->data[buffer->index++] = m3;
 }
 
-buffer_t	*create_header(char *name, char *comment, int instruction_size, int *size)
+buffer_t	*create_header(char *name, char *comment, int i_size, int *size)
 {
   buffer_t *buffer;
 
@@ -37,7 +37,7 @@ buffer_t	*create_header(char *name, char *comment, int instruction_size, int *si
 		  right_padding(name, my_strlen(name),
 				PROG_NAME_LENGTH), PROG_NAME_LENGTH);
   write_empty(4, buffer);
-  write_int_4(instruction_size, buffer);
+  write_int_4(i_size, buffer);
 	write_to_buffer(buffer,
     	right_padding(comment, my_strlen(comment),
 		      COMMENT_LENGTH), COMMENT_LENGTH);

@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Wed Dec 14 15:00:00 2016 Guillaume MARDON
+** Last update Wed Dec 14 18:57:08 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -16,7 +16,7 @@ int	label_index(char *line)
   index = 0;
   while (line[index])
     {
-      if (line[index] == 32)
+      if (line[index] == 32 || line[index] == '\t')
 				return (0);
 
       if (line[index] == LABEL_CHAR)
@@ -83,9 +83,8 @@ op_t	*retrieve_op(char *line)
 
   opt = my_malloc(sizeof(op_t));
   index = 0;
-  while (line[index] != 32 && line[index] != '\t')
+  while (line[index] != ' ' && line[index] != '\t')
     index++;
-
 	op = my_malloc(index * sizeof(char*));
   my_strcpy(op, line);
   op[index] = '\0';
