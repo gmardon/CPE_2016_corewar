@@ -5,14 +5,13 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Fri Nov 11 10:33:26 2016 Guillaume MARDON
-** Last update Thu Dec 15 11:10:58 2016 Aurelien
+** Last update Sun Dec 18 18:51:11 2016 Aurelien
 */
 #ifndef _CORE_H_
 # define _CORE_H_
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include "op.h"
 
 # define	RADIX	"0123456789abcdefghijklmnopqrstuvwxyz"
@@ -77,8 +76,8 @@ typedef struct		s_instruction
 extern t_instruction	tab_instruction[];
 
 /*
- ** CORE
- */
+** CORE
+*/
 void decide_winner(t_corewar *core);
 int is_already_in(t_champion *ch, int ch_id[5]);
 ssize_t inc_pc(ssize_t pc, int inc);

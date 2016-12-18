@@ -5,12 +5,12 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Sun Dec 18 18:16:23 2016 Aurelien
+## Last update Sun Dec 18 19:11:15 2016 Aurelien
 ##
 
 NAME		=	asm
 
-#CFLAGS	+=	-Wextra -Wall -Werror -pedantic
+#CFLAGS	+=	-Wextra -Wall -W
 
 SRC		=	src/parser/parser.c			\
 			src/compiler/compiler.c \
