@@ -5,10 +5,15 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Sun Nov 13 21:19:38 2016 Guillaume MARDON
-** Last update Sat Nov 26 15:13:10 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:32:59 2016 John Doe
 */
+#ifndef _NUM_FORMAT_H
+# define _NUM_FORMAT_H
+
 int	format_number(const char *ptr, va_list args);
 int	format_unsigned_number(const char *ptr, va_list args);
 int	format_hexa(const char *ptr, va_list args);
 int	format_octal(const char *ptr, va_list args);
 int	format_binary(const char *ptr, va_list args);
+
+#endif

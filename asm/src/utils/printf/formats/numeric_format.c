@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Sun Nov 13 21:19:38 2016 Guillaume MARDON
-** Last update Sun Nov 27 16:08:31 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:34:45 2016 Aurelien
 */
 #include "../my_printf.h"
 
@@ -25,7 +25,7 @@ int	format_unsigned_number(const char *ptr, va_list args)
 {
   unsigned int i;
   char *str;
-  
+
   i = va_arg(args, unsigned int);
   str = malloc((my_nbrlen(i, 10)) * sizeof(char*));
   my_itoa(i, str, 10);

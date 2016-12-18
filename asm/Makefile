@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Sun Dec 18 14:06:27 2016 Aurelien
+## Last update Sun Dec 18 18:16:23 2016 Aurelien
 ##
 
 NAME		=	asm
@@ -53,7 +53,7 @@ RM		=	rm -f
 all:	$(NAME)
 
 $(NAME):
-	gcc $(SRC) -o $(NAME) -g
+	gcc $(SRC) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

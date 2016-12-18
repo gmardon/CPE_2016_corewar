@@ -5,6 +5,11 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Thu Nov 17 11:29:31 2016 Guillaume MARDON
-** Last update Wed Nov 23 15:16:09 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:32:26 2016 John Doe
 */
+#ifndef _EXTRA_FORMAT_H
+# define _EXTRA_FORMAT_H
+
 int	format_pointer(const char *ptr, va_list args);
+
+#endif

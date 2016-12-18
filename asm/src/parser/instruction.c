@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Sun Dec 18 17:41:40 2016 Romain Goasdoue
+** Last update Sun Dec 18 18:25:37 2016 John Doe
 */
 
 #include "../../include/asm.h"
@@ -117,5 +117,5 @@ instruction_t	*read_instruction(char *line)
   instruction->op = retrieve_op(line);
   instruction->args = retrieve_args(line);
   instruction->next = NULL;
-  return instruction;
+  return (instruction);
 }

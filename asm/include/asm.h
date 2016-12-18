@@ -5,18 +5,23 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Sun Dec 18 12:33:27 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:23:37 2016 Aurelien
 */
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include "op.h"
+#ifndef _ASM_H_
+# define _ASM_H_
 
-#define BUFF_SIZE (4096)
-#define	RADIX	"0123456789abcdefghijklmnopqrstuvwxyz"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include "op.h"
 
-// STRUCTS //
+# define BUFF_SIZE (4096)
+# define	RADIX	"0123456789abcdefghijklmnopqrstuvwxyz"
+
+/*
+** STRUCTS
+*/
 typedef struct          args_s
 {
   char                  type[MAX_ARGS_NUMBER];
@@ -25,35 +30,37 @@ typedef struct          args_s
 
 typedef struct          buffer_s
 {
-  int										index;
+  int			index;
   char                  *data;
 }                       buffer_t;
 
 typedef struct          labelref_s
 {
   char                  *name;
-  int										index;
-  int										size;
-  char									is_label;
-  char									is_direct;
+  int			index;
+  int			size;
+  char			is_label;
+  char			is_direct;
 }                       labelref_t;
 
 typedef struct          instruction_s
 {
-  op_t									*op;
-  args_t								*args;
-  char									*label;
+  op_t			*op;
+  args_t		*args;
+  char			*label;
   struct instruction_t  *next;
 }                       instruction_t;
 
 typedef struct          program_s
 {
-  char									*name;
-  char									*comment;
-  instruction_t  				*first_instruction;
-}												program_t;
+  char		    	*name;
+  char			*comment;
+  instruction_t		*first_instruction;
+}			program_t;
 
-// UTILS //
+/*
+** UTILS
+*/
 void	my_putchar(char c);
 void	my_putstr(char *str);
 char *get_next_line(const int fd);
@@ -81,23 +88,34 @@ char	**my_commandsep(char *str);
 int	my_indexof(char c, char *str);
 char	my_str_to_char(char *str);
 
-// PARSER //
+/*
+** PARSER
+*/
 program_t	*	parse_file(char* file_name);
 instruction_t	*read_instruction(char *line);
 
-// COMPILER //
+/*
+** COMPILER
+*/
 buffer_t*  compile(int *size, program_t *program);
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER]);
 int	need_encode_args_type(int code);
 void	compile_header(buffer_t *buffer, char* name, char* comment);
-buffer_t	*create_header(char *name, char *comment, int i_size, int *size);
-buffer_t	*create_instructions(instruction_t *first_instruction, int *size);
-void	write_args(instruction_t *instruction, buffer_t *buffer, labelref_t *refs);
-void	write_direct(op_t *op, char *value, buffer_t *buffer, labelref_t *refs);
-void	write_indirect(op_t *op, char *value, buffer_t *buffer, labelref_t *refs);
+buffer_t	*create_header(char *name, char *comment, int i_size,
+			       int *size);
+buffer_t	*create_instructions(instruction_t *first_instruction,
+				     int *size);
+void	write_args(instruction_t *instruction, buffer_t *buffer,
+		   labelref_t *refs);
+void	write_direct(op_t *op, char *value, buffer_t *buffer,
+		     labelref_t *refs);
+void	write_indirect(op_t *op, char *value, buffer_t *buffer,
+		       labelref_t *refs);
 void	write_register(op_t *op, char value, buffer_t *buffer);
 labelref_t	*create_refs_stack();
 labelref_t	*find_label(labelref_t *refs, char *name);
 buffer_t	*create_buffer(int size);
 void	add_label_ref(int index, char *name, labelref_t *stack);
 void	add_ref(labelref_t *stack, labelref_t *labelref);
+
+#endif

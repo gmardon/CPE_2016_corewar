@@ -5,12 +5,15 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Nov  7 15:06:04 2016 Guillaume MARDON
-** Last update Mon Dec  5 15:59:52 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:30:35 2016 Aurelien
 */
-#include "../../../include/asm.h"
+#ifndef _MY_PRINTF_H_
+# define _MY_PRINTF_H_
 
-#include <stdarg.h>
-#include <stdlib.h>
+# include "../../../include/asm.h"
+
+# include <stdarg.h>
+# include <stdlib.h>
 
 typedef struct		formatter_s
 {
@@ -18,6 +21,8 @@ typedef struct		formatter_s
   int 			(*fmt)(const char*, va_list);
 }			formatter_t;
 
-#include "formats/extra_format.h"
-#include "formats/numeric_format.h"
-#include "formats/alphabetic_format.h"
+# include "formats/extra_format.h"
+# include "formats/numeric_format.h"
+# include "formats/alphabetic_format.h"
+
+#endif

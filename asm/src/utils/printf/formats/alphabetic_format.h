@@ -5,8 +5,13 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Sun Nov 13 21:33:07 2016 Guillaume MARDON
-** Last update Wed Nov 23 15:16:30 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:31:44 2016 John Doe
 */
+#ifndef _ALPHA_FORMAT_H
+# define _ALPHA_FORMAT_H
+
 int	format_string(const char *ptr, va_list args);
 int	format_special_string(const char *ptr, va_list args);
 int	format_char(const char *ptr, va_list args);
+
+#endif

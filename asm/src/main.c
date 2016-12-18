@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:34:46 2016 Guillaume MARDON
-** Last update Sun Dec 18 17:33:55 2016 Romain Goasdoue
+** Last update Sun Dec 18 18:26:36 2016 John Doe
 */
 
 #include "../include/asm.h"
@@ -29,4 +29,5 @@ int	main(int argc, char **argv)
     }
   else
     my_printf("Usage: ./asm file_name[.s] ....\n");
+  return (0);
 }

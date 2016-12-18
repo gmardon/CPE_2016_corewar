@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 15:57:13 2016 Guillaume MARDON
-** Last update Sun Dec 18 17:52:50 2016 Romain Goasdoue
+** Last update Sun Dec 18 18:28:13 2016 Aurelien
 */
 
 #include "../../include/asm.h"
@@ -36,13 +36,13 @@ char	*filename_to_cor(char *file_path)
 void	save(int length, char* buffer, char* filepath)
 {
   int	fd;
-  
+
   fd = open(filepath, O_CREAT | O_WRONLY | O_TRUNC);
   if (fd == -1)
     {
       my_printf("Error in function open: No such file or directory.\n");
       exit(84);
     }
-  write(fd, buffer, length);  
+  write(fd, buffer, length);
   close(fd);
 }
