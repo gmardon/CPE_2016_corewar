@@ -15,14 +15,11 @@
 
 /*
 ** TO DO LIST:
-** modif print_arena for arg options
 ** check for live
 ** check if dec_nbr_live if is wrong live
 ** check for carry (why: ldi 6, %4, r3 set carry to 0 ?)
 ** test sti, ldi, lld, lldi
 ** check for fork
-** check if the jump (fork & zjmp) is done from good start pts
-** inc PC if instr not found ??
 ** norme...
 */
 

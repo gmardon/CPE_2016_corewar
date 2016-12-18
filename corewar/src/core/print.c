@@ -18,7 +18,7 @@ void		print_arena(t_corewar *core)
   while (i < MEM_SIZE)
     {
       hex = hex_conv(core->arena[i]);
-      if ((i % 24) == 0 && i != 0)
+      if ((i % 32) == 0 && i != 0)
 	write(1, "\n", 1);
       if (core->arena[i] != 0)
 	write(1, "\033[34m\033[1m", 10);

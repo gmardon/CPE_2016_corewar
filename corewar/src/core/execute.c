@@ -5,7 +5,7 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Dec  6 14:40:03 2016 Aurelien
-** Last update Thu Dec 15 10:35:20 2016 Aurelien
+** Last update Sun Dec 18 17:24:59 2016 Aurelien
 */
 #include "core.h"
 
@@ -14,11 +14,9 @@ void	exec_champ(t_corewar *core, t_champion *ch)
   int	index;
   int	ret;
 
-  ret = 0;
   if (ch->is_exec == 1)
     {
-      index = 0;
-      ch->is_exec = 0;
+      index = ch->is_exec = ret = 0;
       while (tab_instruction[index].id)
 	{
 	  if (tab_instruction[index].id == ch->instr[0])
@@ -30,6 +28,8 @@ void	exec_champ(t_corewar *core, t_champion *ch)
 	    }
 	  index++;
 	}
+      if (tab_instruction[index].id == 0 && ret == 0)
+        inc_pc(ch->pc, 1);
       if (ret != 0)
 	inc_pc(ch->pc, ret);
     }

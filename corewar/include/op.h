@@ -120,7 +120,7 @@ typedef struct header_s		header_t;
 /*
 ** nombre de cycle pour etre d\'eclarer mort
 */
-# define CYCLE_DELTA     4
-# define NBR_LIVE        2048
+# define CYCLE_DELTA     5
+# define NBR_LIVE        40
 
 #endif
