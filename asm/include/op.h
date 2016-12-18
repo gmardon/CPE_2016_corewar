@@ -5,14 +5,21 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:35:20 2016 Guillaume MARDON
-** Last update Sun Dec 18 18:24:27 2016 Aurelien
+** Last update Sun Dec 18 18:43:07 2016 John Doe
 */
 #ifndef _OP_H_
 # define _OP_H_
 
 # define MEM_SIZE                (6*1024)
-# define IDX_MOD                 512   /* modulo de l'index < */
-# define MAX_ARGS_NUMBER         4     /* this may not be changed 2^*IND_SIZE */
+# define IDX_MOD                 512
+/*
+** modulo de l'index <
+*/
+
+# define MAX_ARGS_NUMBER         4
+/*
+** this may not be changed 2^*IND_SIZE
+*/
 
 # define COMMENT_CHAR            '#'
 # define LABEL_CHAR              ':'
@@ -24,12 +31,18 @@
 # define NAME_CMD_STRING         ".name"
 # define COMMENT_CMD_STRING      ".comment"
 
-# define COREWAR_EXEC_MAGIC      0xea83f3        /* why not */
+# define COREWAR_EXEC_MAGIC      0xea83f3
+/*
+** why not
+*/
 /*
 ** regs
 */
 
-# define REG_NUMBER      16              /* r1 <--> rx */
+# define REG_NUMBER      16
+/*
+** r1 <--> rx
+*/
 
 /*
 **
@@ -37,12 +50,24 @@
 
 typedef char    args_type_t;
 
-# define T_REG           1       /* registre */
-# define T_DIR           2       /* directe  (ld  #1,r1  met 1 dans r1) */
-# define T_IND           4       /* indirecte toujours relatif
-                                   ( ld 1,r1 met ce qu'il y a l'adress (1+pc)
-                                   dans r1 (4 octecs )) */
-# define T_LAB           8       /* LABEL */
+# define T_REG           1
+/*
+** registre
+*/
+# define T_DIR           2
+/*
+** directe  (ld  #1,r1  met 1 dans r1)
+*/
+# define T_IND           4
+/*
+** indirecte toujours relatif
+** ( ld 1,r1 met ce qu'il y a l'adress (1+pc)
+** dans r1 (4 octecs ))
+*/
+# define T_LAB           8
+/*
+** LABEL
+*/
 
 struct  op_s
 {
@@ -60,9 +85,12 @@ typedef struct op_s     op_t;
 ** size
 */
 
-# define IND_SIZE        2               /* en octet */
-# define REG_SIZE        4               /* en octet */
-# define DIR_SIZE        REG_SIZE        /* en octet */
+# define IND_SIZE        2
+# define REG_SIZE        4
+# define DIR_SIZE        REG_SIZE
+/*
+** en octet
+*/
 
 /*
 ** op_tab
@@ -89,7 +117,10 @@ typedef struct header_s header_t;
 ** live
 */
 
-# define CYCLE_TO_DIE    1536    /* nombre de cycle pour etre d\'eclarer mort */
+# define CYCLE_TO_DIE    1536
+/*
+** nombre de cycle pour etre d\'eclarer mort
+*/
 # define CYCLE_DELTA     5
 # define NBR_LIVE        40
 
