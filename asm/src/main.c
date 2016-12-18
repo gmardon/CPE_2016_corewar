@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:34:46 2016 Guillaume MARDON
-** Last update Sun Dec 18 12:36:06 2016 Guillaume MARDON
+** Last update Sun Dec 18 16:41:24 2016 Guillaume MARDON
 */
 #include "../include/asm.h"
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 				{
 	  			buffer = compile(size, parse_file(argv[index]));
 	      	save(*size, buffer->data, filename_to_cor(argv[index]));
-				  filename_to_cor(argv[index]));
+				  filename_to_cor(argv[index]);
 				}
     }
   else

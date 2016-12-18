@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Dec  6 09:30:22 2016 Guillaume MARDON
-** Last update Sun Dec 18 12:35:14 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:07:26 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -13,7 +13,7 @@ void	*my_malloc(int size)
 {
   void *ref;
 
-  if (!(ref = malloc(size))
+  if (!(ref = malloc(size)))
     exit(84);
 
   return (ref);
