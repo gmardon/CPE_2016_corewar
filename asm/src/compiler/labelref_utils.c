@@ -5,13 +5,14 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec 12 17:48:59 2016 Guillaume MARDON
-** Last update Mon Dec 12 23:08:16 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:31:59 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 void	add_ref(labelref_t *stack, labelref_t *labelref)
 {
-  int index;
+  int	index;
 
   index = 0;
   while (stack[index].name)
@@ -21,7 +22,7 @@ void	add_ref(labelref_t *stack, labelref_t *labelref)
 
 void	add_label_ref(int index, char *name, labelref_t *stack)
 {
-  labelref_t *label;
+  labelref_t	*label;
 
   label = my_malloc(sizeof(labelref_t));
   label->is_label = 1;
@@ -29,14 +30,13 @@ void	add_label_ref(int index, char *name, labelref_t *stack)
   label->name = name;
   label->size = 0;
   label->index = index;
-
   add_ref(stack, label);
 }
 
 labelref_t	*create_refs_stack()
 {
-  int index;
-  labelref_t *stack;
+  int		index;
+  labelref_t	*stack;
 
   index = 0;
   stack = my_malloc(sizeof(labelref_t) * 512);
@@ -49,13 +49,13 @@ labelref_t	*create_refs_stack()
 
 labelref_t	*find_label(labelref_t *refs, char *name)
 {
-  int index;
+  int	index;
 
   index = 0;
   while (refs[index].name)
     {
       if (my_strcmp(refs[index].name, name) == 0 && refs[index].is_label)
-				return (refs + index);
+	return (refs + index);
       index++;
     }
   return (refs + index);

@@ -5,8 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:25:17 2016 Guillaume MARDON
-** Last update Wed Dec 14 19:02:05 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:43:57 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 void	parse_extra(char *line, program_t *program)
@@ -32,9 +33,9 @@ void	parse_extra(char *line, program_t *program)
 
 program_t	*parse(const int fd)
 {
-  char	*line;
-  program_t *program;
-  instruction_t *first_instruction;
+  char		*line;
+  program_t	*program;
+  instruction_t	*first_instruction;
   instruction_t *last_instruction;
   instruction_t *current_instruction;
 
@@ -46,14 +47,14 @@ program_t	*parse(const int fd)
       if (!*line) continue;
       if (*line == '.' || *line == COMMENT_CHAR) parse_extra(line, program);
       else
-				{
-	  			current_instruction = read_instruction(line);
+	{
+	  current_instruction = read_instruction(line);
           if (last_instruction)
             last_instruction->next = current_instruction;
-	  			else
-	    			first_instruction = current_instruction;
-	  			last_instruction = current_instruction;
-				}
+	  else
+	    first_instruction = current_instruction;
+	  last_instruction = current_instruction;
+	}
     }
   program->first_instruction = first_instruction;
   return (program);
@@ -69,7 +70,5 @@ program_t	*parse_file(char* file_name)
       exit(84);
     }
   else
-    {
-      return (parse(fd));
-    }
+    return (parse(fd));
 }

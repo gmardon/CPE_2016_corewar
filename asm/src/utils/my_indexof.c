@@ -5,8 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 29 16:43:31 2016 Guillaume MARDON
-** Last update Wed Dec 14 18:56:22 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:00:26 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 int	my_indexof(char c, char *str)

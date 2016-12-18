@@ -5,8 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec 12 15:48:49 2016 Guillaume MARDON
-** Last update Sun Dec 18 12:13:29 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:21:45 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 int	need_encode_args_type(int code)
@@ -16,8 +17,8 @@ int	need_encode_args_type(int code)
 
 char	get_encoded_args_type(char types[MAX_ARGS_NUMBER])
 {
-  char encoded_args;
-  int args_index;
+  char	encoded_args;
+  int	args_index;
 
   encoded_args = 0;
   args_index = 0;

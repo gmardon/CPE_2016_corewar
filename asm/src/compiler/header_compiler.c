@@ -5,16 +5,17 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:37:09 2016 Guillaume MARDON
-** Last update Wed Dec 14 17:06:59 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:24:23 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 void	add_magic(buffer_t *buffer)
 {
-  int magic = COREWAR_EXEC_MAGIC;
-  char m1 = (magic >> 16) & 0xff;
-  char m2 = (magic >> 8) & 0xff;
-  char m3 = magic & 0xff;
+  int	magic = COREWAR_EXEC_MAGIC;
+  char	m1 = (magic >> 16) & 0xff;
+  char	m2 = (magic >> 8) & 0xff;
+  char	m3 = magic & 0xff;
   buffer->data[buffer->index++] = 0x00;
   buffer->data[buffer->index++] = m1;
   buffer->data[buffer->index++] = m2;
@@ -23,24 +24,22 @@ void	add_magic(buffer_t *buffer)
 
 buffer_t	*create_header(char *name, char *comment, int i_size, int *size)
 {
-  buffer_t *buffer;
+  buffer_t	*buffer;
 
   buffer = create_buffer(COMMENT_LENGTH + PROG_NAME_LENGTH + (4 * 3));
-
   if (!name)
     name = "";
   if (!comment)
     comment = "";
-
   add_magic(buffer);
   write_to_buffer(buffer,
 		  right_padding(name, my_strlen(name),
 				PROG_NAME_LENGTH), PROG_NAME_LENGTH);
   write_empty(4, buffer);
   write_int_4(i_size, buffer);
-	write_to_buffer(buffer,
-    	right_padding(comment, my_strlen(comment),
-		      COMMENT_LENGTH), COMMENT_LENGTH);
+  write_to_buffer(buffer,
+		  right_padding(comment, my_strlen(comment),
+				COMMENT_LENGTH), COMMENT_LENGTH);
   write_empty(4, buffer);
   *size = buffer->index;
   return (buffer);

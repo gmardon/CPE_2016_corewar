@@ -5,17 +5,18 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 11:27:08 2016 Guillaume MARDON
-** Last update Mon Dec 12 18:46:32 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:23:09 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 buffer_t	*compile(int *size, program_t *program)
 {
-  buffer_t *header_buffer;
-  buffer_t *instructions_buffer;
-  buffer_t *buffer;
-  int instructions_size;
-  int header_size;
+  buffer_t	*header_buffer;
+  buffer_t	*instructions_buffer;
+  buffer_t	*buffer;
+  int		instructions_size;
+  int		header_size;
 
   instructions_size = 0;
   header_size = 0;
@@ -23,11 +24,9 @@ buffer_t	*compile(int *size, program_t *program)
 					    &instructions_size);
   header_buffer = create_header(program->name, program->comment,
 				instructions_size, &header_size);
-
   buffer = create_buffer(instructions_size + header_size);
   write_to_buffer(buffer, header_buffer->data, header_size);
   write_to_buffer(buffer, instructions_buffer->data, instructions_size);
-
   *size = buffer->index;
   return (buffer);
 }

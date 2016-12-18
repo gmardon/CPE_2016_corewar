@@ -5,8 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 14:56:18 2016 Guillaume MARDON
-** Last update Wed Dec 14 18:57:08 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:41:40 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 int	label_index(char *line)
@@ -17,8 +18,7 @@ int	label_index(char *line)
   while (line[index])
     {
       if (line[index] == 32 || line[index] == '\t')
-				return (0);
-
+	return (0);
       if (line[index] == LABEL_CHAR)
         break;
       index++;
@@ -28,7 +28,6 @@ int	label_index(char *line)
     {
       if (line[index] == LABEL_CHAR)
         return (index + 1);
-
       index++;
     }
   return (0);
@@ -36,8 +35,8 @@ int	label_index(char *line)
 
 char	*retrieve_label(char *line)
 {
-  char *label;
-  int index;
+  char	*label;
+  int	index;
 
   index = 0;
   label = my_malloc(label_index(line) * sizeof(char*));
@@ -51,8 +50,8 @@ char	*retrieve_label(char *line)
 args_t	*retrieve_args(char *line)
 {
   int		index;
-	char	**args_c;
-  args_t *args;
+  char		**args_c;
+  args_t	*args;
 
   index = 0;
   while (line[index] != 32 && line[index] != '\t')
@@ -65,11 +64,11 @@ args_t	*retrieve_args(char *line)
     {
       args->argv[index] = my_cleanstr(args_c[index]);
       if (*args->argv[index] == DIRECT_CHAR)
-				args->type[index] = T_DIR;
+	args->type[index] = T_DIR;
       else if (*args->argv[index] == 'r')
-				args->type[index] = T_REG;
+	args->type[index] = T_REG;
       else
-				args->type[index] = T_IND;
+	args->type[index] = T_IND;
       index++;
     }
   return (args);
@@ -78,24 +77,24 @@ args_t	*retrieve_args(char *line)
 op_t	*retrieve_op(char *line)
 {
   char	*op;
-  int		index;
-	op_t 	*opt;
+  int	index;
+  op_t 	*opt;
 
   opt = my_malloc(sizeof(op_t));
   index = 0;
   while (line[index] != ' ' && line[index] != '\t')
     index++;
-	op = my_malloc(index * sizeof(char*));
+  op = my_malloc(index * sizeof(char*));
   my_strcpy(op, line);
   op[index] = '\0';
   index = 0;
   while (op_tab[index].code)
     {
       if (my_strcmp(op, op_tab[index].mnemonique) == 0)
-				{
-					opt = &op_tab[index];
-	  			break;
-				}
+	{
+	  opt = &op_tab[index];
+	  break;
+	}
       index++;
     }
   return (opt);
@@ -103,7 +102,7 @@ op_t	*retrieve_op(char *line)
 
 instruction_t	*read_instruction(char *line)
 {
-  instruction_t *instruction;
+  instruction_t	*instruction;
 
   instruction = my_malloc(sizeof(instruction_t));
   line = my_cleanstr(line);
@@ -115,9 +114,8 @@ instruction_t	*read_instruction(char *line)
     }
   else
     instruction->label = NULL;
-	instruction->op = retrieve_op(line);
+  instruction->op = retrieve_op(line);
   instruction->args = retrieve_args(line);
   instruction->next = NULL;
-
   return instruction;
 }

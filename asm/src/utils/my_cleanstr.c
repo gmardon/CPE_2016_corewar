@@ -5,14 +5,14 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 19:49:36 2016 Guillaume MARDON
-** Last update Wed Nov  9 19:59:04 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:58:39 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 char	*my_cleanstr(char *str)
 {
   while (*str == 32 || *str == 9)
     str++;
-
   return (str);
 }

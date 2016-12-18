@@ -5,8 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 15:49:43 2016 Guillaume MARDON
-** Last update Tue Nov 29 16:38:26 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:00:38 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 void	my_itoa(size_t input, char *buffer, unsigned int radix)

@@ -5,30 +5,28 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:34:46 2016 Guillaume MARDON
-** Last update Sun Dec 18 16:41:24 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:33:55 2016 Romain Goasdoue
 */
+
 #include "../include/asm.h"
 
 int	main(int argc, char **argv)
 {
-  int	index;
-  buffer_t *buffer;
-  int *size;
+  int		index;
+  buffer_t	*buffer;
+  int		*size;
 
   size = my_malloc(sizeof(int));
   if (argc >= 2)
     {
       index = 0;
-
       while (argv[++index])
-				{
-	  			buffer = compile(size, parse_file(argv[index]));
-	      	save(*size, buffer->data, filename_to_cor(argv[index]));
-				  filename_to_cor(argv[index]);
-				}
+	{
+	  buffer = compile(size, parse_file(argv[index]));
+	  save(*size, buffer->data, filename_to_cor(argv[index]));
+	  filename_to_cor(argv[index]);
+	}
     }
   else
-    {
-      my_printf("Usage: ./asm file_name[.s] ....\n");
-    }
+    my_printf("Usage: ./asm file_name[.s] ....\n");
 }

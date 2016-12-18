@@ -5,23 +5,25 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 15:57:13 2016 Guillaume MARDON
-** Last update Mon Dec  5 16:09:16 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:52:50 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 char	*filename_to_cor(char *file_path)
 {
   int	index;
-	int last_index;
-  char *new;
+  int	last_index;
+  char	*new;
 
   index = last_index = 0;
   while (file_path[index] != '\0')
-    if (file_path[index++] == '.')
-			last_index = index;
-
+    {
+      if (file_path[index++] == '.')
+	last_index = index;
+    }
   if (last_index == 0)
-		last_index = (my_strlen(file_path) + 1);
+    last_index = (my_strlen(file_path) + 1);
   new = malloc((last_index + 3) * sizeof(char*));
   my_strcpy(new, file_path);
   new[last_index - 1] = '.';
@@ -33,15 +35,14 @@ char	*filename_to_cor(char *file_path)
 
 void	save(int length, char* buffer, char* filepath)
 {
-  int fd;
-
+  int	fd;
+  
   fd = open(filepath, O_CREAT | O_WRONLY | O_TRUNC);
   if (fd == -1)
-		{
+    {
       my_printf("Error in function open: No such file or directory.\n");
       exit(84);
-		}
-  write(fd, buffer, length);
-
+    }
+  write(fd, buffer, length);  
   close(fd);
 }

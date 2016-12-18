@@ -5,16 +5,16 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Dec  7 16:07:34 2016 Guillaume MARDON
-** Last update Sun Dec 18 11:07:16 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:02:14 2016 Romain Goasdoue
 */
 #include "../../include/asm.h"
 
 int my_str_to_int(char *str)
 {
-  int nbr;
-  int pow;
-  int pow_i;
-  int length;
+  int	nbr;
+  int	pow;
+  int	pow_i;
+  int	length;
 
   if (*str == '-')
     return (my_str_to_int(str + 1) * -1);
@@ -32,10 +32,10 @@ int my_str_to_int(char *str)
 
 char	my_str_to_char(char *str)
 {
-  char nbr;
-  int pow;
-  int pow_i;
-  int length;
+  char	nbr;
+  int	pow;
+  int	pow_i;
+  int	length;
 
   if (*str == '-')
     return (my_str_to_char(str + 1) * -1);

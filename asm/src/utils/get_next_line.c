@@ -5,26 +5,24 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Nov 22 11:10:18 2016 Aurelien
-** Last update Sun Dec 18 10:57:41 2016 Guillaume MARDON
+** Last update Sun Dec 18 17:58:16 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 char	*right_padding(char *data, int base_size, int requested_size)
 {
-  char *newdata;
-  int index;
+  char	*newdata;
+  int	index;
 
   newdata = malloc((requested_size) * sizeof(char*));
   index = 0;
   while (index < requested_size)
     {
       if (index < base_size)
-				{
-	  			newdata[index] = data[index];
-				}
+	newdata[index] = data[index];
       else
-				newdata[index] = 0;
-
+	newdata[index] = 0;
       index++;
     }
   return (newdata);
@@ -64,7 +62,7 @@ char		*buffer2str(char *buffer, ssize_t *i, char *new)
   if (new != NULL)
     {
       if ((new = my_realloc(new, (j - *i + 2), &k)) == NULL)
-				return (NULL);
+	return (NULL);
     }
   else if ((new = my_malloc(sizeof(char) * (j - *i + 2))) == NULL)
     return (NULL);
@@ -89,14 +87,14 @@ char			*get_next_line(const int fd)
   while (buffer[i] != '\0')
     {
       if ((new = buffer2str(buffer, &i, new)) == NULL)
-				return (NULL);
+	return (NULL);
       if (buffer[i] == '\n')
-				{
-	  			i++;
-	  			return (new);
-				}
+	{
+	  i++;
+	  return (new);
+	}
       if ((readed = read(fd, buffer, BUFF_SIZE)) == 0 || readed == -1)
-				return (new);
+	return (new);
       i = 0;
       buffer[readed] = '\0';
     }

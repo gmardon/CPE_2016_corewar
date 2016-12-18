@@ -5,8 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Nov 15 15:51:39 2016 Guillaume MARDON
-** Last update Tue Nov 29 16:38:14 2016 Guillaume MARDON
+** Last update Sun Dec 18 18:01:15 2016 Romain Goasdoue
 */
+
 #include "../../include/asm.h"
 
 size_t	my_nbrlen(size_t input, unsigned int radix)
