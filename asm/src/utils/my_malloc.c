@@ -5,23 +5,15 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Tue Dec  6 09:30:22 2016 Guillaume MARDON
-** Last update Tue Dec  6 10:35:52 2016 Guillaume MARDON
+** Last update Sun Dec 18 12:35:14 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
 void	*my_malloc(int size)
 {
-  int trying;
   void *ref;
 
-  trying = 0;
-  ref = NULL;
-  while (trying < 50 && !ref)
-    {
-      ref = malloc(size);
-      trying++;
-    }
-  if (!ref)
+  if (!(ref = malloc(size))
     exit(84);
 
   return (ref);

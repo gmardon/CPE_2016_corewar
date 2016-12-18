@@ -5,9 +5,30 @@
 ** Login   <aurelien.olibe@epitech.eu@epitech.net>
 **
 ** Started on  Tue Nov 22 11:10:18 2016 Aurelien
-** Last update Wed Dec 14 18:33:29 2016 Guillaume MARDON
+** Last update Sun Dec 18 10:57:41 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
+
+char	*right_padding(char *data, int base_size, int requested_size)
+{
+  char *newdata;
+  int index;
+
+  newdata = malloc((requested_size) * sizeof(char*));
+  index = 0;
+  while (index < requested_size)
+    {
+      if (index < base_size)
+				{
+	  			newdata[index] = data[index];
+				}
+      else
+				newdata[index] = 0;
+
+      index++;
+    }
+  return (newdata);
+}
 
 char		*my_realloc(char *str, ssize_t aloc, ssize_t *j)
 {

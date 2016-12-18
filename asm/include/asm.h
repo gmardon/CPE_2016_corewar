@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:46:05 2016 Guillaume MARDON
-** Last update Wed Dec 14 18:56:18 2016 Guillaume MARDON
+** Last update Sun Dec 18 12:33:27 2016 Guillaume MARDON
 */
 #include <fcntl.h>
 #include <unistd.h>
@@ -79,6 +79,7 @@ void write_int_2(int value, buffer_t *buffer);
 int my_str_to_int(char *str);
 char	**my_commandsep(char *str);
 int	my_indexof(char c, char *str);
+char	my_str_to_char(char *str);
 
 // PARSER //
 program_t	*	parse_file(char* file_name);

@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Wed Nov  9 13:34:46 2016 Guillaume MARDON
-** Last update Wed Dec 14 18:29:23 2016 Guillaume MARDON
+** Last update Sun Dec 18 12:36:06 2016 Guillaume MARDON
 */
 #include "../include/asm.h"
 
@@ -22,16 +22,13 @@ int	main(int argc, char **argv)
 
       while (argv[++index])
 				{
-	  				my_printf("(%s) compiling...\n", argv[index]);
-	      		buffer = compile(size, parse_file(argv[index]));
-	      		my_printf("(%s) buffer size: %d\n", argv[index], *size);
-	      		save(*size, buffer->data, filename_to_cor(argv[index]));
-	      		my_printf("(%s) saved to %s...\n", argv[index],
+	  			buffer = compile(size, parse_file(argv[index]));
+	      	save(*size, buffer->data, filename_to_cor(argv[index]));
 				  filename_to_cor(argv[index]));
 				}
     }
   else
     {
-      my_putstr("Usage: ./asm file_name[.s] ....\n");
+      my_printf("Usage: ./asm file_name[.s] ....\n");
     }
 }

@@ -5,30 +5,9 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 17:10:27 2016 Guillaume MARDON
-** Last update Mon Dec 12 18:45:26 2016 Guillaume MARDON
+** Last update Sun Dec 18 10:57:47 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
-
-char	*right_padding(char *data, int base_size, int requested_size)
-{
-  char *newdata;
-  int index;
-
-  newdata = malloc((requested_size) * sizeof(char*));
-  index = 0;
-  while (index < requested_size)
-    {
-      if (index < base_size)
-				{
-	  			newdata[index] = data[index];
-				}
-      else
-				newdata[index] = 0;
-
-      index++;
-    }
-  return (newdata);
-}
 
 void	write_to_buffer(buffer_t *buffer, char *to_write, int size)
 {

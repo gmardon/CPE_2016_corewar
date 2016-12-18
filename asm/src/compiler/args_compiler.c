@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 16:27:42 2016 Guillaume MARDON
-** Last update Mon Dec 12 19:02:53 2016 Guillaume MARDON
+** Last update Sun Dec 18 12:32:36 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -22,7 +22,8 @@ void	write_args(instruction_t *instruction, buffer_t *buffer, labelref_t *refs)
   while (args->type[args_index])
     {
       if (args->type[args_index] == T_REG)
-				write_register(op, *(args->argv[args_index] + 1) - 48, buffer);
+				write_register(op,
+					       my_str_to_char(args->argv[args_index] + 1), buffer);
       if (args->type[args_index] == T_DIR)
 				write_direct(op, args->argv[args_index] + 1, buffer, refs);
       if (args->type[args_index] == T_IND)

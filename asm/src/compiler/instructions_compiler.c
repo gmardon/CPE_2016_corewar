@@ -5,7 +5,7 @@
 ** Login   <guillaume.mardon@epitech.eu@epitech.eu>
 **
 ** Started on  Mon Dec  5 20:21:45 2016 Guillaume MARDON
-** Last update Mon Dec 12 23:48:10 2016 Guillaume MARDON
+** Last update Sun Dec 18 12:35:28 2016 Guillaume MARDON
 */
 #include "../../include/asm.h"
 
@@ -28,7 +28,6 @@ void	resolve_labels(buffer_t *buffer, labelref_t *refs)
 	      			else
 								write_int_2((target->index + 3) - refs[index].index, buffer);
 	    			}
-						// TODO Handle label cannot be find
 				}
       index++;
     }
@@ -46,7 +45,6 @@ buffer_t	*create_instructions(instruction_t *first_instruction, int *size)
   instruction = first_instruction;
   while (instruction)
     {
-      my_printf("[%s]", instruction->op->mnemonique);
       if (instruction->label)
 				add_label_ref(buffer->index, instruction->label, labelrefs);
       buffer->data[buffer->index++] = instruction->op->code;
