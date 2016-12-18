@@ -7,9 +7,6 @@
 ** Started on  Wed Nov  9 18:45:17 2016 Guillaume MARDON
 ** Last update Thu Dec 15 10:54:41 2016 Aurelien
 */
-#include <SDL/SDL.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "op.h"

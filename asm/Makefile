@@ -5,7 +5,7 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Wed Dec 14 18:56:43 2016 Guillaume MARDON
+## Last update Sun Dec 18 14:06:27 2016 Aurelien
 ##
 
 NAME		=	asm
@@ -46,6 +46,8 @@ SRC		=	src/parser/parser.c			\
 			src/utils/printf/formats/alphabetic_format.c \
 			src/utils/printf/formats/extra_format.c
 
+OBJS		=	$(SRCS:.c=.o)
+
 RM		=	rm -f
 
 all:	$(NAME)
@@ -54,9 +56,11 @@ $(NAME):
 	gcc $(SRC) -o $(NAME) -g
 
 clean:
-	find ./ \( -name "*~" -o -name "#*#" \) -exec $(RM) "{}" \;
+	$(RM) $(OBJS)
 
 fclean:	clean
 	$(RM) $(NAME)
 
 re:	fclean all
+
+.PHONY: all clean fclean re
