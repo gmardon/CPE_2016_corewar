@@ -5,10 +5,8 @@
 ## Login   <guillaume.mardon@epitech.net>
 ##
 ## Started on  Mon Oct 24 10:23:27 2016 Guillaume MARDON
-## Last update Thu Dec 15 10:29:05 2016 Aurelien
+## Last update Sat Dec 17 22:22:51 2016 Aurelien
 ##
-
-LDFLAGS =-lSDL -lSDL_ttf -lGLU -lGL
 
 #CFLAGS	+=	-Wextra -Wall -Werror -pedantic
 
@@ -59,7 +57,7 @@ RM	=	rm -f
 all:	$(MY_PRINTF) $(NAME)
 
 $(NAME):
-	$(CC) $(SRCS) -o $(NAME) -g $(LDFLAGS) $(CFLAGS) -I./include $(LIB)
+	$(CC) $(SRCS) -o $(NAME) -I./include $(LIB)
 
 $(MY_PRINTF):
 	$(MAKE) -C $(MY_PRINTF)
