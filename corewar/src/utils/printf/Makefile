@@ -5,7 +5,7 @@
 ## Login   <aurelien.olibe@epitech.net>
 ##
 ## Started on  Sat Oct 29 18:51:39 2016 Aurelien Olibe
-## Last update Wed Dec 14 16:09:21 2016 Aurelien
+## Last update Sun Dec 18 20:06:54 2016 Aurelien
 ##
 
 CC	= gcc
@@ -37,7 +37,7 @@ SRCS	=	basic.c		\
 OBJS	= $(SRCS:.c=.o)
 
 
-all: $(NAME) clean
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
